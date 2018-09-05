@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-class App extends Component {
+import ErrorBoundary from 'containers/ErrorBoundary'
+import Growl from 'containers/Growl'
+
+class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Bem-vindo ao Simulados OAB</h1>
-        </header>
-      </div>
-    );
+      <main>
+        <Growl />
+        <ErrorBoundary>
+          {this.props.children}
+        </ErrorBoundary>
+      </main>
+    )
   }
 }
 
-export default App;
+export default App
