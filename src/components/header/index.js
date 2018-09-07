@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import Icon from '../Icon'
 import propTypes from 'prop-types'
+import { withRouter } from 'react-router';
 
 import './header.scss'
 
 /**
  * Component that render the header app, considering
- * the isDashboard prop to render the correct left
- * icon (user or arrow-left).
+ * the corrent path to render or not.
  */
 class Header extends Component {
 
@@ -17,21 +17,24 @@ class Header extends Component {
 
     render() {
 
-        const { isDashboard } = this.props;
+        const { location } = this.props;
 
-        return (
-            <div className="HeaderContainer">
-                <a
-                    className="IconContainer"
-                    onClick={() => this.goBackOrUserProfile()}>
-                    {isDashboard ? <Icon name={'user'} size={26} /> : <Icon name={'arrow-left'} size={26} />}
-                </a>
-                <a className="IconContainer"
-                    onClick={() => this.openMenuSettings()}>
-                    <Icon name={'menu'} size={26} />
-                </a>
-            </div>
-        );
+        if (location.pathname !== '/error' && location.pathname !== '/')
+            return (
+                <div className="HeaderContainer">
+                    <a
+                        className="IconContainer"
+                        onClick={() => this.goBackOrUserProfile()}>
+                        {location.pathname === '/dashboard' ? <Icon name={'user'} size={26} /> : <Icon name={'arrow-left'} size={26} />}
+                    </a>
+                    <a className="IconContainer"
+                        onClick={() => this.openMenuSettings()}>
+                        <Icon name={'menu'} size={26} />
+                    </a>
+                </div>
+            );
+
+        return null;
     }
 
     /**
@@ -56,18 +59,4 @@ class Header extends Component {
     }
 }
 
-/**
- * Header custom props.
- */
-Header.propTypes = {
-    isDashboard: propTypes.bool
-}
-
-/**
- * Header default value props.
- */
-Header.defaultProps = {
-    isDashboard: false
-}
-
-export default Header;
+export default withRouter(Header);

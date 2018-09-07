@@ -9,9 +9,7 @@ class Dashboard extends Component {
     render() {
 
         return (
-                            
-                <h1>TELA DASHBOARD</h1>
-           
+            <h1>TELA DASHBOARD</h1>
         );
     }
 

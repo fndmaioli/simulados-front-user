@@ -12,7 +12,7 @@ import thunk from 'redux-thunk'
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router'
 
 import { Provider } from 'react-redux'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 
 import rootReducer from 'store'
 
@@ -37,25 +37,18 @@ const store = createStore(
   ),
 )
 
-const WithHeader = ({ children }) => (
-  <div>
-    <Header />
-    {children}
-  </div>
-);
-
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App>
         <Container className="MainContainer">
+          <Header />
           <Switch>
             <Route exact path="/" component={Examples} />
             <ProtectedRoute path="/protected" component={() => 'Protected content'} />
-            <WithHeader>
-              <Route exact path="/dashboard" component={Dashboard} />
-            </WithHeader>
-            <Route render={() => 404} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path='/error' render={() => 404} />
+            <Redirect from='*' to='/error' />
           </Switch>
         </Container>
       </App>
