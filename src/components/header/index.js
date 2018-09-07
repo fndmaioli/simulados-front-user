@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import './header.css';
-import IconMenu from 'react-feather/dist/icons/menu';
-import UserMenu from 'react-feather/dist/icons/user';
-import ArrowLeft from 'react-feather/dist/icons/arrow-left';
-import propTypes from 'prop-types';
+import React, { Component } from 'react'
+import Icon from '../Icon'
+import propTypes from 'prop-types'
+
+import './header.scss'
 
 /**
  * Component that render the header app, considering
@@ -18,18 +17,18 @@ class Header extends Component {
 
     render() {
 
-       const { isDashboard } = this.props;
+        const { isDashboard } = this.props;
 
         return (
             <div className="HeaderContainer">
-                <a 
-                className="IconContainer"
-                onClick={() => this.goBackOrUserProfile()}>
-                   {isDashboard ? <UserMenu size={26} /> :  <ArrowLeft size={26} /> } 
+                <a
+                    className="IconContainer"
+                    onClick={() => this.goBackOrUserProfile()}>
+                    {isDashboard ? <Icon name={'user'} size={26} /> : <Icon name={'arrow-left'} size={26} />}
                 </a>
                 <a className="IconContainer"
-                onClick={() => this.openMenuSettings()}>
-                    <IconMenu size={26} />
+                    onClick={() => this.openMenuSettings()}>
+                    <Icon name={'menu'} size={26} />
                 </a>
             </div>
         );
@@ -39,20 +38,20 @@ class Header extends Component {
      * Go back or open user profile, validating
      * with the isDashboard prop received.
      */
-    goBackOrUserProfile(){
+    goBackOrUserProfile() {
 
         if (this.props.isDashboard) {
             console.log('abrindo perfil...')
-            
+
         } else {
             console.log('Voltando para pagina anterior...')
-        }        
+        }
     }
 
     /**
      * Open the menu.
      */
-    openMenuSettings(){
+    openMenuSettings() {
         console.log('abrindo menu...')
     }
 }
@@ -61,14 +60,14 @@ class Header extends Component {
  * Header custom props.
  */
 Header.propTypes = {
-    isDashboard : propTypes.bool
+    isDashboard: propTypes.bool
 }
 
 /**
  * Header default value props.
  */
 Header.defaultProps = {
-    isDashboard : false
+    isDashboard: false
 }
 
 export default Header;

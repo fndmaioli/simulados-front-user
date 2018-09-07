@@ -1,11 +1,14 @@
+
+@import "../../stylesheets/main";
+
 .HeaderContainer {
-  background-color: #EFEEF4;
+  background-color: $background-color;
   height: 52px; 
   color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 14px;
+  padding-left: 10px;
   padding-right: 14px;
 }
 
@@ -14,5 +17,5 @@
   border: none;
   background: inherit;
   height: '100%';
-  -webkit-tap-highlight-color:  #EFEEF4;
+  -webkit-tap-highlight-color:  $background-color;
 }
