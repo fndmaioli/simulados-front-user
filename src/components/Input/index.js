@@ -31,9 +31,7 @@ const InputWithIcon = props => (
   </div>
 )
 
-const shouldHaveIcon = props =>
-  'icon' in props || props.type === 'search'
+const shouldHaveIcon = props => 'icon' in props || props.type === 'search'
 
-export default props => shouldHaveIcon(props)
-  ? <InputWithIcon {...props} />
-  : <Input {...props} />
+export default props =>
+  shouldHaveIcon(props) ? <InputWithIcon {...props} /> : <Input {...props} />

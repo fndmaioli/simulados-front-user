@@ -2,22 +2,18 @@ import React from 'react'
 
 import './radio-group.scss'
 
-const Radio = ({
-  name,
-  value,
-  checked,
-  label,
-  onChange,
-}) => (
+const Radio = ({ name, value, checked, label, onChange }) => (
   <div className="radio">
     <input
       className="radio__bullet"
       type="radio"
       id={value}
-      name={name} 
+      name={name}
       onChange={onChange}
     />
-    <label className="radio__label" htmlFor={value}>{label}</label>
+    <label className="radio__label" htmlFor={value}>
+      {label}
+    </label>
   </div>
 )
 
@@ -31,8 +27,7 @@ const RadioGroup = ({ options, name, onChange }) => (
         name={name}
         onChange={onChange}
       />
-    ))
-    }
+    ))}
   </div>
 )
 
