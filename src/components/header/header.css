@@ -1,0 +1,18 @@
+.HeaderContainer {
+  background-color: #EFEEF4;
+  height: 52px; 
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.IconContainer {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  height: '100%';
+  -webkit-tap-highlight-color:  #EFEEF4;
+}
