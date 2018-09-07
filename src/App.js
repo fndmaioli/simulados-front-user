@@ -8,9 +8,7 @@ class App extends React.Component {
     return (
       <main>
         <Growl />
-        <ErrorBoundary>
-          {this.props.children}
-        </ErrorBoundary>
+        <ErrorBoundary>{this.props.children}</ErrorBoundary>
       </main>
     )
   }

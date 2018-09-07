@@ -7,9 +7,7 @@ import Card from '../Card'
 import './modal.scss'
 
 const toggleOverflowIfNeeded = props =>
-  document.body.style.overflow = props.open
-    ? 'hidden'
-    : 'auto'
+  (document.body.style.overflow = props.open ? 'hidden' : 'auto')
 
 class Modal extends React.Component {
   componentDidMount() {
@@ -28,13 +26,10 @@ class Modal extends React.Component {
     return ReactDOM.createPortal(
       <div className={cn('modal', open && 'modal--open')}>
         <div className="modal__backdrop" onClick={onClose} />
-        <Card className="modal__content">
-          {children}
-        </Card>
+        <Card className="modal__content">{children}</Card>
       </div>,
       document.getElementById('modal-root'),
     )
-
   }
 }
 
