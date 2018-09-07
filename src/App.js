@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-class App extends Component {
+import ErrorBoundary from 'containers/ErrorBoundary'
+import Growl from 'containers/Growl'
 
+class App extends React.Component {
   render() {
     return (
       <main>
-        {this.props.children}
+        <Growl />
+        <ErrorBoundary>
+          {this.props.children}
+        </ErrorBoundary>
       </main>
-    );
+    )
   }
 }
 
-export default App;
+export default App
