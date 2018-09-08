@@ -18,15 +18,7 @@ const growl = (text, type = constants.GROWL_INFO) => dispatch => {
   }
 
   dispatch(growlAdded(message))
-  setTimeout(
-    () => dispatch(
-      growlRemoved(message)
-    ), 1000 * 5
-  )
+  setTimeout(() => dispatch(growlRemoved(message)), 1000 * 5)
 }
 
-export {
-  growlAdded,
-  growlRemoved,
-  growl,
-}
+export { growlAdded, growlRemoved, growl }

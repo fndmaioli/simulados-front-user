@@ -12,7 +12,7 @@ const Button = ({
   icon,
   block,
   size = 'md',
-  className
+  className,
 }) => (
   <button
     className={cn(
@@ -22,12 +22,16 @@ const Button = ({
       !children && 'button--empty',
       icon && 'button--with-icon',
       size && `button--${size}`,
-      className
+      className,
     )}
     onClick={onClick}
     disabled={disabled}
   >
-    {icon && <span className="button__icon"><Icon name={icon} /></span>}
+    {icon && (
+      <span className="button__icon">
+        <Icon name={icon} />
+      </span>
+    )}
     {children}
   </button>
 )

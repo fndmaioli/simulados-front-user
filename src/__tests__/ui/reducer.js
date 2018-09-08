@@ -1,7 +1,4 @@
-import {
-  growlAdded,
-  growlRemoved,
-} from '../../store/ui/actions'
+import { growlAdded, growlRemoved } from '../../store/ui/actions'
 
 import reducer from '../../store/ui'
 
@@ -10,7 +7,7 @@ describe('reducer', () => {
     it('should append the growl along with the others', () => {
       const newAlert = { message: 'testing' }
       const state = {
-        growls: [{}, {}]
+        growls: [{}, {}],
       }
       const newState = reducer(state, growlAdded(newAlert))
 
@@ -22,7 +19,7 @@ describe('reducer', () => {
     it('should set the growl at given index to `hidden`', () => {
       const msgToBeRemoved = {}
       const state = {
-        growls: [{}, msgToBeRemoved]
+        growls: [{}, msgToBeRemoved],
       }
       const newState = reducer(state, growlRemoved(msgToBeRemoved))
 
