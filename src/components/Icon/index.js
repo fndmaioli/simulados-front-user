@@ -4,10 +4,10 @@ import propTypes from 'prop-types'
 
 import './icon.scss'
 
-const Icon = ({ name, size }) => (
+const Icon = ({ name, height, width, color }) => (
   <i
     className="icon"
-    dangerouslySetInnerHTML={{__html: feather.icons[name].toSvg({ height: size,  width: size })}}
+    dangerouslySetInnerHTML={{__html: feather.icons[name].toSvg({ height, width, color })}}
   />
 )
 
@@ -15,16 +15,20 @@ const Icon = ({ name, size }) => (
  * Icon custom props.
  */
 Icon.propTypes = {
-  size: propTypes.number, 
-  name: propTypes.string
+  height: propTypes.number, 
+  width: propTypes.number, 
+  name: propTypes.string,
+  color: propTypes.string,
 }
 
 /**
 * Icon default value props.
 */
 Icon.defaultProps = {
-  size: 16,  
-  name: 'alert-triangle'
+  height: 16,  
+  width: 16,
+  name: 'alert-triangle',
+  color: 'black'
 }
 
 export default Icon

@@ -1,3 +1,10 @@
-.MainContainer {
-    text-align: center;
-  }
+.mainContainer {   
+  background: $background-color;
+  height: 880px;
+}
+
+.title {
+    text-align: left;
+    padding: 10px 10px 0px;   
+}
+

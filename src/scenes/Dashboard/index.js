@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
+import MenuCard from '../../components/MenuCard';
+
 import './dashboard.scss';
-import Header from '../../components/header';
-import Container from '../../components/Container'
 
 //TODO: Tela Menu principal com opção de novo simulado 
 class Dashboard extends Component {
@@ -9,10 +10,32 @@ class Dashboard extends Component {
     render() {
 
         return (
-            <h1>TELA DASHBOARD</h1>
+            <div className="mainContainer">
+                <h2 className="title">Simulados</h2>
+                <MenuCard
+                    iconColor="#FE8184"
+                    icon="clipboard"
+                    label='Simular Prova'
+                    buttonLabel='Iniciar'
+                    onClick={() => this.doTest()} />
+                <MenuCard
+                 iconColor="#5E69F5"
+                 icon="shuffle"
+                 label='Perguntas Aleatórias'
+                 buttonLabel='Iniciar'
+                 blueContainer
+                 onClick={() => this.doRandomQuestions()} />
+            </div>
         );
     }
 
+    doTest(){
+       console.log("Buscar teste...")
+    }
+
+    doRandomQuestions(){
+        console.log("Buscar perguntas aleatorias...")
+    }
 }
 
 export default Dashboard;

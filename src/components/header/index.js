@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Icon from '../Icon'
-import propTypes from 'prop-types'
 import { withRouter } from 'react-router';
 
 import './header.scss'
@@ -25,11 +24,11 @@ class Header extends Component {
                     <a
                         className="IconContainer"
                         onClick={() => this.goBackOrUserProfile()}>
-                        {location.pathname === '/dashboard' ? <Icon name={'user'} size={26} /> : <Icon name={'arrow-left'} size={26} />}
+                        {location.pathname === '/dashboard' ? <Icon name={'user'} width={26} height={26} /> : <Icon name={'arrow-left'} width={26} height={26} />}
                     </a>
                     <a className="IconContainer"
                         onClick={() => this.openMenuSettings()}>
-                        <Icon name={'menu'} size={26} />
+                        <Icon name={'menu'} width={26} height={26} />
                     </a>
                 </div>
             );

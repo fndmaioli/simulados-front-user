@@ -41,7 +41,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App>
-        <Container className="MainContainer">
+        <Container>
           <Header />
           <Switch>
             <Route exact path="/" component={Examples} />
