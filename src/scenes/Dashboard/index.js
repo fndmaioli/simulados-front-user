@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import MenuCard from '../../components/MenuCard'
-import { examService } from '../../services'
+import { ExamService } from '../../services'
 import './dashboard.scss'
 
 //TODO: Tela Menu principal com opção de novo simulado
@@ -30,8 +30,15 @@ class Dashboard extends Component {
   }
 
   async doTest() {
-    console.log('Buscar teste...')
-    const response = await examService.fetchExam()
+    console.log('Buscando teste...')
+    const response = await ExamService.fetchExam()
+
+    if (response.success) {
+      console.log('Exame buscado com succeso')
+      //navegar para próxima tela passando o id exame
+    } else {
+      console.log('Erro ao buscar o exame')
+    }
     console.log(response)
   }
 

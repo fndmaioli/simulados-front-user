@@ -1,3 +1,3 @@
-import examService from './examService'
+import ExamService from './ExamService'
 
-export { examService }
+export { ExamService }
