@@ -24,6 +24,8 @@ import App from './App'
 import Examples from 'scenes/Examples'
 import Dashboard from 'scenes/Dashboard'
 import Layout from 'components/Layout'
+import Simulados from 'scenes/Exam'
+import ProtectedRoute from 'containers/ProtectedRoute'
 
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -40,6 +42,7 @@ ReactDOM.render(
         <Layout>
           <Switch>
             <Route exact path="/examples" component={Examples} />
+            <Route exact path="/simulado" component={Simulados} />
             <Route path="/" component={Dashboard} />
             <Route path="/error" render={() => 404} />
             <Redirect from="*" to="/error" />
