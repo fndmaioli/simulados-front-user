@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 import MenuCard from '../../components/MenuCard'
-import http from '../../utils/http'
-
+import { examService } from '../../services'
 import './dashboard.scss'
 
 //TODO: Tela Menu principal com opção de novo simulado
@@ -32,16 +31,7 @@ class Dashboard extends Component {
 
   async doTest() {
     console.log('Buscar teste...')
-    let response = await http
-      .post('http://localhost:3000/exam', {
-        data: { student_id: 1 },
-      })
-      .then(result => {
-        return result
-      })
-      .catch(err => {
-        return err
-      })
+    const response = await examService.fetchExam()
     console.log(response)
   }
 
