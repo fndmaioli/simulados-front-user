@@ -1,0 +1,32 @@
+.rightAnswer {
+  border-color: green;
+  border-style: solid;
+  border-width: 2px;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  width: 500px;
+  margin: 10px;
+}
+
+.wrongAnswer {
+  border-color: red;
+  border-style: solid;
+  border-width: 2px;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  width: 500px;
+  margin: 10px;
+}
+
+.nextQuestion {
+  background-color: blue;
+  font-size: 12px;
+  border-radius: 4px;
+  width: 200px;
+  text-align: center;
+  color: aliceblue;
+}
+.title {
+  padding: 1%;
+  margin: 3%;
+}
