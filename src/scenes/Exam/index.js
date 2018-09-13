@@ -23,7 +23,7 @@ import Slider from 'react-slick'
 class Exam extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { modalOpen: false }
+    this.state = { modalOpen: false, showConfirmButton: false }
   }
 
   render() {
@@ -202,9 +202,15 @@ class Exam extends React.Component {
                         name="alternatives"
                         value={alternative.id}
                         label={alternative.text}
+                        onChange={() =>
+                          this.setState({ showConfirmButton: true })
+                        }
                       />
                     </Card>
                   ))}
+                  {this.state.showConfirmButton ? (
+                    <Button class="confirmButton">Confirma Resposta</Button>
+                  ) : null}
                 </Modal>
               </div>
             )
