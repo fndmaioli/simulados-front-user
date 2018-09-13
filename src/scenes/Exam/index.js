@@ -11,6 +11,7 @@ import Input from 'components/Input'
 import Field from 'components/Field'
 import Card from 'components/Card'
 import RadioGroup from 'components/RadioGroup'
+import { Radio } from 'components/RadioGroup'
 import Select from 'components/Select'
 import Modal from 'components/Modal'
 import './exam.scss'
@@ -34,56 +35,180 @@ class Exam extends React.Component {
       slidesToScroll: 1,
       arrows: false,
     }
+
+    const questions = [
+      {
+        id: '01',
+        tittle:
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        alternatives: [
+          {
+            id: '1',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '2',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '3',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '4',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+        ],
+      },
+      {
+        id: '02',
+        tittle:
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        alternatives: [
+          {
+            id: '1',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '2',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '3',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '4',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+        ],
+      },
+      {
+        id: '03',
+        tittle:
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        alternatives: [
+          {
+            id: '1',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '2',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '3',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '4',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+        ],
+      },
+      {
+        id: '04',
+        tittle:
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        alternatives: [
+          {
+            id: '1',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '2',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '3',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '4',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+        ],
+      },
+      {
+        id: '05',
+        tittle:
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        alternatives: [
+          {
+            id: '1',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '2',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '3',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+          {
+            id: '4',
+            text:
+              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
+          },
+        ],
+      },
+    ]
+
     return (
       <Container>
-        <Modal
-          onClose={() => this.setState({ modalOpen: false })}
-          open={this.state.modalOpen}
-        >
-          <h3>Modal example</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </Modal>
-
         <Slider {...settings}>
-          <div>
-            <h1>Questão 01</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+          {questions.map(question => {
+            return (
+              <div key={question.id}>
+                <h1>Questão {question.id}</h1>
+                <p>{question.tittle}</p>
+                <Button
+                  ghost
+                  onClick={() => this.setState({ modalOpen: true })}
+                >
+                  Alternativas
+                </Button>
 
-            <Button ghost onClick={() => this.setState({ modalOpen: true })}>
-              Open modal
-            </Button>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+                <Modal
+                  key={question.id}
+                  onClose={() => this.setState({ modalOpen: false })}
+                  open={this.state.modalOpen}
+                >
+                  <h3>Alternativas</h3>
+                  {question.alternatives.map(alternative => (
+                    <Card className="card-alternative">
+                      <Radio
+                        key={alternative.id}
+                        name="alternatives"
+                        value={alternative.id}
+                        label={alternative.text}
+                      />
+                    </Card>
+                  ))}
+                </Modal>
+              </div>
+            )
+          })}
         </Slider>
       </Container>
     )
