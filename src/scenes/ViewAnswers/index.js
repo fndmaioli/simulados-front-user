@@ -48,16 +48,16 @@ class ViewAnswers extends React.Component {
             </Card>{' '}
           </div>
         ) : (
-          <div>
-            <h1 className="spacing space-x-m">Resposta Incorreta</h1>
-            <Card className="view-answers  answer--right">
-              <p>{this.state.correct}</p>
-            </Card>
-            <Card className="view-answers answer--wrong">
-              <p>{this.state.userAnswer}</p>
-            </Card>
-          </div>
-        )}
+            <div>
+              <h1 className="spacing space-x-m">Resposta Incorreta</h1>
+              <Card className="view-answers  answer--right">
+                <p>{this.state.correct}</p>
+              </Card>
+              <Card className="view-answers answer--wrong">
+                <p>{this.state.userAnswer}</p>
+              </Card>
+            </div>
+          )}
 
         <div>
           <h1 className="spacing space-x-m">Comentários do Professor</h1>
