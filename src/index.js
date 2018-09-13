@@ -23,6 +23,7 @@ import rootReducer from 'store'
 import App from './App'
 import Examples from 'scenes/Examples'
 import ProtectedRoute from 'containers/ProtectedRoute'
+import ViewAnswers from 'scenes/ViewAnswers'
 
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -38,6 +39,7 @@ ReactDOM.render(
       <App>
         <Switch>
           <Route exact path="/" component={Examples} />
+          <Route exact path="/resposta" component={ViewAnswers} />
           <ProtectedRoute
             path="/protected"
             component={() => 'Protected content'}
