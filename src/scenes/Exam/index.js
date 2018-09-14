@@ -182,36 +182,26 @@ class Exam extends React.Component {
               <div key={question.id}>
                 <h1>Questão {question.id}</h1>
                 <p>{question.tittle}</p>
-                <Button
-                  ghost
-                  onClick={() => this.setState({ modalOpen: true })}
-                >
-                  Alternativas
-                </Button>
 
-                <Modal
-                  key={question.id}
-                  onClose={() => this.setState({ modalOpen: false })}
-                  open={this.state.modalOpen}
-                >
-                  <h3>Alternativas</h3>
-                  {question.alternatives.map(alternative => (
-                    <Card className="card-alternative">
-                      <Radio
-                        key={alternative.id}
-                        name="alternatives"
-                        value={alternative.id}
-                        label={alternative.text}
-                        onChange={() =>
-                          this.setState({ showConfirmButton: true })
-                        }
-                      />
-                    </Card>
-                  ))}
-                  {this.state.showConfirmButton ? (
-                    <Button class="confirmButton">Confirma Resposta</Button>
-                  ) : null}
-                </Modal>
+                <h3>Alternativas</h3>
+                {question.alternatives.map(alternative => (
+                  <Card className="card-alternative">
+                    <Radio
+                      key={alternative.id}
+                      name="alternatives"
+                      value={alternative.id}
+                      label={alternative.text}
+                      onChange={() =>
+                        this.setState({ showConfirmButton: true })
+                      }
+                    />
+                  </Card>
+                ))}
+                <footer className="flex justify-center">
+                  {this.state.showConfirmButton && (
+                    <Button>Confirma Resposta</Button>
+                  )}
+                </footer>
               </div>
             )
           })}
