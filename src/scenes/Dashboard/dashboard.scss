@@ -1,10 +1,16 @@
-.mainContainer {   
-  background: $background-color;
+.mainContainer {
+  background: #faf7fb;
   height: 880px;
 }
 
 .title {
-    text-align: left;
-    padding: 10px 10px 0px;   
+  text-align: left;
+  padding: 30px 10px 0px;
+  margin-bottom: 0px;
 }
 
+.description {
+  text-align: left;
+  padding: 10px 10px 30px;
+  opacity: 0.6;
+}

@@ -9,27 +9,50 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="mainContainer">
-        <h2 className="title">Simulados</h2>
+        <h1 className="title">Seja bem-vindo.</h1>
+        <h6 className="description">
+          Existem diversas formas de se preparar para a prova. Selecione uma
+          destas abaixo para darmos inicio.
+        </h6>
         <MenuCard
           iconColor="#FE8184"
           icon="clipboard"
           label="Simular Prova"
           buttonLabel="Iniciar"
-          onClick={() => this.doTest()}
+          description="Selecione e execute uma prova dos anos anteriores"
+          onClick={() => this.doExam()}
         />
         <MenuCard
           iconColor="#5E69F5"
           icon="shuffle"
           label="Perguntas Aleatórias"
           buttonLabel="Iniciar"
+          description="Prova com perguntas aleatórias de qualquer categoria."
           blueContainer
-          onClick={() => this.doRandomQuestions()}
+          onClick={() => this.doRandomExam()}
+        />
+        <MenuCard
+          iconColor="#FE8184"
+          icon="clipboard"
+          label="Perguntas Especificas"
+          buttonLabel="Iniciar"
+          description="Prova com perguntas especificas de uma categoria."
+          onClick={() => this.doSpecificExam()}
+        />
+        <MenuCard
+          iconColor="#5E69F5"
+          icon="shuffle"
+          label="Customizado"
+          buttonLabel="Iniciar"
+          description="Prova com categorias escolhidas por você."
+          blueContainer
+          onClick={() => this.doCustomExam()}
         />
       </div>
     )
   }
 
-  async doTest() {
+  async doExam() {
     console.log('Buscando teste...')
     const response = await ExamService.fetchExam()
 
@@ -42,8 +65,16 @@ class Dashboard extends Component {
     console.log(response)
   }
 
-  doRandomQuestions() {
-    console.log('Buscar perguntas aleatorias...')
+  doRandomExam() {
+    console.log('Buscar exame com perguntas aleatorias...')
+  }
+
+  doSpecificExam() {
+    console.log('Buscar exame com perguntas especificas...')
+  }
+
+  doCustomExam() {
+    console.log('Buscar exame perguntas customizadas...')
   }
 }
 

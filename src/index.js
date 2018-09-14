@@ -27,6 +27,8 @@ import ProtectedRoute from 'containers/ProtectedRoute'
 import Header from '../src/components/header'
 import Container from '../src/components/Container'
 
+import './index.scss'
+
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -39,7 +41,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App>
-        <Container>
+        <Container size classname="container">
           <Header />
           <Switch>
             <Route exact path="/" component={Examples} />
