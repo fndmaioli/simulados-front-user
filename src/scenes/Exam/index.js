@@ -3,8 +3,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { growl } from 'store/ui/actions'
-import { GROWL_INFO, GROWL_ERROR, GROWL_SUCCESS } from 'store/ui/constants'
+import { fetchQuestion } from 'store/question/actions'
 
 import Button from 'components/Button'
 import Input from 'components/Input'
@@ -24,6 +23,10 @@ class Exam extends React.Component {
   constructor(props) {
     super(props)
     this.state = { modalOpen: false, showConfirmButton: false }
+  }
+
+  componentDidMount() {
+    this.props.fetchQuestion()
   }
 
   render() {
@@ -216,7 +219,7 @@ export default connect(
   dispatch =>
     bindActionCreators(
       {
-        growl,
+        fetchQuestion,
       },
       dispatch,
     ),
