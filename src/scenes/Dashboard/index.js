@@ -49,7 +49,7 @@ class Dashboard extends Component {
           label="Perguntas Aleatórias"
           buttonLabel="Iniciar"
           description="Prova com perguntas aleatórias de qualquer categoria."
-          blueContainer
+          smallWindow={this.state.smallWindow}
           onClick={() => this.doRandomExam()}
         />
         <MenuCard
@@ -59,6 +59,7 @@ class Dashboard extends Component {
           label="Perguntas Especificas"
           buttonLabel="Iniciar"
           description="Prova com perguntas especificas de uma categoria."
+          smallWindow={this.state.smallWindow}
           onClick={() => this.doSpecificExam()}
         />
         <MenuCard
@@ -68,7 +69,7 @@ class Dashboard extends Component {
           label="Customizado"
           buttonLabel="Iniciar"
           description="Prova com categorias escolhidas por você."
-          blueContainer
+          smallWindow={this.state.smallWindow}
           onClick={() => this.doCustomExam()}
         />
       </div>
