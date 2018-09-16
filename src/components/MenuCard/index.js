@@ -25,9 +25,9 @@ const MenuCard = ({
     onTouchEnd={onClick}
     onClick={smallWindow ? onClick : null}
   >
-    <div class="flex menucard__innercontainer">
+    <div className="flex menucard__innercontainer">
       <div
-        class="flex items-center menucard__iconcontainer"
+        className="flex items-center menucard__iconcontainer"
         style={{ background: iconContainerColor }}
       >
         <Icon
@@ -38,11 +38,11 @@ const MenuCard = ({
           color={iconColor}
         />
       </div>
-      <div class="flex flex-column flex-auto menucard__textscontainer">
-        <h3 class="space-stack-s menucard__text">{label}</h3>
-        <p class="menucard__description">{description}</p>
+      <div className="flex flex-column flex-auto menucard__textscontainer">
+        <h3 className="space-stack-s menucard__text">{label}</h3>
+        <p className="menucard__description">{description}</p>
       </div>
-      <div class="menucard__buttoncontainer">
+      <div className="menucard__buttoncontainer">
         <Button className="flex self-center" ghost onClick={onClick}>
           {buttonLabel}
         </Button>
