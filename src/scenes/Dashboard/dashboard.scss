@@ -1,16 +1,8 @@
-.mainContainer {
-  background: #faf7fb;
-  height: 880px;
+.dashboard__title {
+  padding-top: 20px;
 }
 
-.title {
-  text-align: left;
-  padding: 30px 10px 0px;
-  margin-bottom: 0px;
-}
-
-.description {
-  text-align: left;
-  padding: 10px 10px 30px;
+.dashboard__description {
+  padding-bottom: 30px;
   opacity: 0.6;
 }

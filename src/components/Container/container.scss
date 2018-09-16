@@ -1,12 +1,9 @@
 .container {
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 16px 12px 16px;
 
   &--sm {
     max-width: 530px;
-  }
-
-  @media (max-width: 780px) {
-    padding: 0 0px;
   }
 }

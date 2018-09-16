@@ -1,29 +1,50 @@
 import React, { Component } from 'react'
 
-import MenuCard from '../../components/MenuCard'
-import { ExamService } from '../../services'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import MenuCard from 'components/MenuCard'
+import { fetchExam } from 'store/exam/actions'
+
 import './dashboard.scss'
 
-//TODO: Tela Menu principal com opção de novo simulado
 class Dashboard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      smallWindow: null,
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', () => this.checkResize())
+  }
+
+  checkResize() {
+    this.setState({ smallWindow: window.innerWidth <= 720 })
+  }
+
   render() {
     return (
-      <div className="mainContainer">
-        <h1 className="title">Seja bem-vindo.</h1>
-        <h6 className="description">
+      <div>
+        <h1 className="dashboard__title">Seja bem-vindo.</h1>
+        <h6 className="dashboard__description">
           Existem diversas formas de se preparar para a prova. Selecione uma
           destas abaixo para darmos inicio.
         </h6>
         <MenuCard
-          iconColor="#FE8184"
+          iconContainerColor="#EAF7E8"
+          iconColor="#41C236"
           icon="clipboard"
           label="Simular Prova"
           buttonLabel="Iniciar"
           description="Selecione e execute uma prova dos anos anteriores"
+          smallWindow={this.state.smallWindow}
           onClick={() => this.doExam()}
         />
         <MenuCard
-          iconColor="#5E69F5"
+          iconContainerColor="#FFD7D7"
+          iconColor="#FE8184"
           icon="shuffle"
           label="Perguntas Aleatórias"
           buttonLabel="Iniciar"
@@ -32,7 +53,8 @@ class Dashboard extends Component {
           onClick={() => this.doRandomExam()}
         />
         <MenuCard
-          iconColor="#FE8184"
+          iconContainerColor="#AEBAf9"
+          iconColor="#5E69F5"
           icon="clipboard"
           label="Perguntas Especificas"
           buttonLabel="Iniciar"
@@ -40,7 +62,8 @@ class Dashboard extends Component {
           onClick={() => this.doSpecificExam()}
         />
         <MenuCard
-          iconColor="#5E69F5"
+          iconContainerColor="#F2F2F2"
+          iconColor="#787878"
           icon="shuffle"
           label="Customizado"
           buttonLabel="Iniciar"
@@ -53,16 +76,19 @@ class Dashboard extends Component {
   }
 
   async doExam() {
-    console.log('Buscando teste...')
-    const response = await ExamService.fetchExam()
+    console.log('Buscando exame...')
+    await this.props.fetchExam(1)
 
-    if (response.success) {
-      console.log('Exame buscado com succeso')
-      //navegar para próxima tela passando o id exame
+    const { exam } = this.props
+
+    if (exam.success) {
+      console.log('Exame buscado com sucesso!')
+      //navegar para tela de fazer a prova
     } else {
-      console.log('Erro ao buscar o exame')
+      console.log('Erro ao buscar exame!')
     }
-    console.log(response)
+
+    console.log(this.props.exam)
   }
 
   doRandomExam() {
@@ -78,4 +104,17 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+const mapStateToProps = state => ({
+  exam: state.exam.data,
+})
+
+export default connect(
+  mapStateToProps,
+  dispatch =>
+    bindActionCreators(
+      {
+        fetchExam,
+      },
+      dispatch,
+    ),
+)(Dashboard)

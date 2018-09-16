@@ -24,10 +24,7 @@ import App from './App'
 import Examples from 'scenes/Examples'
 import Dashboard from 'scenes/Dashboard'
 import ProtectedRoute from 'containers/ProtectedRoute'
-import Header from '../src/components/header'
 import Container from '../src/components/Container'
-
-import './index.scss'
 
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -41,15 +38,14 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App>
-        <Container size classname="container">
-          <Header />
+        <Container>
           <Switch>
-            <Route exact path="/" component={Examples} />
             <ProtectedRoute
               path="/protected"
               component={() => 'Protected content'}
             />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route exact path="/examples" component={Examples} />
+            <Route path="/" component={Dashboard} />
             <Route path="/error" render={() => 404} />
             <Redirect from="*" to="/error" />
           </Switch>

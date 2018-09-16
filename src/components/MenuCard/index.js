@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
-import cn from 'classnames'
 
 import Card from '../Card'
 import Icon from '../Icon'
@@ -9,60 +8,61 @@ import Button from '../Button'
 import './menucard.scss'
 
 /**
- * Component to display the menu cards.
+ * Component to display a menu card.
  */
-class MenuCard extends Component {
-  render() {
-    const {
-      onClick,
-      iconColor,
-      icon,
-      label,
-      buttonLabel,
-      blueContainer,
-      description,
-    } = this.props
-
-    return (
-      <Card className="card">
-        <div
-          className={cn(
-            'iconContainer',
-            blueContainer && 'iconContainer--blue',
-          )}
-        >
-          <Icon name={icon} height={30} width={51} color={iconColor} />
-        </div>
-        <h3 className="text">{label}</h3>
-        <p className={cn('text', true && 'text--description')}>{description}</p>
-        <Button className="cardButton" ghost onClick={onClick}>
+const MenuCard = ({
+  onClick,
+  iconColor,
+  icon,
+  label,
+  buttonLabel,
+  description,
+  iconContainerColor,
+  smallWindow,
+}) => (
+  <Card
+    className="flex menucard"
+    onTouchEnd={onClick}
+    onClick={smallWindow ? onClick : null}
+  >
+    <div class="flex menucard__innercontainer">
+      <div
+        class="flex items-center menucard__iconcontainer"
+        style={{ background: iconContainerColor }}
+      >
+        <Icon
+          className="menucard__icon"
+          name={icon}
+          height={34}
+          width={52}
+          color={iconColor}
+        />
+      </div>
+      <div class="flex flex-column flex-auto menucard__textscontainer">
+        <h3 class="space-stack-s menucard__text">{label}</h3>
+        <p class="menucard__description">{description}</p>
+      </div>
+      <div class="menucard__buttoncontainer">
+        <Button className="flex self-center" ghost onClick={onClick}>
           {buttonLabel}
         </Button>
-      </Card>
-    )
-  }
-}
+      </div>
+    </div>
+  </Card>
+)
 
 /**
  * MenuCard custom props.
  */
 MenuCard.propTypes = {
   iconColor: propTypes.string,
+  iconContainerColor: propTypes.string,
   icon: propTypes.string,
   buttonLabel: propTypes.string,
   label: propTypes.string,
-  blueContainer: propTypes.bool,
   onClick: propTypes.func,
   description: propTypes.string,
-}
-
-/**
- * MenuCard default value props.
- */
-MenuCard.defaultProps = {
-  label: 'lorem ipsum',
-  buttonLabel: 'continue',
-  onClick: () => {},
+  smallWindow: propTypes.bool,
 }
 
 export default MenuCard
