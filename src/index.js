@@ -16,13 +16,15 @@ import {
 } from 'connected-react-router'
 
 import { Provider } from 'react-redux'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 
 import rootReducer from 'store'
 
 import App from './App'
 import Examples from 'scenes/Examples'
+import Dashboard from 'scenes/Dashboard'
 import ProtectedRoute from 'containers/ProtectedRoute'
+import Container from '../src/components/Container'
 
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -36,14 +38,18 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App>
-        <Switch>
-          <Route exact path="/" component={Examples} />
-          <ProtectedRoute
-            path="/protected"
-            component={() => 'Protected content'}
-          />
-          <Route render={() => 404} />
-        </Switch>
+        <Container>
+          <Switch>
+            <ProtectedRoute
+              path="/protected"
+              component={() => 'Protected content'}
+            />
+            <Route exact path="/examples" component={Examples} />
+            <Route path="/" component={Dashboard} />
+            <Route path="/error" render={() => 404} />
+            <Redirect from="*" to="/error" />
+          </Switch>
+        </Container>
       </App>
     </ConnectedRouter>
   </Provider>,

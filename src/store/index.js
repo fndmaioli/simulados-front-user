@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import uiReducer from './ui'
+import examReducer from './exam'
 
 export default combineReducers({
-  ui: uiReducer
+  ui: uiReducer,
+  exam: examReducer,
 })
