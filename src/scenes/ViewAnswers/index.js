@@ -16,18 +16,30 @@ import Modal from 'components/Modal'
 import Container from 'components/Container'
 
 import './viewAnswers.scss'
-import { resolve } from 'path'
-import { rejects } from 'assert'
+
+let abd34 = 'A resposta correta é essa aqui'
+let adf56 = 'Essa é a resposta do usuário'
+let cc111 = 'A resposta correta é a x pois a estrutura.....'
+let dc456 = 'https://www.google.com/'
 
 class ViewAnswers extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      viewAnswers: false,
-      alternative: 'Lorem ipsum',
-      correct: 'Lorem ipsum',
-      coments: 'Congratulations',
+      viewAnswers: null,
+      correct: abd34,
+      userAnswer: abd34,
+      coments: cc111,
+      links: dc456,
     }
+  }
+
+  componentDidMount() {
+    const { correct } = this.state
+    const { userAnswer } = this.state
+    return correct === userAnswer
+      ? this.setState({ viewAnswers: true })
+      : this.setState({ viewAnswers: false })
   }
 
   render() {
@@ -47,21 +59,21 @@ class ViewAnswers extends React.Component {
               <p>{this.state.correct}</p>
             </Card>
             <Card className="wrongAnswer">
-              <p>{this.state.alternative}</p>
-            </Card>{' '}
+              <p>{this.state.userAnswer}</p>
+            </Card>
           </div>
         )}
 
         <div>
-          <h1 className>Comentários do Professor </h1>
+          <h1 className>Comentários do Professor</h1>
           <p className="title">{this.state.coments}</p>
 
           <h3>Links relacionados</h3>
-
-          <Button className="nextQuestion" onClick="">
-            Próxima Questão
-          </Button>
+          <a href="url">{this.state.links}</a>
         </div>
+        <footer className="flex justify-center">
+          <Button onClick="">Próxima Questão</Button>
+        </footer>
       </Container>
     )
   }
