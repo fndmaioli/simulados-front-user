@@ -9,9 +9,8 @@ const initialState = {
 const reducer = handleActions({
   [questionsLoaded]: (state, action) => ({
     ...state,
-    question: action.payload,
+    questions: action.payload,
   }),
-
   initialState,
 })
 

@@ -1,14 +1,14 @@
 import { createAction } from 'redux-actions'
 import http from 'utils/http'
 
-const confirmAnswer = createAction('CONFIRM_QUESTIOM')
+const confirmAnswer = createAction('CONFIRM_QUESTION')
 const questionsLoaded = createAction('QUESTIONS_LOADED')
 
-const fetchQuestion = (participation, lastQuestion) => dispatch => {
+const fetchQuestion = (examId, lastQuestion) => dispatch => {
   http
     .get(
       'localhost:8080/questions?examId=' +
-        participation.examId +
+        examId +
         '&lastQuestion=' +
         lastQuestion,
     )
