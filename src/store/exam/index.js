@@ -2,9 +2,7 @@ import { handleActions } from 'redux-actions'
 
 import { examLoaded } from './actions'
 
-const initialState = {
-  exam: {},
-}
+const initialState = {}
 
 const reducer = handleActions(
   {
@@ -15,5 +13,9 @@ const reducer = handleActions(
   },
   initialState,
 )
+
+export const getExam = state => state.exam
+
+export const getExamId = state => state.exam.id
 
 export default reducer

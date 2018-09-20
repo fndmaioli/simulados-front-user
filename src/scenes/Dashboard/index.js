@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import MenuCard from 'components/MenuCard'
 import { fetchExam } from 'store/exam/actions'
+import { getExam } from 'store/exam'
 
 import './dashboard.scss'
 
@@ -89,7 +90,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  exam: state.exam.data,
+  exam: getExam(state),
 })
 
 export default connect(
