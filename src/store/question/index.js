@@ -9,9 +9,11 @@ const initialState = {
 const reducer = handleActions({
   [questionsLoaded]: (state, action) => ({
     ...state,
-    questions: action.payload,
+    questions: action.payload.questions,
   }),
   initialState,
 })
+
+export const getQuestions = state => state.questions
 
 export default reducer

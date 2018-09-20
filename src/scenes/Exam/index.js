@@ -3,7 +3,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { fetchQuestion } from 'store/question/actions'
+import { fetchQuestion, getQuestions } from 'store/question/actions'
 
 import Button from 'components/Button'
 import Input from 'components/Input'
@@ -26,7 +26,7 @@ class Exam extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchQuestion()
+    this.props.fetchQuestion(this.props.examId)
   }
 
   render() {
@@ -39,148 +39,10 @@ class Exam extends React.Component {
       arrows: false,
     }
 
-    const questions = [
-      {
-        id: '01',
-        tittle:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        alternatives: [
-          {
-            id: '1',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '2',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '3',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '4',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-        ],
-      },
-      {
-        id: '02',
-        tittle:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        alternatives: [
-          {
-            id: '1',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '2',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '3',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '4',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-        ],
-      },
-      {
-        id: '03',
-        tittle:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        alternatives: [
-          {
-            id: '1',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '2',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '3',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '4',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-        ],
-      },
-      {
-        id: '04',
-        tittle:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        alternatives: [
-          {
-            id: '1',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '2',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '3',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '4',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-        ],
-      },
-      {
-        id: '05',
-        tittle:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        alternatives: [
-          {
-            id: '1',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '2',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '3',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-          {
-            id: '4',
-            text:
-              'Card with some text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.',
-          },
-        ],
-      },
-    ]
-
     return (
       <Container>
         <Slider {...settings}>
-          {questions.map(question => {
+          {this.props.questions.map(question => {
             return (
               <div key={question.id}>
                 <h1>Questão {question.id}</h1>
@@ -214,8 +76,13 @@ class Exam extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  examId: state.exam.id,
+  questions: getQuestions(state),
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   dispatch =>
     bindActionCreators(
       {
