@@ -7,7 +7,7 @@ const questionsLoaded = createAction('QUESTIONS_LOADED')
 const fetchQuestion = (examId, lastQuestion) => dispatch => {
   http
     .get(
-      'localhost:8080/questions?examId=' +
+      'localhost:3000/questions?examId=' +
         examId +
         '&lastQuestion=' +
         lastQuestion,

@@ -3,7 +3,9 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { fetchQuestion, getQuestions } from 'store/question/actions'
+import { fetchQuestion } from 'store/question/actions'
+import { getQuestions } from 'store/question'
+import { getExamId } from 'store/exam'
 
 import Button from 'components/Button'
 import Input from 'components/Input'
@@ -77,7 +79,7 @@ class Exam extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  examId: state.exam.id,
+  examId: getExamId(state),
   questions: getQuestions(state),
 })
 
