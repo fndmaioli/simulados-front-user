@@ -12,11 +12,7 @@ import Select from 'components/Select'
 import Modal from 'components/Modal'
 import Container from 'components/Container'
 
-<<<<<<< HEAD
 import './view-answers.scss'
-=======
-import './viewAnswers.scss'
->>>>>>> fixing problems on the answers view screen
 
 let abd34 = 'A resposta correta é essa aqui'
 let adf56 = 'Essa é a resposta do usuário'
@@ -29,11 +25,7 @@ class ViewAnswers extends React.Component {
     this.state = {
       viewAnswers: null,
       correct: abd34,
-<<<<<<< HEAD
       userAnswer: adf56,
-=======
-      userAnswer: abd34,
->>>>>>> fixing problems on the answers view screen
       coments: cc111,
       links: dc456,
     }
@@ -42,13 +34,7 @@ class ViewAnswers extends React.Component {
   componentDidMount() {
     const { correct } = this.state
     const { userAnswer } = this.state
-<<<<<<< HEAD
     this.setState({ viewAnswers: correct === userAnswer })
-=======
-    return correct === userAnswer
-      ? this.setState({ viewAnswers: true })
-      : this.setState({ viewAnswers: false })
->>>>>>> fixing problems on the answers view screen
   }
 
   render() {
@@ -62,7 +48,6 @@ class ViewAnswers extends React.Component {
             </Card>{' '}
           </div>
         ) : (
-<<<<<<< HEAD
             <div>
               <h1 className="spacing space-x-m">Resposta Incorreta</h1>
               <Card className="view-answers  answer--right">
@@ -82,25 +67,6 @@ class ViewAnswers extends React.Component {
           <a className="spacing space-x-m" href={this.state.links}>
             {this.state.links}
           </a>
-=======
-          <div>
-            <h1 className="title">Resposta Incorreta</h1>
-            <Card className="rightAnswer">
-              <p>{this.state.correct}</p>
-            </Card>
-            <Card className="wrongAnswer">
-              <p>{this.state.userAnswer}</p>
-            </Card>
-          </div>
-        )}
-
-        <div>
-          <h1 className>Comentários do Professor</h1>
-          <p className="title">{this.state.coments}</p>
-
-          <h3>Links relacionados</h3>
-          <a href="url">{this.state.links}</a>
->>>>>>> fixing problems on the answers view screen
         </div>
         <footer className="flex justify-center">
           <Button onClick="">Próxima Questão</Button>
