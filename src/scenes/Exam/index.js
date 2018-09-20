@@ -29,6 +29,7 @@ class Exam extends React.Component {
 
   componentDidMount() {
     this.props.fetchQuestion(this.props.examId)
+    console.log(this)
   }
 
   render() {
