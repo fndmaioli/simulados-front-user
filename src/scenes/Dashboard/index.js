@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 
 import MenuCard from 'components/MenuCard'
 import { fetchExam } from 'store/exam/actions'
@@ -66,9 +67,8 @@ class Dashboard extends Component {
 
     const { exam } = this.props
 
-    if (exam.success) {
-      console.log('Exame buscado com sucesso!')
-      //navegar para tela de fazer a prova
+    if (exam) {
+      this.props.history.push('/simulado')
     } else {
       console.log('Erro ao buscar exame!')
     }

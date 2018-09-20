@@ -12,6 +12,10 @@ const fetchQuestion = (examId, lastQuestion) => dispatch => {
         '&lastQuestion=' +
         lastQuestion,
     )
-    .then(questions => dispatch(questionsLoaded(questions)))
+    .then(questions =>
+      dispatch(questionsLoaded(questions)).catch(error =>
+        dispatch(questionsLoaded([])),
+      ),
+    )
 }
 export { confirmAnswer, questionsLoaded, fetchQuestion }
