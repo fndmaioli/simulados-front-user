@@ -16,6 +16,6 @@ const reducer = handleActions(
   initialState,
 )
 
-export const getQuestions = state => state.questions
+export const getQuestions = state => state.question.questions
 
 export default reducer
