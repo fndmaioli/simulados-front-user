@@ -69,7 +69,7 @@ class ViewAnswers extends React.Component {
           <p className="title">{this.state.coments}</p>
 
           <h3>Links relacionados</h3>
-          <a href="url">{this.state.links}</a>
+          <a href="https://www.google.com/">{this.state.links}</a>
         </div>
         <footer className="flex justify-center">
           <Button onClick="">Próxima Questão</Button>
