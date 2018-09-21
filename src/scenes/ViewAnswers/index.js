@@ -12,7 +12,7 @@ import Select from 'components/Select'
 import Modal from 'components/Modal'
 import Container from 'components/Container'
 
-import './viewAnswers.scss'
+import './view-answers.scss'
 
 let abd34 = 'A resposta correta é essa aqui'
 let adf56 = 'Essa é a resposta do usuário'

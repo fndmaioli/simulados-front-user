@@ -45,7 +45,7 @@ ReactDOM.render(
           <Switch>
             <Route exact path="/examples" component={Examples} />
             <Route path="/" component={Dashboard} />
-            <Route path="/resposta" component={ViewAnswers} />
+            <Route exact path="/resposta" component={ViewAnswers} />
             <Route path="/error" render={() => 404} />
             <Redirect from="*" to="/error" />
           </Switch>
