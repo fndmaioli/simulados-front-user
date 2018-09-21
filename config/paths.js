@@ -59,5 +59,6 @@ module.exports = {
     scenes: resolveApp('src/scenes'),
     utils: resolveApp('src/utils'),
     assets: resolveApp('src/assets'),
+    stylesheets: resolveApp('src/stylesheets'),
   },
 }
