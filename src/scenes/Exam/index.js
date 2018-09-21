@@ -24,7 +24,7 @@ import Slider from 'react-slick'
 class Exam extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { modalOpen: false, showConfirmButton: false }
+    this.state = { showConfirmButton: false }
   }
 
   componentDidMount() {
