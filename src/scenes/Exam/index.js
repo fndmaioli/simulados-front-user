@@ -57,7 +57,7 @@ class Exam extends React.Component {
                       key={alternative.id}
                       name="alternatives"
                       value={alternative.id}
-                      label={alternative.text}
+                      label={alternative.description}
                       onChange={() =>
                         this.setState({ showConfirmButton: true })
                       }
