@@ -43,17 +43,17 @@ class ViewAnswers extends React.Component {
         {this.state.viewAnswers ? (
           <div>
             <h1 className="spacing space-x-m">Resposta Correta</h1>
-            <Card className="rightAnswer">
+            <Card className="view-answers  answer--right">
               <p>{this.state.correct}</p>
             </Card>{' '}
           </div>
         ) : (
           <div>
             <h1 className="spacing space-x-m">Resposta Incorreta</h1>
-            <Card className="rightAnswer">
+            <Card className="view-answers  answer--right">
               <p>{this.state.correct}</p>
             </Card>
-            <Card className="wrongAnswer">
+            <Card className="view-answers answer--wrong">
               <p>{this.state.userAnswer}</p>
             </Card>
           </div>
