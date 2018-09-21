@@ -2,7 +2,7 @@ import React from 'react'
 
 import './radio-group.scss'
 
-const Radio = ({ name, value, checked, label, onChange }) => (
+export const Radio = ({ name, value, checked, label, onChange }) => (
   <div className="radio">
     <input
       className="radio__bullet"

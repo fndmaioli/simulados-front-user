@@ -2,9 +2,7 @@ import { handleActions } from 'redux-actions'
 
 import { examLoaded } from './actions'
 
-const initialState = () => {
-  return []
-}
+const initialState = {}
 
 const reducer = handleActions(
   {
@@ -13,7 +11,11 @@ const reducer = handleActions(
       data: action.payload,
     }),
   },
-  initialState(),
+  initialState,
 )
+
+export const getExam = state => state.exam
+
+export const getExamId = state => state.exam.data.exam.id
 
 export default reducer

@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 
 import MenuCard from 'components/MenuCard'
 import { fetchExam } from 'store/exam/actions'
+import { getExam } from 'store/exam'
 
 import './dashboard.scss'
 
@@ -65,9 +67,8 @@ class Dashboard extends Component {
 
     const { exam } = this.props
 
-    if (exam.success) {
-      console.log('Exame buscado com sucesso!')
-      //navegar para tela de fazer a prova
+    if (exam) {
+      this.props.push('/simulado')
     } else {
       console.log('Erro ao buscar exame!')
     }
@@ -89,7 +90,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  exam: state.exam.data,
+  exam: getExam(state),
 })
 
 export default connect(
@@ -98,6 +99,7 @@ export default connect(
     bindActionCreators(
       {
         fetchExam,
+        push,
       },
       dispatch,
     ),
