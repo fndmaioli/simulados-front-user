@@ -52,9 +52,8 @@ class Exam extends React.Component {
 
                 <h3>Alternativas</h3>
                 {question.alternatives.map(alternative => (
-                  <Card className="card-alternative">
+                  <Card className="card-alternative" key={alternative.id}>
                     <Radio
-                      key={alternative.id}
                       name="alternatives"
                       value={alternative.id}
                       label={alternative.description}
