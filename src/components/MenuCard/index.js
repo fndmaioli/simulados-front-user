@@ -18,13 +18,8 @@ const MenuCard = ({
   buttonLabel,
   description,
   iconContainerColor,
-  smallWindow,
 }) => (
-  <Card
-    className="flex menucard"
-    onTouchEnd={onClick}
-    onClick={smallWindow ? onClick : null}
-  >
+  <Card className="flex menucard" onClick={onClick}>
     <div className="flex menucard__innercontainer">
       <div
         className="menucard__iconcontainer"

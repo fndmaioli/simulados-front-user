@@ -9,21 +9,6 @@ import { fetchExam } from 'store/exam/actions'
 import './dashboard.scss'
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      smallWindow: null,
-    }
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', () => this.checkResize())
-  }
-
-  checkResize() {
-    this.setState({ smallWindow: window.innerWidth <= 720 })
-  }
-
   render() {
     return (
       <div>
@@ -40,7 +25,6 @@ class Dashboard extends Component {
             label="Simular Prova"
             buttonLabel="Iniciar"
             description="Selecione e execute uma prova dos anos anteriores"
-            smallWindow={this.state.smallWindow}
             onClick={() => this.doExam()}
           />
           <MenuCard
@@ -50,7 +34,6 @@ class Dashboard extends Component {
             label="Perguntas Aleatórias"
             buttonLabel="Iniciar"
             description="Prova com perguntas aleatórias de qualquer categoria."
-            smallWindow={this.state.smallWindow}
             onClick={() => this.doRandomExam()}
           />
           <MenuCard
@@ -60,7 +43,6 @@ class Dashboard extends Component {
             label="Perguntas Especificas"
             buttonLabel="Iniciar"
             description="Prova com perguntas especificas de uma categoria."
-            smallWindow={this.state.smallWindow}
             onClick={() => this.doSpecificExam()}
           />
           <MenuCard
@@ -70,7 +52,6 @@ class Dashboard extends Component {
             label="Customizado"
             buttonLabel="Iniciar"
             description="Prova com categorias escolhidas por você."
-            smallWindow={this.state.smallWindow}
             onClick={() => this.doCustomExam()}
           />
         </div>
