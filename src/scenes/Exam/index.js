@@ -29,7 +29,6 @@ class Exam extends React.Component {
 
   componentDidMount() {
     this.props.fetchQuestion(this.props.examId)
-    console.log(this)
   }
 
   render() {
@@ -49,7 +48,7 @@ class Exam extends React.Component {
             return (
               <div key={question.id}>
                 <h1>Questão {question.id}</h1>
-                <p>{question.tittle}</p>
+                <p>{question.statement}</p>
 
                 <h3>Alternativas</h3>
                 {question.alternatives.map(alternative => (
