@@ -23,8 +23,7 @@ import rootReducer from 'store'
 import App from './App'
 import Examples from 'scenes/Examples'
 import Dashboard from 'scenes/Dashboard'
-import ProtectedRoute from 'containers/ProtectedRoute'
-import Container from '../src/components/Container'
+import Layout from 'components/Layout'
 
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -38,18 +37,14 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App>
-        <Container>
+        <Layout>
           <Switch>
-            <ProtectedRoute
-              path="/protected"
-              component={() => 'Protected content'}
-            />
             <Route exact path="/examples" component={Examples} />
             <Route path="/" component={Dashboard} />
             <Route path="/error" render={() => 404} />
             <Redirect from="*" to="/error" />
           </Switch>
-        </Container>
+        </Layout>
       </App>
     </ConnectedRouter>
   </Provider>,

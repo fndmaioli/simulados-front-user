@@ -1,8 +1,10 @@
 .menucard {
-  border-radius: 0px;
-  margin-bottom: 20px;
-  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  transition: box-shadow ease 0.3s;
+
+  &:hover {
+    box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .menucard__description {
@@ -21,12 +23,9 @@
 
 .menucard__iconcontainer {
   margin-right: 20px;
-  width: 52px;
+  width: 54px;
   border-radius: 50%;
-}
-
-.menucard__icon {
-  margin-bottom: 10px;
+  text-align: center;
 }
 
 @media (max-width: 720px) {

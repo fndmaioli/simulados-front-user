@@ -1,17 +1,38 @@
-.HeaderContainer {
-  background-color: #faf7fb;
-  height: 52px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 14px;
+.header {
+  height: 100px;
+  background: #fff;
+  height: 100px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+
+  &__content {
+    height: 100%;
+    max-width: 1270px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
-.IconContainer {
-  cursor: pointer;
-  border: none;
-  background: inherit;
-  height: '100%';
-  -webkit-tap-highlight-color: #faf7fb;
+.user-section {
+  height: 100%;
+  border-left: #f0f0f0 1px solid;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  color: $dark-gray;
+
+  &:after {
+    margin: 0 4px;
+    transform: translateY(3px);
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 6px solid $dark-gray;
+    border-bottom: 6px solid transparent;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
 }

@@ -1,61 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Logo from '../Logo'
 import Icon from '../Icon'
-import { withRouter } from 'react-router';
 
 import './header.scss'
 
-/**
- * Component that render the header app, considering
- * the corrent path to render or not.
- */
-class Header extends Component {
+const Header = ({}) => (
+  <header className="header">
+    <div className="header__content">
+      <Logo />
+      <section className="user-section space-between-inline-m">
+        <Icon name="user" height={30} width={30} />
+        <strong>usuário</strong>
+      </section>
+    </div>
+  </header>
+)
 
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-
-        const { location } = this.props;
-
-        if (location.pathname !== '/error' && location.pathname !== '/')
-            return (
-                <div className="HeaderContainer">
-                    <a
-                        className="IconContainer"
-                        onClick={() => this.goBackOrUserProfile()}>
-                        {location.pathname === '/dashboard' ? <Icon name={'user'} width={26} height={26} /> : <Icon name={'arrow-left'} width={26} height={26} />}
-                    </a>
-                    <a className="IconContainer"
-                        onClick={() => this.openMenuSettings()}>
-                        <Icon name={'menu'} width={26} height={26} />
-                    </a>
-                </div>
-            );
-
-        return null;
-    }
-
-    /**
-     * Go back or open user profile, validating
-     * with the isDashboard prop received.
-     */
-    goBackOrUserProfile() {
-
-        if (this.props.isDashboard) {
-            console.log('abrindo perfil...')
-
-        } else {
-            console.log('Voltando para pagina anterior...')
-        }
-    }
-
-    /**
-     * Open the menu.
-     */
-    openMenuSettings() {
-        console.log('abrindo menu...')
-    }
-}
-
-export default withRouter(Header);
+export default Header

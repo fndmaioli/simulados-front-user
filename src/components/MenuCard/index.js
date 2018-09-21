@@ -27,25 +27,20 @@ const MenuCard = ({
   >
     <div className="flex menucard__innercontainer">
       <div
-        className="flex items-center menucard__iconcontainer"
+        className="menucard__iconcontainer"
         style={{ background: iconContainerColor }}
       >
         <Icon
-          className="menucard__icon"
+          className="center-vertically"
           name={icon}
-          height={34}
-          width={52}
+          height={25}
+          width={25}
           color={iconColor}
         />
       </div>
       <div className="flex flex-column flex-auto menucard__textscontainer">
         <h3 className="space-stack-s menucard__text">{label}</h3>
         <p className="menucard__description">{description}</p>
-      </div>
-      <div className="menucard__buttoncontainer">
-        <Button className="flex self-center" ghost onClick={onClick}>
-          {buttonLabel}
-        </Button>
       </div>
     </div>
   </Card>

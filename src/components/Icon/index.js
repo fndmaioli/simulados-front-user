@@ -7,7 +7,7 @@ import './icon.scss'
 
 const Icon = ({ name, height, width, color, className }) => (
   <i
-    className={cn('icon ', className)}
+    className={cn('icon', className)}
     dangerouslySetInnerHTML={{
       __html: feather.icons[name].toSvg({ height, width, color }),
     }}
