@@ -68,7 +68,7 @@ class Dashboard extends Component {
     const { exam } = this.props
 
     if (exam) {
-      this.props.history.push('/simulado')
+      this.props.push('/simulado')
     } else {
       console.log('Erro ao buscar exame!')
     }
@@ -99,6 +99,7 @@ export default connect(
     bindActionCreators(
       {
         fetchExam,
+        push,
       },
       dispatch,
     ),
