@@ -3,9 +3,6 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { growl } from 'store/ui/actions'
-import { GROWL_INFO, GROWL_ERROR, GROWL_SUCCESS } from 'store/ui/constants'
-
 import Button from 'components/Button'
 import Input from 'components/Input'
 import Field from 'components/Field'
@@ -15,7 +12,7 @@ import Select from 'components/Select'
 import Modal from 'components/Modal'
 import Container from 'components/Container'
 
-import './viewAnswers.scss'
+import './view-answers.scss'
 
 let abd34 = 'A resposta correta é essa aqui'
 let adf56 = 'Essa é a resposta do usuário'
@@ -28,7 +25,7 @@ class ViewAnswers extends React.Component {
     this.state = {
       viewAnswers: null,
       correct: abd34,
-      userAnswer: abd34,
+      userAnswer: adf56,
       coments: cc111,
       links: dc456,
     }
@@ -37,9 +34,7 @@ class ViewAnswers extends React.Component {
   componentDidMount() {
     const { correct } = this.state
     const { userAnswer } = this.state
-    return correct === userAnswer
-      ? this.setState({ viewAnswers: true })
-      : this.setState({ viewAnswers: false })
+    this.setState({ viewAnswers: correct === userAnswer })
   }
 
   render() {
@@ -47,14 +42,14 @@ class ViewAnswers extends React.Component {
       <Container>
         {this.state.viewAnswers ? (
           <div>
-            <h1 className="title">Resposta Correta</h1>
+            <h1 className="spacing space-x-m">Resposta Correta</h1>
             <Card className="rightAnswer">
               <p>{this.state.correct}</p>
             </Card>{' '}
           </div>
         ) : (
           <div>
-            <h1 className="title">Resposta Incorreta</h1>
+            <h1 className="spacing space-x-m">Resposta Incorreta</h1>
             <Card className="rightAnswer">
               <p>{this.state.correct}</p>
             </Card>
@@ -65,11 +60,13 @@ class ViewAnswers extends React.Component {
         )}
 
         <div>
-          <h1 className>Comentários do Professor</h1>
-          <p className="title">{this.state.coments}</p>
+          <h1 className="spacing space-x-m">Comentários do Professor</h1>
+          <p className="spacing space-x-m">{this.state.coments}</p>
 
-          <h3>Links relacionados</h3>
-          <a href="https://www.google.com/">{this.state.links}</a>
+          <h2 className="spacing space-x-m">Links relacionados</h2>
+          <a className="spacing space-x-m" href={this.state.links}>
+            {this.state.links}
+          </a>
         </div>
         <footer className="flex justify-center">
           <Button onClick="">Próxima Questão</Button>
@@ -79,13 +76,4 @@ class ViewAnswers extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  dispatch =>
-    bindActionCreators(
-      {
-        growl,
-      },
-      dispatch,
-    ),
-)(ViewAnswers)
+export default ViewAnswers
