@@ -12,7 +12,7 @@ import Select from 'components/Select'
 import Modal from 'components/Modal'
 import Container from 'components/Container'
 
-import './view-answers.scss'
+import './viewAnswers.scss'
 
 let abd34 = 'A resposta correta é essa aqui'
 let adf56 = 'Essa é a resposta do usuário'
@@ -43,11 +43,12 @@ class ViewAnswers extends React.Component {
         {this.state.viewAnswers ? (
           <div>
             <h1 className="spacing space-x-m">Resposta Correta</h1>
-            <Card className="view-answers  answer--right">
+            <Card className="view-answers answer--right">
               <p>{this.state.correct}</p>
-            </Card>{' '}
+            </Card>
           </div>
         ) : (
+<<<<<<< HEAD
             <div>
               <h1 className="spacing space-x-m">Resposta Incorreta</h1>
               <Card className="view-answers  answer--right">
@@ -58,6 +59,18 @@ class ViewAnswers extends React.Component {
               </Card>
             </div>
           )}
+=======
+          <div>
+            <h1 className="spacing space-x-m">Resposta Incorreta</h1>
+            <Card className="view-answers answer--right">
+              <p>{this.state.correct}</p>
+            </Card>
+            <Card className="view-answers answer--wrong">
+              <p>{this.state.userAnswer}</p>
+            </Card>
+          </div>
+        )}
+>>>>>>> rebase
 
         <div>
           <h1 className="spacing space-x-m">Comentários do Professor</h1>
