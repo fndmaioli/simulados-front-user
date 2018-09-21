@@ -1,9 +1,15 @@
+@import '~stylesheets/utilities/breakpoints';
+
 .menucard {
   cursor: pointer;
   transition: box-shadow ease 0.3s;
 
   &:hover {
     box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  @include for-phone-only {
+    padding: 1rem 1.25rem;
   }
 }
 
