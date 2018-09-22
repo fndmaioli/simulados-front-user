@@ -22,9 +22,13 @@ import rootReducer from 'store'
 
 import App from './App'
 import Examples from 'scenes/Examples'
+
 import Dashboard from 'scenes/Dashboard'
 import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
+import ViewAnswers from 'scenes/ViewAnswers'
+
+import ProtectedRoute from 'containers/ProtectedRoute'
 import ViewAnswers from 'scenes/ViewAnswers'
 
 const history = createBrowserHistory()
