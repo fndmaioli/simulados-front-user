@@ -25,7 +25,7 @@ class ViewAnswers extends React.Component {
     this.state = {
       viewAnswers: null,
       correct: abd34,
-      userAnswer: adf56,
+      userAnswer: abd34,
       coments: cc111,
       links: dc456,
     }
