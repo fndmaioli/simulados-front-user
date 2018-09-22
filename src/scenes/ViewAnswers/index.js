@@ -25,15 +25,14 @@ class ViewAnswers extends React.Component {
     this.state = {
       viewAnswers: null,
       correct: abd34,
-      userAnswer: abd34,
+      userAnswer: adf56,
       coments: cc111,
       links: dc456,
     }
   }
 
   componentDidMount() {
-    const { correct } = this.state
-    const { userAnswer } = this.state
+    const { correct, userAnswer } = this.state
     this.setState({ viewAnswers: correct === userAnswer })
   }
 
@@ -42,29 +41,29 @@ class ViewAnswers extends React.Component {
       <Container>
         {this.state.viewAnswers ? (
           <div>
-            <h1 className="spacing space-x-m">Resposta Correta</h1>
+            <h1 className="space-x-m">Resposta Correta</h1>
             <Card className="view-answers answer--right">
               <p>{this.state.correct}</p>
             </Card>
           </div>
         ) : (
-            <div>
-              <h1 className="spacing space-x-m">Resposta Incorreta</h1>
-              <Card className="view-answers  answer--right">
-                <p>{this.state.correct}</p>
-              </Card>
-              <Card className="view-answers answer--wrong">
-                <p>{this.state.userAnswer}</p>
-              </Card>
-            </div>
-          )}
+          <div>
+            <h1 className="space-x-m">Resposta Incorreta</h1>
+            <Card className="view-answers  answer--right">
+              <p>{this.state.correct}</p>
+            </Card>
+            <Card className="view-answers answer--wrong">
+              <p>{this.state.userAnswer}</p>
+            </Card>
+          </div>
+        )}
 
         <div>
-          <h1 className="spacing space-x-m">Comentários do Professor</h1>
-          <p className="spacing space-x-m">{this.state.coments}</p>
+          <h1 className="space-x-m">Comentários do Professor</h1>
+          <p className="space-x-m">{this.state.coments}</p>
 
-          <h2 className="spacing space-x-m">Links relacionados</h2>
-          <a className="spacing space-x-m" href={this.state.links}>
+          <h2 className="space-x-m">Links relacionados</h2>
+          <a className="space-x-m" href={this.state.links}>
             {this.state.links}
           </a>
         </div>
