@@ -28,9 +28,6 @@ import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
 import ViewAnswers from 'scenes/ViewAnswers'
 
-import ProtectedRoute from 'containers/ProtectedRoute'
-import ViewAnswers from 'scenes/ViewAnswers'
-
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
