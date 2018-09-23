@@ -25,6 +25,7 @@ import Examples from 'scenes/Examples'
 import Dashboard from 'scenes/Dashboard'
 import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
+import Login from 'scenes/Login'
 import ProtectedRoute from 'containers/ProtectedRoute'
 
 const history = createBrowserHistory()
@@ -43,7 +44,8 @@ ReactDOM.render(
           <Switch>
             <Route exact path="/examples" component={Examples} />
             <Route exact path="/simulado" component={Simulados} />
-            <Route path="/" component={Dashboard} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route path="/" component={Login} />
             <Route path="/error" render={() => 404} />
             <Redirect from="*" to="/error" />
           </Switch>
