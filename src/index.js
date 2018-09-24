@@ -43,8 +43,8 @@ ReactDOM.render(
         <Layout>
           <Switch>
             <Route exact path="/examples" component={Examples} />
-            <Route exact path="/simulado" component={Simulados} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoute exact path="/simulado" component={Simulados} />
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
             <Route path="/" component={Login} />
             <Route path="/error" render={() => 404} />
             <Redirect from="*" to="/error" />

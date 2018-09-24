@@ -9,6 +9,7 @@ import { GROWL_ERROR } from 'store/ui/constants'
 
 import Input from 'components/Input'
 import Button from 'components/Button'
+import { fetchAuth } from 'store/user/actions'
 import './login.scss'
 
 class Login extends Component {
@@ -58,13 +59,14 @@ class Login extends Component {
     )
   }
 
-  onPressEnter() {
+  async onPressEnter() {
     const { email, password } = this.state
 
     if (email.length <= 0 || password.length <= 0) {
       this.props.growl('Informe seu e-mail e senha de acesso.', GROWL_ERROR)
     } else {
       console.log('tentando logar...')
+      await this.props.fetchAuth(email, password)
       this.props.push('/dashboard')
     }
   }
@@ -77,6 +79,7 @@ export default connect(
       {
         growl,
         push,
+        fetchAuth,
       },
       dispatch,
     ),

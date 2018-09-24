@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router'
 import { Redirect } from 'react-router-dom'
+import { getUser } from 'store/user'
 
 const ProtectedRoute = ({ isAllowed, component: Component, ...rest }) => (
   <Route
@@ -25,7 +26,8 @@ const ProtectedRoute = ({ isAllowed, component: Component, ...rest }) => (
 export default connect(state => ({
   location: state.router.location,
   isAllowed: () => {
-    // replace with selector that tells if user is allowed
+    const user = getUser(state)
+    if (!!user && user.success) return true
     return false
   },
 }))(ProtectedRoute)
