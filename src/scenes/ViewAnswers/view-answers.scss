@@ -1,0 +1,16 @@
+.answer {
+  border-style: solid;
+  border-width: 3px;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  width: 500px;
+
+  &--right {
+    border-color: green;
+    margin: 10px;
+  }
+  &--wrong {
+    border-color: red;
+    margin: 10px;
+  }
+}
