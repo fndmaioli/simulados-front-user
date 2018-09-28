@@ -22,11 +22,13 @@ import rootReducer from 'store'
 
 import App from './App'
 import Examples from 'scenes/Examples'
+
 import Dashboard from 'scenes/Dashboard'
 import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
 import Login from 'scenes/Login'
 import ProtectedRoute from 'containers/ProtectedRoute'
+import ViewAnswers from 'scenes/ViewAnswers'
 
 const history = createBrowserHistory()
 const enhancedCompose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -44,6 +46,7 @@ ReactDOM.render(
           <Switch>
             <Route exact path="/examples" component={Examples} />
             <ProtectedRoute exact path="/simulado" component={Simulados} />
+            <Route exact path="/resposta" component={ViewAnswers} />
             <ProtectedRoute exact path="/dashboard" component={Dashboard} />
             <Route path="/" component={Login} />
             <Route path="/error" render={() => 404} />
