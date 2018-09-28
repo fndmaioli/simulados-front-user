@@ -14,6 +14,8 @@ const reducer = handleActions(
   initialState,
 )
 
-export const getUser = state => state.user.data
+export const getData = state => state.user.data
+
+export const getStudent = state => state.user.data.data.user
 
 export default reducer
