@@ -1,5 +1,10 @@
+.login__maincontainer {
+  margin-top: 25%;
+}
+
 .login__inputcontainer {
-  margin: 50px 34% 34%;
+  margin-top: 10px;
+  width: 40%;
 }
 
 .login__input {
@@ -7,17 +12,47 @@
 }
 
 .login__button {
-  height: 40px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 16px;
 }
 
+.login__logoimage {
+  height: 34px;
+  width: 100;
+}
+
+.login__lineleft {
+  flex: 1;
+  background: #d1d0cd;
+  height: 1px;
+  width: 1px;
+  margin-right: 4px;
+}
+
+.login__lineright {
+  flex: 1;
+  background: #d1d0cd;
+  height: 1px;
+  width: 1px;
+  margin-left: 4px;
+}
+
+.login__or {
+  color: #d1d0cd;
+}
+
+.login__link {
+  margin-top: 20px;
+  color: #757470;
+  font-size: 14px;
+}
+
 @media (max-width: 720px) {
-  .login__inputcontainer {
-    margin: 50px 20% 20%;
+  .login__maincontainer {
+    margin-top: 20%;
   }
 
-  .login__link {
-    font-size: 13px;
+  .login__inputcontainer {
+    width: 75%;
   }
 }

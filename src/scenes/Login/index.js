@@ -11,6 +11,7 @@ import Input from 'components/Input'
 import Button from 'components/Button'
 import { fetchAuth } from 'store/user/actions'
 import './login.scss'
+import logo from 'assets/logo.png'
 
 class Login extends Component {
   constructor(props) {
@@ -23,12 +24,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h1 className="text-center">Bem vindo ao Simulados OAB</h1>
-        <h5 className="text-center">
-          Entre com seu e-mail e senha abaixo para testar seus conhecimentos!
-        </h5>
-        <div className="flex flex-column justify-center login__inputcontainer">
+      <div className="flex flex-column justify-center items-center login__maincontainer">
+        <img className="login__logoimage" src={logo} />
+        <h1 className="h1 text-center">Entrar na sua conta</h1>
+        <div className="flex flex-column login__inputcontainer">
           <Input
             onChange={event => this.setState({ email: event.target.value })}
             placeholder="e-mail"
@@ -49,10 +48,11 @@ class Login extends Component {
             className="flex justify-center login__button"
             onClick={() => this.onPressEnter()}
           >
-            Entrar
+            Fazer Login
           </Button>
+          {this.renderLine()}
           <a href="/login" className="text-center login__link">
-            Não possui conta? cadastre-se aqui!
+            Criar uma nova conta
           </a>
         </div>
       </div>
@@ -69,6 +69,16 @@ class Login extends Component {
       await this.props.fetchAuth(email, password)
       this.props.push('/dashboard')
     }
+  }
+
+  renderLine() {
+    return (
+      <div className="flex justify-center items-center">
+        <div className="login__lineleft" />
+        <small className="login__or">ou</small>
+        <div className="login__lineright" />
+      </div>
+    )
   }
 }
 
