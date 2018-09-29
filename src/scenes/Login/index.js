@@ -28,28 +28,35 @@ class Login extends Component {
         <img className="login__logoimage" src={logo} />
         <h1 className="h1 text-center">Entrar na sua conta</h1>
         <div className="flex flex-column login__inputcontainer">
-          <Input
-            onChange={event => this.setState({ email: event.target.value })}
-            placeholder="e-mail"
-            className="login__input"
-            maxLength={50}
-            value={this.state.email}
-            type="text"
-          />
-          <Input
-            onChange={event => this.setState({ password: event.target.value })}
-            placeholder="senha"
-            type="password"
-            maxLength={50}
-            className="login__input"
-            value={this.state.password}
-          />
-          <Button
-            className="flex justify-center login__button"
-            onClick={() => this.onPressEnter()}
+          <form
+            onSubmit={event => this.onPressEnter(event)}
+            type="submit"
+            className="flex flex-column"
           >
-            Fazer Login
-          </Button>
+            <Input
+              onChange={event => this.setState({ email: event.target.value })}
+              placeholder="e-mail"
+              className="login__input"
+              maxLength={50}
+              value={this.state.email}
+              type="text"
+              required
+            />
+            <Input
+              onChange={event =>
+                this.setState({ password: event.target.value })
+              }
+              placeholder="senha"
+              type="password"
+              maxLength={50}
+              className="login__input"
+              value={this.state.password}
+              required
+            />
+            <Button className="flex justify-center login__button">
+              Fazer Login
+            </Button>
+          </form>
           {this.renderLine()}
           <a href="/login" className="text-center login__link">
             Criar uma nova conta
@@ -59,7 +66,8 @@ class Login extends Component {
     )
   }
 
-  async onPressEnter() {
+  async onPressEnter(event) {
+    event.preventDefault()
     const { email, password } = this.state
 
     if (email.length <= 0 || password.length <= 0) {
