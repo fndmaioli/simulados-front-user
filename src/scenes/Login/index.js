@@ -6,10 +6,11 @@ import { push } from 'connected-react-router'
 
 import { growl } from 'store/ui/actions'
 import { GROWL_ERROR } from 'store/ui/constants'
+import { fetchAuth, logout } from 'store/user/actions'
 
 import Input from 'components/Input'
 import Button from 'components/Button'
-import { fetchAuth } from 'store/user/actions'
+
 import './login.scss'
 import logo from 'assets/logo.png'
 
@@ -20,6 +21,10 @@ class Login extends Component {
       email: '',
       password: '',
     }
+  }
+
+  componentDidMount() {
+    this.props.logout()
   }
 
   render() {
@@ -98,6 +103,7 @@ export default connect(
         growl,
         push,
         fetchAuth,
+        logout,
       },
       dispatch,
     ),

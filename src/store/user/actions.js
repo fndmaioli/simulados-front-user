@@ -4,6 +4,7 @@ import { growl } from 'store/ui/actions'
 import { GROWL_ERROR } from 'store/ui/constants'
 
 const userLoaded = createAction('USER_LOADED')
+const userLogout = createAction('USER_LOGOUT')
 
 const fetchAuth = (email, password) => dispatch => {
   return http
@@ -26,4 +27,8 @@ const fetchAuth = (email, password) => dispatch => {
     })
 }
 
-export { userLoaded, fetchAuth }
+const logout = () => dispatch => {
+  return dispatch(userLogout())
+}
+
+export { userLoaded, fetchAuth, logout, userLogout }
