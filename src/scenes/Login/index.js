@@ -74,14 +74,8 @@ class Login extends Component {
   async onPressEnter(event) {
     event.preventDefault()
     const { email, password } = this.state
-
-    if (email.length <= 0 || password.length <= 0) {
-      this.props.growl('Informe seu e-mail e senha de acesso.', GROWL_ERROR)
-    } else {
-      console.log('tentando logar...')
-      await this.props.fetchAuth(email, password)
-      this.props.push('/dashboard')
-    }
+    await this.props.fetchAuth(email, password)
+    this.props.push('/dashboard')
   }
 
   renderLine() {

@@ -42,17 +42,16 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App>
-        <Layout>
-          <Switch>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Layout>
             <Route exact path="/examples" component={Examples} />
             <ProtectedRoute exact path="/simulado" component={Simulados} />
             <Route exact path="/resposta" component={ViewAnswers} />
             <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-            <Route path="/" component={Login} />
-            <Route path="/error" render={() => 404} />
-            <Redirect from="*" to="/error" />
-          </Switch>
-        </Layout>
+          </Layout>
+          <Route exact path="*" render={() => 404} />
+        </Switch>
       </App>
     </ConnectedRouter>
   </Provider>,

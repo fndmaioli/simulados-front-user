@@ -1,20 +1,13 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import React from 'react'
 
 import Header from '../Header'
 import Container from '../Container'
 
-class Layout extends Component {
-  render() {
-    const { location, children } = this.props
+const Layout = ({ children }) => (
+  <div>
+    <Header />
+    <Container>{children}</Container>
+  </div>
+)
 
-    return (
-      <div>
-        {location.pathname === '/' ? null : <Header />}
-        <Container>{children}</Container>
-      </div>
-    )
-  }
-}
-
-export default withRouter(Layout)
+export default Layout

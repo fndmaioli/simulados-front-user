@@ -14,6 +14,7 @@ const Input = ({
   block,
   className,
   maxLength,
+  required,
 }) => (
   <T
     className={cn(
@@ -26,6 +27,7 @@ const Input = ({
     placeholder={placeholder}
     type={type}
     maxLength={maxLength}
+    required={required}
   />
 )
 
