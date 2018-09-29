@@ -1,10 +1,10 @@
 .login__maincontainer {
-  margin-top: 25%;
+  margin-top: 10%;
 }
 
 .login__inputcontainer {
   margin-top: 10px;
-  width: 40%;
+  width: 18%;
 }
 
 .login__input {
@@ -47,12 +47,18 @@
   font-size: 14px;
 }
 
+@media (max-width: 1440px) {
+  .login__inputcontainer {
+    width: 28%;
+  }
+}
+
 @media (max-width: 720px) {
   .login__maincontainer {
     margin-top: 20%;
   }
 
   .login__inputcontainer {
-    width: 75%;
+    width: 60%;
   }
 }
