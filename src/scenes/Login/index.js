@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import { growl } from 'store/ui/actions'
-import { GROWL_ERROR } from 'store/ui/constants'
 import { fetchAuth, logout } from 'store/user/actions'
 
 import Input from 'components/Input'
@@ -63,7 +62,7 @@ class Login extends Component {
             </Button>
           </form>
           {this.renderLine()}
-          <a href="/login" className="text-center login__link">
+          <a href="/" className="text-center login__link">
             Criar uma nova conta
           </a>
         </div>
