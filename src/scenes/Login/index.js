@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import { growl } from 'store/ui/actions'
-import { fetchAuth, logout } from 'store/user/actions'
+import { login, userLogout } from 'store/user/actions'
 
 import Input from 'components/Input'
 import Button from 'components/Button'
@@ -21,10 +21,6 @@ class Login extends Component {
       email: '',
       password: '',
     }
-  }
-
-  componentDidMount() {
-    this.props.logout()
   }
 
   render() {
@@ -73,7 +69,7 @@ class Login extends Component {
 
   onPressEnter = async () => {
     const { email, password } = this.state
-    await this.props.fetchAuth(email, password)
+    await this.props.login(email, password)
     this.props.push('/')
   }
 
@@ -95,8 +91,8 @@ export default connect(
       {
         growl,
         push,
-        fetchAuth,
-        logout,
+        login,
+        userLogout,
       },
       dispatch,
     ),
