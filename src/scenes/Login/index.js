@@ -34,7 +34,7 @@ class Login extends Component {
         <h1 className="h1 text-center">Entrar na sua conta</h1>
         <div className="flex flex-column login__inputcontainer">
           <Form
-            onSubmit={event => this.onPressEnter(event)}
+            onSubmit={this.onPressEnter}
             type="submit"
             className="flex flex-column"
           >
@@ -71,7 +71,7 @@ class Login extends Component {
     )
   }
 
-  async onPressEnter(event) {
+  onPressEnter = async () => {
     const { email, password } = this.state
     await this.props.fetchAuth(email, password)
     this.props.push('/')
