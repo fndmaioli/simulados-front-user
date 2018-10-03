@@ -4,7 +4,7 @@ import logo from 'assets/logo.png'
 import './logo.scss'
 
 const Logo = () => (
-  <Link className="logo" to="/dashboard">
+  <Link className="logo" to="/">
     <img className="logo__image" src={logo} />
   </Link>
 )
