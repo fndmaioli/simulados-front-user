@@ -31,6 +31,19 @@ class Exam extends React.Component {
     this.props.fetchQuestion(this.props.examId)
   }
 
+  //   afterChangeHandler(currentSlide) {
+  //     // if (this.props.questions.count() % currentSlide == 0) {
+  //      console.log(currentSlide)
+  //      console.log(this)
+  //       // this.props.fetchQuestion(this.props.examId, currentSlide + 1)
+  //     // }
+  // }
+  setCurrentSlideUrl(currentSlide) {
+    if (this.props.questions.length % currentSlide == 0) {
+      this.props.fetchQuestion(this.props.examId)
+    }
+  }
+
   render() {
     const settings = {
       dots: false,
@@ -39,6 +52,7 @@ class Exam extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
+      afterChange: event => this.setCurrentSlideUrl(event),
     }
 
     return (
