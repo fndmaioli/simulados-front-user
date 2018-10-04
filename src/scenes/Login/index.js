@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import { growl } from 'store/ui/actions'
-import { login, userLogout } from 'store/user/actions'
+import { login } from 'store/user/actions'
 
 import Input from 'components/Input'
 import Button from 'components/Button'
@@ -92,7 +92,6 @@ export default connect(
         growl,
         push,
         login,
-        userLogout,
       },
       dispatch,
     ),
