@@ -7,6 +7,7 @@ import { push } from 'connected-react-router'
 import MenuCard from 'components/MenuCard'
 import { fetchExam } from 'store/exam/actions'
 import { getExam } from 'store/exam'
+import { getStudent } from 'store/user'
 
 import './dashboard.scss'
 
@@ -63,7 +64,7 @@ class Dashboard extends Component {
 
   async doExam() {
     console.log('Buscando exame...')
-    await this.props.fetchExam(1)
+    await this.props.fetchExam(this.props.student.id)
 
     const { exam } = this.props
 
@@ -91,6 +92,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   exam: getExam(state),
+  student: getStudent(state),
 })
 
 export default connect(
