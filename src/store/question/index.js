@@ -4,14 +4,19 @@ import { questionsLoaded } from './actions'
 import { userLogout } from '../user/actions'
 
 const initialState = {
-  questions: [],
+  lastQuestion: -1,
+  questions: {},
 }
 
 const reducer = handleActions(
   {
     [questionsLoaded]: (state, action) => ({
       ...state,
-      questions: action.payload,
+      questions: {
+        ...state.questions,
+        [action.payload[action.payload.length - 1].id]: action.payload,
+      },
+      lastQuestion: action.payload[action.payload.length - 1].id,
     }),
     [userLogout]: state => ({
       ...state,
@@ -21,6 +26,10 @@ const reducer = handleActions(
   initialState,
 )
 
-export const getQuestions = state => state.question.questions
+export const getQuestions = state =>
+  Object.values(state.question.questions).reduce(
+    (acc, p) => [...acc, ...p],
+    [],
+  ) || []
 
 export default reducer

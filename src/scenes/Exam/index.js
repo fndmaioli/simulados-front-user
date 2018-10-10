@@ -3,7 +3,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { fetchQuestion } from 'store/question/actions'
+import { fetchQuestion, fetchMoreQuestion } from 'store/question/actions'
 import { getQuestions } from 'store/question'
 import { getExamId } from 'store/exam'
 
@@ -31,16 +31,13 @@ class Exam extends React.Component {
     this.props.fetchQuestion(this.props.examId)
   }
 
-  //   afterChangeHandler(currentSlide) {
-  //     // if (this.props.questions.count() % currentSlide == 0) {
-  //      console.log(currentSlide)
-  //      console.log(this)
-  //       // this.props.fetchQuestion(this.props.examId, currentSlide + 1)
-  //     // }
-  // }
   setCurrentSlideUrl(currentSlide) {
-    if (this.props.questions.length % currentSlide == 0) {
-      this.props.fetchQuestion(this.props.examId)
+    console.log(currentSlide)
+    if (this.props.questions.length == currentSlide + 1) {
+      this.props.fetchMoreQuestion(
+        this.props.examId,
+        this.props.questions[this.props.questions.length - 1],
+      )
     }
   }
 
@@ -102,6 +99,7 @@ export default connect(
     bindActionCreators(
       {
         fetchQuestion,
+        fetchMoreQuestion,
       },
       dispatch,
     ),
