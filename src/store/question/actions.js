@@ -8,7 +8,7 @@ const questionsLoaded = createAction('QUESTIONS_LOADED')
 
 const fetchQuestion = examId => dispatch => {
   http
-    .get('http://192.168.0.128:3000/questions?examId=' + examId)
+    .get('http://192.168.0.141:3000/questions/' + examId)
     .then(questions => dispatch(questionsLoaded(questions.questions)))
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
 }
@@ -16,12 +16,9 @@ const fetchQuestion = examId => dispatch => {
 const fetchMoreQuestion = (examId, lastQuestion) => dispatch => {
   http
     .get(
-      'http://192.168.0.128:3000/questions?examId=' +
-        examId +
-        '&lastQuestion=' +
-        lastQuestion.id,
+      'http://192.168.0.141:3000/questions/' + examId + '/' + lastQuestion.id,
     )
-    .then(questions => dispatch(questionsLoaded(questions.questions)))
+    .then(questions => dispatch(questionsLoaded(questions)))
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
 }
 

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { fetchQuestion, fetchMoreQuestion } from 'store/question/actions'
-import { getQuestions } from 'store/question'
+import { getQuestions, getNumberOfQuestions } from 'store/question'
 import { getExamId } from 'store/exam'
 
 import Button from 'components/Button'
@@ -33,7 +33,10 @@ class Exam extends React.Component {
 
   setCurrentSlideUrl(currentSlide) {
     console.log(currentSlide)
-    if (this.props.questions.length == currentSlide + 1) {
+    if (
+      this.props.questions.length == currentSlide + 1 &&
+      this.props.questions.length < this.props.numberOfQuestions
+    ) {
       this.props.fetchMoreQuestion(
         this.props.examId,
         this.props.questions[this.props.questions.length - 1],
@@ -52,6 +55,12 @@ class Exam extends React.Component {
       afterChange: event => this.setCurrentSlideUrl(event),
     }
 
+    const alternativesToRadioButton = alternatives => {
+      return alternatives.map(alternative => ({
+        value: alternative.description,
+      }))
+    }
+
     return (
       <Container>
         <Slider {...settings}>
@@ -62,18 +71,10 @@ class Exam extends React.Component {
                 <p>{question.statement}</p>
 
                 <h3>Alternativas</h3>
-                {question.alternatives.map(alternative => (
-                  <Card className="card-alternative" key={alternative.id}>
-                    <Radio
-                      name="alternatives"
-                      value={alternative.id}
-                      label={alternative.description}
-                      onChange={() =>
-                        this.setState({ showConfirmButton: true })
-                      }
-                    />
-                  </Card>
-                ))}
+                <RadioGroup
+                  name="alternatives"
+                  options={alternativesToRadioButton(question.alternatives)}
+                />
                 <footer className="flex justify-center">
                   {this.state.showConfirmButton && (
                     <Button>Confirma Resposta</Button>
@@ -91,6 +92,7 @@ class Exam extends React.Component {
 const mapStateToProps = state => ({
   examId: getExamId(state),
   questions: getQuestions(state),
+  numberOfQuestions: getNumberOfQuestions(state),
 })
 
 export default connect(

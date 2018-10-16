@@ -4,7 +4,7 @@ import { questionsLoaded } from './actions'
 import { userLogout } from '../user/actions'
 
 const initialState = {
-  lastQuestion: -1,
+  numberOfQuestions: 0,
   questions: {},
 }
 
@@ -14,9 +14,10 @@ const reducer = handleActions(
       ...state,
       questions: {
         ...state.questions,
-        [action.payload[action.payload.length - 1].id]: action.payload,
+        [action.payload[action.payload.length - 1].id]:
+          action.payload.questions,
       },
-      lastQuestion: action.payload[action.payload.length - 1].id,
+      numberOfQuestions: action.payload.total,
     }),
     [userLogout]: state => ({
       ...state,
@@ -25,6 +26,8 @@ const reducer = handleActions(
   },
   initialState,
 )
+
+export const getNumberOfQuestions = state => state.questions.numberOfQuestions
 
 export const getQuestions = state =>
   Object.values(state.question.questions).reduce(
