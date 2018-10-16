@@ -8,7 +8,7 @@ const userLogout = createAction('USER_LOGOUT')
 
 const login = (email, password) => dispatch => {
   return http
-    .post('http://192.168.0.141:3000/signin', {
+    .post('http://localhost:3000/signin', {
       data: {
         email: email,
         password: password,
