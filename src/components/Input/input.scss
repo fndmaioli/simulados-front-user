@@ -17,11 +17,11 @@
 
   &:focus {
     border-color: $primary;
-    box-shadow: 0 0 0 1px #0576b9, 0 0 0 4px rgba(45, 158, 224, .3);
+    box-shadow: 0 0 0 1px #0576b9, 0 0 0 4px rgba(45, 158, 224, 0.3);
   }
 
   &-with-icon {
-    display: inline-block;
+    display: block;
     position: relative;
   }
 

@@ -19,6 +19,7 @@ import Dashboard from 'scenes/Dashboard'
 import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
 import Login from 'scenes/Login'
+import Edition from 'scenes/Edition'
 import ProtectedRoute from 'containers/ProtectedRoute'
 import ViewAnswers from 'scenes/ViewAnswers'
 
@@ -34,6 +35,7 @@ ReactDOM.render(
               <ProtectedRoute exact path="/simulado" component={Simulados} />
               <Route exact path="/resposta" component={ViewAnswers} />
               <ProtectedRoute exact path="/" component={Dashboard} />
+              <Route exact path="/edicao" component={Edition} />
             </Layout>
             <Route path="*" render={() => 404} />
           </Switch>
