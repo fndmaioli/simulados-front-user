@@ -1,6 +1,9 @@
 import React from 'react'
 
 import Input from 'components/Input'
+import Card from 'components/Card'
+
+import './edition.scss'
 
 const EditionItem = props => <div />
 
@@ -24,14 +27,22 @@ const editionList = [
   { name: 'VII', year: '2012.1', approval: '14,67%' },
   { name: 'VI', year: '2011.3', approval: '25,59%' },
   { name: 'V', year: '2011.2', approval: '24,01%' },
-  { name: 'IV', year: '2011.1', approval: '15,02' },
+  { name: 'IV', year: '2011.1', approval: '15,02%' },
   { name: 'III', year: '2010.3', approval: '11,73%' },
   { name: 'II', year: '2010.2', approval: '16,00%' },
   { name: 'I', year: '2010.1', approval: '14,03%' },
 ]
 
 const RetornaLista = edicao => {
-  return <li>{edicao.name + edicao.year + edicao.approval}</li>
+  return (
+    <Card onClick="" className="edition-card">
+      <li>
+        <strong> {edicao.name} </strong>
+        <i> {'(' + edicao.year + ')'} </i>
+        <label className="approval-percent"> {edicao.approval} </label>
+      </li>
+    </Card>
+  )
 }
 
 class Edition extends React.Component {
@@ -42,8 +53,13 @@ class Edition extends React.Component {
   render() {
     return (
       <div>
-        <h1> Seleção a edição do exame </h1>
-        <Input placeholder="Procure uma edição..." icon="search" block />
+        <h1> Seleção de Edição do Exame </h1>
+        <Input
+          className="search-edition"
+          placeholder="Procure uma edição..."
+          icon="search"
+          block
+        />
         <ul>
           {editionList.map(edition => (
             <RetornaLista
