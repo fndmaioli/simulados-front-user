@@ -31,8 +31,7 @@ class Exam extends React.Component {
     this.props.fetchQuestion(this.props.examId)
   }
 
-  setCurrentSlideUrl(currentSlide) {
-    console.log(currentSlide)
+  fetchMoreQuestions(currentSlide) {
     if (
       this.props.questions.length == currentSlide + 1 &&
       this.props.questions.length < this.props.numberOfQuestions
@@ -52,7 +51,7 @@ class Exam extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
-      afterChange: event => this.setCurrentSlideUrl(event),
+      afterChange: event => this.fetchMoreQuestions(event),
     }
 
     const alternativesToRadioButton = alternatives => {
