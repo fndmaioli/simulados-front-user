@@ -44,14 +44,13 @@ class Exam extends React.Component {
   }
 
   onChangeRadioButton(event) {
-    console.log(event)
+    console.log(event.target.id)
   }
 
   alternativesToRadioButton(alternatives) {
     let option = alternatives.map(alternative => ({
       value: alternative.id,
       label: alternative.description,
-      onChange: this.onChangeRadioButton,
     }))
     return option
   }
@@ -82,6 +81,7 @@ class Exam extends React.Component {
                   options={this.alternativesToRadioButton(
                     question.alternatives,
                   )}
+                  onChange={this.onChangeRadioButton}
                 />
                 <footer className="flex justify-center">
                   {this.state.showConfirmButton && (
