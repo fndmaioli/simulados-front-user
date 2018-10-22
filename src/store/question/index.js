@@ -14,7 +14,7 @@ const reducer = handleActions(
       ...state,
       questions: {
         ...state.questions,
-        [action.payload[action.payload.length - 1].id]:
+        [action.payload.questions[action.payload.questions.length - 1].id]:
           action.payload.questions,
       },
       numberOfQuestions: action.payload.total,
@@ -27,7 +27,7 @@ const reducer = handleActions(
   initialState,
 )
 
-export const getNumberOfQuestions = state => state.questions.numberOfQuestions
+export const getNumberOfQuestions = state => state.question.numberOfQuestions
 
 export const getQuestions = state =>
   Object.values(state.question.questions).reduce(
