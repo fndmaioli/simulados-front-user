@@ -24,7 +24,10 @@ import Slider from 'react-slick'
 class Exam extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { showConfirmButton: false }
+    this.state = {
+      showConfirmButton: false,
+      currentQuestionId: -1,
+    }
   }
 
   componentDidMount() {
@@ -32,6 +35,7 @@ class Exam extends React.Component {
   }
 
   fetchMoreQuestions(currentSlide) {
+    this.setState({ currentQuestionId: this.props.questions[currentSlide].id })
     if (
       this.props.questions.length == currentSlide + 1 &&
       this.props.questions.length < this.props.numberOfQuestions
@@ -43,16 +47,19 @@ class Exam extends React.Component {
     }
   }
 
-  onChangeRadioButton(event) {
-    console.log(event.target.id)
+  onClickAlternative(event) {
+    let alternativeId = event.target.id
+    let questionId = this.state.currentQuestionId
+    let examId = this.props.examId
+    let timeToAnswer = 0
+    // this.props.answer()
   }
 
   alternativesToRadioButton(alternatives) {
-    let option = alternatives.map(alternative => ({
+    return alternatives.map(alternative => ({
       value: alternative.id,
       label: alternative.description,
     }))
-    return option
   }
 
   render() {
@@ -81,7 +88,7 @@ class Exam extends React.Component {
                   options={this.alternativesToRadioButton(
                     question.alternatives,
                   )}
-                  onChange={this.onChangeRadioButton}
+                  onChange={this.onClickAlternative}
                 />
                 <footer className="flex justify-center">
                   {this.state.showConfirmButton && (
