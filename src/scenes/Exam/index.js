@@ -43,6 +43,19 @@ class Exam extends React.Component {
     }
   }
 
+  onChangeRadioButton(event) {
+    console.log(event)
+  }
+
+  alternativesToRadioButton(alternatives) {
+    let option = alternatives.map(alternative => ({
+      value: alternative.id,
+      label: alternative.description,
+      onChange: this.onChangeRadioButton,
+    }))
+    return option
+  }
+
   render() {
     const settings = {
       dots: false,
@@ -52,12 +65,6 @@ class Exam extends React.Component {
       slidesToScroll: 1,
       arrows: false,
       afterChange: event => this.fetchMoreQuestions(event),
-    }
-
-    const alternativesToRadioButton = alternatives => {
-      return alternatives.map(alternative => ({
-        value: alternative.description,
-      }))
     }
 
     return (
@@ -72,7 +79,9 @@ class Exam extends React.Component {
                 <h3>Alternativas</h3>
                 <RadioGroup
                   name="alternatives"
-                  options={alternativesToRadioButton(question.alternatives)}
+                  options={this.alternativesToRadioButton(
+                    question.alternatives,
+                  )}
                 />
                 <footer className="flex justify-center">
                   {this.state.showConfirmButton && (
