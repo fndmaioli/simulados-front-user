@@ -9,7 +9,7 @@ export const Radio = ({ name, value, checked, label, onChange }) => (
       type="radio"
       id={value}
       name={name}
-      onChange={onChange}
+      onChange={event => onChange(event.target.id)}
     />
     <label className="radio__label" htmlFor={value}>
       {label}

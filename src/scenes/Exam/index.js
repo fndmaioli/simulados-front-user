@@ -44,7 +44,7 @@ class Exam extends React.Component {
   }
 
   onClickAlternative(event, questionId) {
-    let alternativeId = event.target.id
+    let alternativeId = event
     let participationId = this.props.participationId
     this.props.answerQuestion(participationId, questionId, alternativeId)
   }
