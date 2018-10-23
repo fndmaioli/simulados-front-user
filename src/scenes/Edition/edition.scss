@@ -1,7 +1,8 @@
 .approval-percent {
-  padding-left: 80%;
-  font-weight: 500;
-  color: rgb(169, 169, 169);
+  color: rgba(169, 169, 169, 1);
+  padding: 0;
+  position: absolute;
+  left: 82%;
 }
 
 .edition-card {
@@ -11,4 +12,14 @@
 
 .search-edition {
   margin-bottom: 10px;
+}
+
+.year {
+  font-weight: 400;
+  color: rgba(169, 169, 169, 1);
+}
+
+.back-button {
+  color: black;
+  margin-bottom: 3%;
 }
