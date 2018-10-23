@@ -20,4 +20,27 @@ const fetchMoreQuestion = (examId, lastQuestion) => dispatch => {
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
 }
 
-export { confirmAnswer, questionsLoaded, fetchQuestion, fetchMoreQuestion }
+const answerQuestion = (
+  participationId,
+  questionId,
+  alternativeId,
+) => dispatch => {
+  return http
+    .post('http://localhost:3000/answer/', {
+      data: {
+        participation_id: participationId,
+        question_id: questionId,
+        alternative_id: alternativeId,
+        time_to_answer: 1,
+      },
+    })
+    .then(answer => dispatch(confirmAnswer(answer)))
+}
+
+export {
+  confirmAnswer,
+  questionsLoaded,
+  fetchQuestion,
+  fetchMoreQuestion,
+  answerQuestion,
+}

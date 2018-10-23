@@ -3,18 +3,16 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { fetchQuestion, fetchMoreQuestion } from 'store/question/actions'
+import {
+  fetchQuestion,
+  fetchMoreQuestion,
+  answerQuestion,
+} from 'store/question/actions'
 import { getQuestions, getNumberOfQuestions } from 'store/question'
-import { getExamId } from 'store/exam'
+import { getExamId, getParticipationId } from 'store/exam'
 
 import Button from 'components/Button'
-import Input from 'components/Input'
-import Field from 'components/Field'
-import Card from 'components/Card'
 import RadioGroup from 'components/RadioGroup'
-import { Radio } from 'components/RadioGroup'
-import Select from 'components/Select'
-import Modal from 'components/Modal'
 import './exam.scss'
 import Container from 'components/Container'
 import 'slick-carousel/slick/slick.scss'
@@ -26,7 +24,6 @@ class Exam extends React.Component {
     super(props)
     this.state = {
       showConfirmButton: false,
-      currentQuestionId: -1,
     }
   }
 
@@ -35,7 +32,6 @@ class Exam extends React.Component {
   }
 
   fetchMoreQuestions(currentSlide) {
-    this.setState({ currentQuestionId: this.props.questions[currentSlide].id })
     if (
       this.props.questions.length == currentSlide + 1 &&
       this.props.questions.length < this.props.numberOfQuestions
@@ -47,12 +43,10 @@ class Exam extends React.Component {
     }
   }
 
-  onClickAlternative(event) {
+  onClickAlternative(event, questionId) {
     let alternativeId = event.target.id
-    let questionId = this.state.currentQuestionId
-    let examId = this.props.examId
-    let timeToAnswer = 0
-    // this.props.answer()
+    let participationId = this.props.participationId
+    this.props.answerQuestion(participationId, questionId, alternativeId)
   }
 
   alternativesToRadioButton(alternatives) {
@@ -88,7 +82,9 @@ class Exam extends React.Component {
                   options={this.alternativesToRadioButton(
                     question.alternatives,
                   )}
-                  onChange={this.onClickAlternative}
+                  onChange={event =>
+                    this.onClickAlternative(event, question.id)
+                  }
                 />
                 <footer className="flex justify-center">
                   {this.state.showConfirmButton && (
@@ -108,6 +104,7 @@ const mapStateToProps = state => ({
   examId: getExamId(state),
   questions: getQuestions(state),
   numberOfQuestions: getNumberOfQuestions(state),
+  participationId: getParticipationId(state),
 })
 
 export default connect(
@@ -117,6 +114,7 @@ export default connect(
       {
         fetchQuestion,
         fetchMoreQuestion,
+        answerQuestion,
       },
       dispatch,
     ),

@@ -20,7 +20,7 @@ const reducer = handleActions(
 )
 
 export const getExam = state => state.exam
-
 export const getExamId = state => state.exam.data.exam.id
+export const getParticipationId = state => state.exam.data.participation.id
 
 export default reducer
