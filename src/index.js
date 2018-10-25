@@ -1,5 +1,3 @@
-import './stylesheets/main.scss'
-
 import registerServiceWorker from './registerServiceWorker'
 
 import React from 'react'
@@ -22,6 +20,7 @@ import Login from 'scenes/Login'
 import Edition from 'scenes/Edition'
 import ProtectedRoute from 'containers/ProtectedRoute'
 import ViewAnswers from 'scenes/ViewAnswers'
+import './stylesheets/main.scss'
 
 ReactDOM.render(
   <Provider store={store}>

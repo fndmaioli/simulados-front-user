@@ -2,7 +2,6 @@ import React from 'react'
 
 import Input from 'components/Input'
 import Card from 'components/Card'
-import Button from 'components/Button'
 
 import './edition.scss'
 
@@ -32,42 +31,39 @@ const editionList = [
   { name: 'I', year: '2010.1', approval: '14,03%' },
 ]
 
-const RetornaLista = edicao => {
+const EditionItem = edicao => {
   return (
     <Card
       onClick={() =>
         alert('Você escolheu fazer o exame do ano: ' + edicao.year)
       }
-      className="edition-card"
+      className="space-inset-m flex items-center justify-between"
+      as="li"
     >
-      <li>
-        <strong> {edicao.name} </strong>
-        <strong className="year"> {'(' + edicao.year + ')'} </strong>
-        <strong className="approval-percent"> {edicao.approval} </strong>
-      </li>
+      <span>
+        <strong>{edicao.name}</strong> {'(' + edicao.year + ')'}{' '}
+      </span>
+      <span>
+        aprovação: <strong> {edicao.approval} </strong>
+      </span>
     </Card>
   )
 }
 
 class Edition extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>
-        <Button icon="arrow-left" className="back-button" onClick="" />
         <h1> Seleção de Edição do Exame </h1>
         <Input
-          className="search-edition"
+          className="space-stack-m"
           placeholder="Procure uma edição..."
           icon="search"
           block
         />
-        <ul>
+        <ul className="space-between-s">
           {editionList.map(edition => (
-            <RetornaLista
+            <EditionItem
               name={edition.name}
               year={edition.year}
               approval={edition.approval}
