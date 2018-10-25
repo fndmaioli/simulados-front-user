@@ -3,18 +3,16 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { fetchQuestion } from 'store/question/actions'
-import { getQuestions } from 'store/question'
-import { getExamId } from 'store/exam'
+import {
+  fetchQuestion,
+  fetchMoreQuestion,
+  answerQuestion,
+} from 'store/question/actions'
+import { getQuestions, getNumberOfQuestions } from 'store/question'
+import { getExamId, getParticipationId } from 'store/exam'
 
 import Button from 'components/Button'
-import Input from 'components/Input'
-import Field from 'components/Field'
-import Card from 'components/Card'
 import RadioGroup from 'components/RadioGroup'
-import { Radio } from 'components/RadioGroup'
-import Select from 'components/Select'
-import Modal from 'components/Modal'
 import './exam.scss'
 import Container from 'components/Container'
 import 'slick-carousel/slick/slick.scss'
@@ -24,11 +22,38 @@ import Slider from 'react-slick'
 class Exam extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { showConfirmButton: false }
+    this.state = {
+      showConfirmButton: false,
+    }
   }
 
   componentDidMount() {
     this.props.fetchQuestion(this.props.examId)
+  }
+
+  fetchMoreQuestions(currentSlide) {
+    if (
+      this.props.questions.length == currentSlide + 1 &&
+      this.props.questions.length < this.props.numberOfQuestions
+    ) {
+      this.props.fetchMoreQuestion(
+        this.props.examId,
+        this.props.questions[this.props.questions.length - 1],
+      )
+    }
+  }
+
+  onClickAlternative(option, questionId) {
+    const alternativeId = option.value
+    const participationId = this.props.participationId
+    this.props.answerQuestion(participationId, questionId, alternativeId)
+  }
+
+  alternativesToRadioButton(alternatives) {
+    return alternatives.map(alternative => ({
+      value: alternative.id,
+      label: alternative.description,
+    }))
   }
 
   render() {
@@ -39,6 +64,7 @@ class Exam extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
+      afterChange: event => this.fetchMoreQuestions(event),
     }
 
     return (
@@ -51,18 +77,15 @@ class Exam extends React.Component {
                 <p>{question.statement}</p>
 
                 <h3>Alternativas</h3>
-                {question.alternatives.map(alternative => (
-                  <Card className="card-alternative" key={alternative.id}>
-                    <Radio
-                      name="alternatives"
-                      value={alternative.id}
-                      label={alternative.description}
-                      onChange={() =>
-                        this.setState({ showConfirmButton: true })
-                      }
-                    />
-                  </Card>
-                ))}
+                <RadioGroup
+                  name="alternatives"
+                  options={this.alternativesToRadioButton(
+                    question.alternatives,
+                  )}
+                  onChange={event =>
+                    this.onClickAlternative(event, question.id)
+                  }
+                />
                 <footer className="flex justify-center">
                   {this.state.showConfirmButton && (
                     <Button>Confirma Resposta</Button>
@@ -80,6 +103,8 @@ class Exam extends React.Component {
 const mapStateToProps = state => ({
   examId: getExamId(state),
   questions: getQuestions(state),
+  numberOfQuestions: getNumberOfQuestions(state),
+  participationId: getParticipationId(state),
 })
 
 export default connect(
@@ -88,6 +113,8 @@ export default connect(
     bindActionCreators(
       {
         fetchQuestion,
+        fetchMoreQuestion,
+        answerQuestion,
       },
       dispatch,
     ),

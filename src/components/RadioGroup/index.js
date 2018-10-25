@@ -25,7 +25,7 @@ const RadioGroup = ({ options, name, onChange }) => (
         value={option.value}
         label={option.label}
         name={name}
-        onChange={onChange}
+        onChange={() => onChange(option)}
       />
     ))}
   </div>

@@ -6,10 +6,41 @@ import { GROWL_ERROR } from 'store/ui/constants'
 const confirmAnswer = createAction('CONFIRM_ANSWER')
 const questionsLoaded = createAction('QUESTIONS_LOADED')
 
-const fetchQuestion = (examId, lastQuestion) => dispatch => {
+const fetchQuestion = examId => dispatch => {
   http
-    .get('http://localhost:3000/questions?examId=' + examId)
-    .then(questions => dispatch(questionsLoaded(questions.questions)))
+    .get('http://localhost:3000/questions/' + examId)
+    .then(questions => dispatch(questionsLoaded(questions)))
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
 }
-export { confirmAnswer, questionsLoaded, fetchQuestion }
+
+const fetchMoreQuestion = (examId, lastQuestion) => dispatch => {
+  http
+    .get('http://localhost:3000/questions/' + examId + '/' + lastQuestion.id)
+    .then(questions => dispatch(questionsLoaded(questions)))
+    .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
+}
+
+const answerQuestion = (
+  participationId,
+  questionId,
+  alternativeId,
+) => dispatch => {
+  return http
+    .post('http://localhost:3000/answer/', {
+      data: {
+        participation_id: participationId,
+        question_id: questionId,
+        alternative_id: alternativeId,
+        time_to_answer: 1,
+      },
+    })
+    .then(answer => dispatch(confirmAnswer(answer)))
+}
+
+export {
+  confirmAnswer,
+  questionsLoaded,
+  fetchQuestion,
+  fetchMoreQuestion,
+  answerQuestion,
+}
