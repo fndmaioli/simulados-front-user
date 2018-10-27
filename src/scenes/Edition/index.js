@@ -51,6 +51,20 @@ const EditionItem = edicao => {
 }
 
 class Edition extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      inputValue: '',
+    }
+  }
+
+  handleChange = e => {
+    this.setState({ inputValue: e.target.value }, () => {
+      console.log(this.state.inputValue)
+    })
+  }
+
   render() {
     return (
       <div>
@@ -59,16 +73,23 @@ class Edition extends React.Component {
           className="space-stack-m"
           placeholder="Procure uma edição..."
           icon="search"
+          value={this.state.inputValue}
+          onChange={this.handleChange}
           block
         />
         <ul className="space-between-s">
-          {editionList.map(edition => (
-            <EditionItem
-              name={edition.name}
-              year={edition.year}
-              approval={edition.approval}
-            />
-          ))}
+          {editionList
+            .filter(element => {
+              console.log(element.name)
+              return element.name.includes(this.state.inputValue)
+            })
+            .map(edition => (
+              <EditionItem
+                name={edition.name}
+                year={edition.year}
+                approval={edition.approval}
+              />
+            ))}
         </ul>
       </div>
     )
