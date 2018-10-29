@@ -1,0 +1,14 @@
+.edition-item {
+  color: gray;
+  padding: 16px 32px;
+
+  &__name {
+    color: black;
+  }
+
+  &__approval {
+    justify-content: space-between;
+    min-width: 140px;
+    display: flex;
+  }
+}

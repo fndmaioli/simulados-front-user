@@ -1,9 +1,7 @@
 import React from 'react'
 
 import Input from 'components/Input'
-import Card from 'components/Card'
-
-import './edition.scss'
+import EditionItem from 'components/EditionItem'
 
 const editionList = [
   { name: 'XXIII', year: '2017.2', approval: '17.07%' },
@@ -30,25 +28,6 @@ const editionList = [
   { name: 'II', year: '2010.2', approval: '16,00%' },
   { name: 'I', year: '2010.1', approval: '14,03%' },
 ]
-
-const EditionItem = edicao => {
-  return (
-    <Card
-      onClick={() =>
-        alert('Você escolheu fazer o exame do ano: ' + edicao.year)
-      }
-      className="space-inset-m flex items-center justify-between"
-      as="li"
-    >
-      <span>
-        <strong>{edicao.name}</strong> {'(' + edicao.year + ')'}{' '}
-      </span>
-      <span>
-        aprovação: <strong> {edicao.approval} </strong>
-      </span>
-    </Card>
-  )
-}
 
 class Edition extends React.Component {
   constructor(props) {
@@ -81,7 +60,8 @@ class Edition extends React.Component {
           {editionList
             .filter(element => {
               console.log(element.name)
-              return element.name.includes(this.state.inputValue)
+              const regex = new RegExp(this.state.inputValue, 'gi')
+              return element.name.match(regex)
             })
             .map(edition => (
               <EditionItem
