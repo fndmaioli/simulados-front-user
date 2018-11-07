@@ -39,9 +39,7 @@ class Edition extends React.Component {
   }
 
   handleChange = e => {
-    this.setState({ inputValue: e.target.value }, () => {
-      console.log(this.state.inputValue)
-    })
+    this.setState({ inputValue: e.target.value }, () => {})
   }
 
   render() {
@@ -59,7 +57,6 @@ class Edition extends React.Component {
         <ul className="space-between-s">
           {editionList
             .filter(element => {
-              console.log(element.name)
               const regex = new RegExp(this.state.inputValue, 'gi')
               return element.name.match(regex)
             })
