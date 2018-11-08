@@ -1,5 +1,3 @@
-import './stylesheets/main.scss'
-
 import registerServiceWorker from './registerServiceWorker'
 
 import React from 'react'
@@ -15,12 +13,14 @@ import { store, persistor, history } from 'store/configureStore'
 import App from './App'
 import Examples from 'scenes/Examples'
 
-import Dashboard from 'scenes/Dashboard'
+import Dashboard from 'scenes/dashboard'
 import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
 import Login from 'scenes/Login'
+import Edition from 'scenes/Edition'
 import ProtectedRoute from 'containers/ProtectedRoute'
 import ViewAnswers from 'scenes/ViewAnswers'
+import './stylesheets/main.scss'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -34,6 +34,7 @@ ReactDOM.render(
               <ProtectedRoute exact path="/simulado" component={Simulados} />
               <Route exact path="/resposta" component={ViewAnswers} />
               <ProtectedRoute exact path="/" component={Dashboard} />
+              <Route exact path="/edicao" component={Edition} />
             </Layout>
             <Route path="*" render={() => 404} />
           </Switch>

@@ -34,7 +34,11 @@ const Input = ({
 const InputWithIcon = props => (
   <div className="input-with-icon">
     <span className="input-with-icon__icon">
-      <Icon name={props.type === 'search' ? 'search' : props.icon} />
+      <Icon
+        height={16}
+        width={16}
+        name={props.type === 'search' ? 'search' : props.icon}
+      />
     </span>
     <Input {...props} />
   </div>
