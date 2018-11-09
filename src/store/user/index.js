@@ -22,6 +22,8 @@ export const getData = state => state.user.data
 
 export const getStudent = state => state.user.data.data.user
 
+export const getUsername = state => getStudent(state).username
+
 export const isAuth = state => !!state.user.data && state.user.data.success
 
 export default reducer
