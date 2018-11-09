@@ -5,7 +5,7 @@ const examLoaded = createAction('EXAM_LOADED')
 
 const fetchExam = studentId => dispatch => {
   return http
-    .post('http://localhost:3000/exam', {
+    .post('http://10.132.241.25:3000/exam', {
       data: { student_id: studentId },
     })
     .then(exam => dispatch(examLoaded(exam)))

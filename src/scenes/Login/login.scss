@@ -1,10 +1,11 @@
 .login__maincontainer {
-  margin-top: 10%;
+  height: 100vh;
 }
 
 .login__inputcontainer {
   margin-top: 10px;
-  width: 18%;
+  max-width: 310px;
+  width: 100%;
 }
 
 .login__input {
@@ -18,7 +19,6 @@
 
 .login__logoimage {
   height: 34px;
-  width: 100;
 }
 
 .login__lineleft {
@@ -45,24 +45,4 @@
   margin-top: 20px;
   color: #757470;
   font-size: 14px;
-}
-
-@media (max-width: 1440px) {
-  .login__maincontainer {
-    margin-top: 20%;
-  }
-
-  .login__inputcontainer {
-    width: 28%;
-  }
-}
-
-@media (max-width: 720px) {
-  .login__maincontainer {
-    margin-top: 20%;
-  }
-
-  .login__inputcontainer {
-    width: 60%;
-  }
 }
