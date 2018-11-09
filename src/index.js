@@ -13,7 +13,7 @@ import { store, persistor, history } from 'store/configureStore'
 import App from './App'
 import Examples from 'scenes/Examples'
 
-import Dashboard from 'scenes/dashboard'
+import Dashboard from 'scenes/Dashboard'
 import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
 import Login from 'scenes/Login'
