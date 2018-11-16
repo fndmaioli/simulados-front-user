@@ -21,7 +21,7 @@ const reducer = handleActions(
 )
 
 export const getExam = state => state.exam
-export const getExamId = state => state.examId
+export const getExamId = state => state.exam.examId
 export const getParticipationId = state => state.exam.data.participation.id
 
 export default reducer
