@@ -13,6 +13,7 @@ import { getQuestions, getNumberOfQuestions } from 'store/question'
 import { getExamId, getParticipationId } from 'store/exam'
 
 import Button from 'components/Button'
+import Modal from 'components/Modal'
 import RadioGroup from 'components/RadioGroup'
 import Container from 'components/Container'
 
@@ -78,11 +79,11 @@ class Exam extends React.Component {
   }
 
   onConfirmAnswer = () => {
-    showQuestionByIndex(this.state.currentQuestion + 1)
+    this.showQuestionByIndex(this.state.currentQuestion + 1)
   }
 
   jumpToQuestion = question => {
-    showQuestionByIndex(this.props.questions.indexOf(question))
+    this.showQuestionByIndex(this.props.questions.indexOf(question))
   }
 
   render() {
@@ -120,6 +121,10 @@ class Exam extends React.Component {
                   <p className="space-stack-l" style={{ fontSize: 18 }}>
                     {question.statement}
                   </p>
+<<<<<<< HEAD
+=======
+                  <h3>Alternativas</h3>
+>>>>>>> COMITAO
                   <RadioGroup
                     name={question.id}
                     options={this.alternativesToRadioButton(
@@ -160,10 +165,8 @@ class Exam extends React.Component {
         >
           <input placeholder="Pular para questão..." />
           <ul>
-            {this.questions.map(q => (
-              <li onClick={() => this.jumpToQuestion(q)}>
-                Questão {question.id}
-              </li>
+            {this.props.questions.map(q => (
+              <li onClick={() => this.jumpToQuestion(q)}>Questão {q.id}</li>
             ))}
           </ul>
         </Modal>

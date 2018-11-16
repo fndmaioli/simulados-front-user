@@ -2,20 +2,21 @@ import { createAction } from 'redux-actions'
 import http from 'utils/http'
 import { growl } from 'store/ui/actions'
 import { GROWL_ERROR } from 'store/ui/constants'
+import { API_URL } from '../../config'
 
 const confirmAnswer = createAction('CONFIRM_ANSWER')
 const questionsLoaded = createAction('QUESTIONS_LOADED')
 
 const fetchQuestion = examId => dispatch => {
   http
-    .get('http://localhost:3000/questions/' + examId)
+    .get(`${API_URL}/questions/` + examId)
     .then(questions => dispatch(questionsLoaded(questions)))
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
 }
 
 const fetchMoreQuestion = (examId, lastQuestion) => dispatch => {
   http
-    .get('http://localhost:3000/questions/' + examId + '/' + lastQuestion.id)
+    .get(`${API_URL}/questions/` + examId + '/' + lastQuestion.id)
     .then(questions => dispatch(questionsLoaded(questions)))
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
 }
@@ -26,7 +27,7 @@ const answerQuestion = (
   alternativeId,
 ) => dispatch => {
   return http
-    .post('http://localhost:3000/answer/', {
+    .post(`${API_URL}/answer/`, {
       data: {
         participation_id: participationId,
         question_id: questionId,
