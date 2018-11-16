@@ -9,7 +9,8 @@ const reducer = handleActions(
   {
     [examLoaded]: (state, action) => ({
       ...state,
-      data: action.payload,
+      data: action.payload.data,
+      examId: action.payload.examId,
     }),
     [userLogout]: state => ({
       ...state,
@@ -20,7 +21,7 @@ const reducer = handleActions(
 )
 
 export const getExam = state => state.exam
-export const getExamId = state => state.exam.data.exam.id
+export const getExamId = state => state.exam.examId
 export const getParticipationId = state => state.exam.data.participation.id
 
 export default reducer

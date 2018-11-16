@@ -75,8 +75,7 @@ class Exam extends React.Component {
               <div key={question.id}>
                 <h1>Questão {question.id}</h1>
                 <p>{question.statement}</p>
-
-                <h3>Alternativas</h3>
+                <br />
                 <RadioGroup
                   name={question.id}
                   options={this.alternativesToRadioButton(
