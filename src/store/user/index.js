@@ -18,12 +18,13 @@ const reducer = handleActions(
   initialState,
 )
 
-export const getData = state => state.user.data
+export const getData = state => (state.user || {}).data || {}
 
-export const getStudent = state => state.user.data.data.user
+export const getStudent = state => getData(state).user || {}
 
-export const getUsername = state => getStudent(state).username
+export const getUsername = state => getStudent(state).username || ''
 
-export const isAuth = state => !!state.user.data && state.user.data.success
+export const isAuth = state =>
+  !!getData(state) && (getData(state).success || false)
 
 export default reducer
