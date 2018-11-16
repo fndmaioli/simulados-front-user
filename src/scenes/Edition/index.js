@@ -7,6 +7,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getEditions } from 'store/edition'
 import { fetchEditions } from 'store/edition/actions'
+import { getStudent } from 'store/user'
+import { getExam } from 'store/exam'
+import { createParticipation } from 'store/exam/actions'
+import { push } from 'connected-react-router'
 
 class Edition extends React.Component {
   constructor(props) {
@@ -48,17 +52,32 @@ class Edition extends React.Component {
               <EditionItem
                 name={edition.aob_exam_serial}
                 year={edition.aob_exam_year}
-                approval={edition.approval}
+                onClick={() => this.doExam(edition.id)}
               />
             ))}
         </ul>
       </div>
     )
   }
+
+  async doExam(examId) {
+    const studentId = this.props.student.id
+    await this.props.createParticipation(studentId, examId)
+
+    const { exam } = this.props
+
+    if (exam) {
+      this.props.push('/simulado')
+    } else {
+      console.log('Erro ao buscar exame!')
+    }
+  }
 }
 
 const mapStateToProps = state => ({
   editions: getEditions(state),
+  exam: getExam(state),
+  student: getStudent(state),
 })
 
 export default connect(
@@ -67,6 +86,8 @@ export default connect(
     bindActionCreators(
       {
         fetchEditions,
+        createParticipation,
+        push,
       },
       dispatch,
     ),
