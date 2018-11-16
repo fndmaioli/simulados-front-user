@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import Header from '../Header'
 import Container from '../Container'
 
-const Layout = ({ children }) => (
+const Layout = ({ children, wide = false }) => (
   <div>
     <Header />
-    <Container>{children}</Container>
+    <Container wide={wide}>{children}</Container>
   </div>
 )
 

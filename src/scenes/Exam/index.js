@@ -1,4 +1,5 @@
 import React from 'react'
+import Slider from 'react-slick'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -13,17 +14,19 @@ import { getExamId, getParticipationId } from 'store/exam'
 
 import Button from 'components/Button'
 import RadioGroup from 'components/RadioGroup'
-import './exam.scss'
 import Container from 'components/Container'
-import 'slick-carousel/slick/slick.scss'
-import 'slick-carousel/slick/slick-theme.scss'
-import Slider from 'react-slick'
+
+import media from 'utils/media'
+
+import './exam.scss'
 
 class Exam extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       showConfirmButton: false,
+      selected: null,
+      currentQuestion: 0,
     }
   }
 
@@ -32,6 +35,8 @@ class Exam extends React.Component {
   }
 
   fetchMoreQuestions(currentSlide) {
+    this.setState({ currentQuestion: currentSlide })
+
     if (
       this.props.questions.length == currentSlide + 1 &&
       this.props.questions.length < this.props.numberOfQuestions
@@ -46,6 +51,8 @@ class Exam extends React.Component {
   onClickAlternative(option, questionId) {
     const alternativeId = option.value
     const participationId = this.props.participationId
+
+    this.setState({ selected: option.value })
     this.props.answerQuestion(participationId, questionId, alternativeId)
   }
 
@@ -54,6 +61,13 @@ class Exam extends React.Component {
       value: alternative.id,
       label: alternative.description,
     }))
+  }
+
+  onConfirmAnswer = () => {
+    const nextQuestion = this.state.currentQuestion + 1
+
+    this.setState({ currentQuestion: nextQuestion })
+    this.slider.slickGoTo(nextQuestion)
   }
 
   render() {
@@ -65,36 +79,55 @@ class Exam extends React.Component {
       slidesToScroll: 1,
       arrows: false,
       afterChange: event => this.fetchMoreQuestions(event),
+      ref: slider => (this.slider = slider),
     }
 
     return (
-      <Container>
-        <Slider {...settings}>
-          {this.props.questions.map(question => {
-            return (
-              <div key={question.id}>
-                <h1>Questão {question.id}</h1>
-                <p>{question.statement}</p>
-                <br />
-                <RadioGroup
-                  name={question.id}
-                  options={this.alternativesToRadioButton(
-                    question.alternatives,
-                  )}
-                  onChange={event =>
-                    this.onClickAlternative(event, question.id)
-                  }
-                />
-                <footer className="flex justify-center">
-                  {this.state.showConfirmButton && (
-                    <Button>Confirma Resposta</Button>
-                  )}
-                </footer>
-              </div>
-            )
-          })}
-        </Slider>
-      </Container>
+      <div>
+        <div style={{ maxHeight: 545 }}>
+          <Slider {...settings}>
+            {this.props.questions.map(question => {
+              return (
+                <Container size="md" key={question.id}>
+                  <h1>Questão {question.id}</h1>
+                  <p className="space-stack-l" style={{ fontSize: 18 }}>
+                    {question.statement}
+                  </p>
+                  <RadioGroup
+                    name={question.id}
+                    options={this.alternativesToRadioButton(
+                      question.alternatives,
+                    )}
+                    onChange={event =>
+                      this.onClickAlternative(event, question.id)
+                    }
+                  />
+                  <footer className="flex justify-center">
+                    {this.state.showConfirmButton && (
+                      <Button>Confirma Resposta</Button>
+                    )}
+                  </footer>
+                </Container>
+              )
+            })}
+          </Slider>
+        </div>
+        <Container
+          className="flex items-center justify-end"
+          as="footer"
+          size="md"
+        >
+          <Button
+            className="confirm-button"
+            size="l"
+            block={media.lessThan.tabletLandscape()}
+            onClick={this.onConfirmAnswer}
+            disabled={!this.state.selected}
+          >
+            Confirmar
+          </Button>
+        </Container>
+      </div>
     )
   }
 }
