@@ -25,8 +25,10 @@ class Exam extends React.Component {
     super(props)
     this.state = {
       showConfirmButton: false,
-      selected: null,
-      currentQuestion: 0,
+      answers: {},
+      currentQuestion: null,
+      questionIndex: null,
+      jumpToQuestionOpen: false,
     }
   }
 
@@ -51,8 +53,12 @@ class Exam extends React.Component {
   onClickAlternative(option, questionId) {
     const alternativeId = option.value
     const participationId = this.props.participationId
+    const answers = {
+      ...this.state.answers,
+      [questionId]: alternativeId,
+    }
 
-    this.setState({ selected: option.value })
+    this.setState({ selected: option.value, answers })
     this.props.answerQuestion(participationId, questionId, alternativeId)
   }
 
@@ -63,11 +69,20 @@ class Exam extends React.Component {
     }))
   }
 
-  onConfirmAnswer = () => {
-    const nextQuestion = this.state.currentQuestion + 1
+  showQuestionByIndex(index) {
+    this.slider.slickGoTo(index)
+    this.setState({
+      currentQuestion: this.props.questions[index],
+      questionIndex: index,
+    })
+  }
 
-    this.setState({ currentQuestion: nextQuestion })
-    this.slider.slickGoTo(nextQuestion)
+  onConfirmAnswer = () => {
+    showQuestionByIndex(this.state.currentQuestion + 1)
+  }
+
+  jumpToQuestion = question => {
+    showQuestionByIndex(this.props.questions.indexOf(question))
   }
 
   render() {
@@ -80,6 +95,7 @@ class Exam extends React.Component {
       arrows: false,
       afterChange: event => this.fetchMoreQuestions(event),
       ref: slider => (this.slider = slider),
+      adaptiveHeight: true,
     }
 
     return (
@@ -89,7 +105,18 @@ class Exam extends React.Component {
             {this.props.questions.map(question => {
               return (
                 <Container size="md" key={question.id}>
-                  <h1>Questão {question.id}</h1>
+                  <header classNames="flex items-center justify-between">
+                    <h1>Questão {question.id}</h1>
+                    <Button
+                      ghost
+                      icon="corner-down-right"
+                      onClick={() =>
+                        this.setState({ jumpToQuestionOpen: true })
+                      }
+                    >
+                      Pular para...
+                    </Button>
+                  </header>
                   <p className="space-stack-l" style={{ fontSize: 18 }}>
                     {question.statement}
                   </p>
@@ -122,11 +149,24 @@ class Exam extends React.Component {
             size="l"
             block={media.lessThan.tabletLandscape()}
             onClick={this.onConfirmAnswer}
-            disabled={!this.state.selected}
+            disabled={!this.state.answers[this.state.currentQuestion.id]}
           >
             Confirmar
           </Button>
         </Container>
+        <Modal
+          open={this.state.jumpToQuestionOpen}
+          onClose={() => this.setState({ jumpToQuestionOpen: false })}
+        >
+          <input placeholder="Pular para questão..." />
+          <ul>
+            {this.questions.map(q => (
+              <li onClick={() => this.jumpToQuestion(q)}>
+                Questão {question.id}
+              </li>
+            ))}
+          </ul>
+        </Modal>
       </div>
     )
   }
