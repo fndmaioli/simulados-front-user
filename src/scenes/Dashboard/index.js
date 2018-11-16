@@ -62,19 +62,8 @@ class Dashboard extends Component {
     )
   }
 
-  async doExam() {
-    console.log('Buscando exame...')
-    await this.props.fetchExam(this.props.student.id)
-
-    const { exam } = this.props
-
-    if (exam) {
-      this.props.push('/simulado')
-    } else {
-      console.log('Erro ao buscar exame!')
-    }
-
-    console.log(this.props.exam)
+  doExam() {
+    this.props.push('/edicao')
   }
 
   doRandomExam() {

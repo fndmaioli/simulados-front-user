@@ -11,7 +11,7 @@ const reducer = handleActions(
   {
     [editionsLoaded]: (state, action) => ({
       ...state,
-      editions: action.payload,
+      editions: action.payload.exams,
     }),
     [userLogout]: state => ({
       ...state,
