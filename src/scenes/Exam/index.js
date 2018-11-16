@@ -37,6 +37,21 @@ class Exam extends React.Component {
     this.props
       .fetchQuestion(this.props.examId)
       .then(() => this.setState({ currentQuestion: this.props.questions[0] }))
+
+    document.addEventListener('keyup', this.handleKeyUp)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp)
+  }
+
+  handleKeyUp = ({ key }) => {
+    const handler = {
+      ArrowLeft: () => this.moveQuestionBy(-1),
+      ArrowRight: () => this.moveQuestionBy(+1),
+    }[key]
+
+    handler && handler()
   }
 
   fetchMoreQuestions(currentSlide) {
@@ -73,6 +88,8 @@ class Exam extends React.Component {
   }
 
   showQuestionByIndex(index) {
+    if (index < 0 && index >= this.props.questions.length) return
+
     this.slider.slickGoTo(index)
     this.setState({
       currentQuestion: this.props.questions[index],
@@ -80,8 +97,12 @@ class Exam extends React.Component {
     })
   }
 
+  moveQuestionBy(val) {
+    this.showQuestionByIndex(this.state.questionIndex + val)
+  }
+
   onConfirmAnswer = () => {
-    this.showQuestionByIndex(this.state.questionIndex + 1)
+    this.moveQuestionBy(+1)
   }
 
   jumpToQuestion = question => {
