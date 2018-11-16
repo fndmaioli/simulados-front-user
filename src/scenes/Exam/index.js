@@ -28,13 +28,15 @@ class Exam extends React.Component {
       showConfirmButton: false,
       answers: {},
       currentQuestion: null,
-      questionIndex: null,
+      questionIndex: 0,
       jumpToQuestionOpen: false,
     }
   }
 
   componentDidMount() {
-    this.props.fetchQuestion(this.props.examId)
+    this.props
+      .fetchQuestion(this.props.examId)
+      .then(() => this.setState({ currentQuestion: this.props.questions[0] }))
   }
 
   fetchMoreQuestions(currentSlide) {
@@ -79,7 +81,7 @@ class Exam extends React.Component {
   }
 
   onConfirmAnswer = () => {
-    this.showQuestionByIndex(this.state.currentQuestion + 1)
+    this.showQuestionByIndex(this.state.questionIndex + 1)
   }
 
   jumpToQuestion = question => {
@@ -101,13 +103,13 @@ class Exam extends React.Component {
 
     return (
       <div>
-        <div style={{ maxHeight: 545 }}>
+        <div>
           <Slider {...settings}>
             {this.props.questions.map(question => {
               return (
                 <Container size="md" key={question.id}>
-                  <header classNames="flex items-center justify-between">
-                    <h1>Questão {question.id}</h1>
+                  <header className="flex items-center justify-between space-stack-l">
+                    <h1 style={{ margin: 0 }}>Questão {question.id}</h1>
                     <Button
                       ghost
                       icon="corner-down-right"
@@ -118,13 +120,12 @@ class Exam extends React.Component {
                       Pular para...
                     </Button>
                   </header>
-                  <p className="space-stack-l" style={{ fontSize: 18 }}>
+                  <p
+                    className="space-stack-l"
+                    style={{ fontSize: 18, lineHeight: 1.4 }}
+                  >
                     {question.statement}
                   </p>
-<<<<<<< HEAD
-=======
-                  <h3>Alternativas</h3>
->>>>>>> COMITAO
                   <RadioGroup
                     name={question.id}
                     options={this.alternativesToRadioButton(
@@ -144,21 +145,32 @@ class Exam extends React.Component {
             })}
           </Slider>
         </div>
-        <Container
-          className="flex items-center justify-end"
-          as="footer"
-          size="md"
+        <div
+          style={{
+            width: '100vw',
+            position: 'fixed',
+            bottom: 0,
+            right: 0,
+          }}
         >
-          <Button
-            className="confirm-button"
-            size="l"
-            block={media.lessThan.tabletLandscape()}
-            onClick={this.onConfirmAnswer}
-            disabled={!this.state.answers[this.state.currentQuestion.id]}
+          <Container
+            className="flex items-center justify-end"
+            as="footer"
+            size="md"
           >
-            Confirmar
-          </Button>
-        </Container>
+            <Button
+              className="confirm-button"
+              size="l"
+              block={media.lessThan.tabletLandscape()}
+              onClick={this.onConfirmAnswer}
+              disabled={
+                !this.state.answers[(this.state.currentQuestion || {}).id]
+              }
+            >
+              Confirmar resposta
+            </Button>
+          </Container>
+        </div>
         <Modal
           open={this.state.jumpToQuestionOpen}
           onClose={() => this.setState({ jumpToQuestionOpen: false })}

@@ -8,7 +8,7 @@ const confirmAnswer = createAction('CONFIRM_ANSWER')
 const questionsLoaded = createAction('QUESTIONS_LOADED')
 
 const fetchQuestion = examId => dispatch => {
-  http
+  return http
     .get(`${API_URL}/questions/` + examId)
     .then(questions => dispatch(questionsLoaded(questions)))
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
