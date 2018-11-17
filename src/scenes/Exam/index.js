@@ -15,7 +15,9 @@ import { getExamId, getParticipationId } from 'store/exam'
 import Button from 'components/Button'
 import Modal from 'components/Modal'
 import RadioGroup from 'components/RadioGroup'
+import AlternativeSelection from 'components/AlternativeSelection'
 import Container from 'components/Container'
+import JumpToQuestion from 'components/JumpToQuestion'
 
 import media from 'utils/media'
 
@@ -80,13 +82,6 @@ class Exam extends React.Component {
     this.props.answerQuestion(participationId, questionId, alternativeId)
   }
 
-  alternativesToRadioButton(alternatives) {
-    return alternatives.map(alternative => ({
-      value: alternative.id,
-      label: alternative.description,
-    }))
-  }
-
   showQuestionByIndex(index) {
     if (index < 0 && index >= this.props.questions.length) return
 
@@ -123,7 +118,7 @@ class Exam extends React.Component {
     }
 
     return (
-      <div>
+      <div style={{ paddingBottom: 48 }}>
         <div>
           <Slider {...settings}>
             {this.props.questions.map(question => {
@@ -147,14 +142,17 @@ class Exam extends React.Component {
                   >
                     {question.statement}
                   </p>
-                  <RadioGroup
+                  <AlternativeSelection
                     name={question.id}
-                    options={this.alternativesToRadioButton(
-                      question.alternatives,
-                    )}
+                    alternatives={question.alternatives.map(a => ({
+                      value: a.id,
+                      label: a.description,
+                      letter: a.letter,
+                    }))}
                     onChange={event =>
                       this.onClickAlternative(event, question.id)
                     }
+                    selected={this.state.answers[(question || {}).id]}
                   />
                   <footer className="flex justify-center">
                     {this.state.showConfirmButton && (
@@ -192,17 +190,12 @@ class Exam extends React.Component {
             </Button>
           </Container>
         </div>
-        <Modal
+        <JumpToQuestion
           open={this.state.jumpToQuestionOpen}
+          questions={this.props.questions}
           onClose={() => this.setState({ jumpToQuestionOpen: false })}
-        >
-          <input placeholder="Pular para questão..." />
-          <ul>
-            {this.props.questions.map(q => (
-              <li onClick={() => this.jumpToQuestion(q)}>Questão {q.id}</li>
-            ))}
-          </ul>
-        </Modal>
+          onSelect={question => this.jumpToQuestion(question)}
+        />
       </div>
     )
   }

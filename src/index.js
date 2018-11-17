@@ -32,7 +32,7 @@ ReactDOM.render(
         <App>
           <Switch>
             <Route path="/login" component={Login} />
-            <Layout wide={window.location.pathname === '/simulado'}>
+            <Layout>
               <Route exact path="/examples" component={Examples} />
               <Route exact path="/resposta" component={ViewAnswers} />
               <ProtectedRoute exact path="/" component={Dashboard} />

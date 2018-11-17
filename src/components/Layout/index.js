@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 import Header from '../Header'
 import Container from '../Container'
 
-const Layout = ({ children, wide = false }) => (
+const Layout = ({ children }) => (
   <div>
     <Header />
-    <Container wide={wide}>{children}</Container>
+    <Container wide={window.location.pathname === '/simulado'}>
+      {children}
+    </Container>
   </div>
 )
 

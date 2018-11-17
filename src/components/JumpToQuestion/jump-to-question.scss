@@ -1,0 +1,28 @@
+.jump-to-question {
+  &__list {
+    transition: height ease 0.2s;
+    overflow: hidden;
+  }
+
+  &__search {
+    font-size: 20px;
+    border: 0;
+    padding: 20px 32px;
+    background: 0;
+    font-weight: 600;
+    outline: 0;
+    width: 100%;
+  }
+
+  &__option {
+    font-weight: 600;
+    padding: 8px 32px;
+    cursor: pointer;
+    transition: all ease 0.1s;
+
+    &:hover {
+      background: #439af1;
+      color: white;
+    }
+  }
+}

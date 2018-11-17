@@ -1,9 +1,11 @@
 import React from 'react'
 import cn from 'classnames'
 
+import Card from '../Card'
+
 import './alternative-selection.scss'
 
-export const Alternative = ({
+const Alternative = ({
   name,
   value,
   selected = false,
@@ -11,7 +13,9 @@ export const Alternative = ({
   onChange,
   letter = 'a',
 }) => (
-  <div
+  <Card
+    padding="s"
+    onClick={() => onChange(value)}
     className={cn(
       'alternative',
       `alternative--${letter}`,
@@ -19,17 +23,18 @@ export const Alternative = ({
     )}
   >
     <input
+      style={{ display: 'none' }}
       className="alternative__bullet"
       type="alternative"
       id={value}
       name={name}
       onChange={onChange}
     />
-    <i classNames="alternative__letter">{letter}</i>
     <label className="alternative__label" htmlFor={value}>
-      {label}
+      <i className="alternative__letter">{letter}</i>
+      <p>{label}</p>
     </label>
-  </div>
+  </Card>
 )
 
 const AlternativeSelection = ({ alternatives, name, onChange, selected }) => (
@@ -39,6 +44,7 @@ const AlternativeSelection = ({ alternatives, name, onChange, selected }) => (
         key={a.value}
         value={a.value}
         label={a.label}
+        letter={a.letter}
         selected={a.value === selected}
         name={name}
         onChange={() => onChange(a)}
