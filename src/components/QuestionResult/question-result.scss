@@ -1,0 +1,21 @@
+.answer {
+  border-style: solid;
+  border-width: 3px;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  width: 50px;
+
+  &--right {
+    border-color: green;
+    margin: 2px;
+  }
+  &--wrong {
+    border-color: red;
+    margin: 2px;
+  }
+}
+
+.letter {
+  font-size: 1.5cm;
+  font-family: Times;
+}
