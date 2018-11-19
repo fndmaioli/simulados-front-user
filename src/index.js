@@ -1,3 +1,6 @@
+import 'slick-carousel/slick/slick.scss'
+import 'slick-carousel/slick/slick-theme.scss'
+
 import registerServiceWorker from './registerServiceWorker'
 
 import React from 'react'
@@ -31,10 +34,10 @@ ReactDOM.render(
             <Route path="/login" component={Login} />
             <Layout>
               <Route exact path="/examples" component={Examples} />
-              <ProtectedRoute exact path="/simulado" component={Simulados} />
               <Route exact path="/resposta" component={ViewAnswers} />
               <ProtectedRoute exact path="/" component={Dashboard} />
               <Route exact path="/edicao" component={Edition} />
+              <ProtectedRoute exact path="/simulado" component={Simulados} />
             </Layout>
             <Route path="*" render={() => 404} />
           </Switch>

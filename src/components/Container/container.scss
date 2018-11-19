@@ -6,4 +6,14 @@
   &--sm {
     max-width: 530px;
   }
+
+  &--md {
+    max-width: 830px;
+  }
+
+  &--wide {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

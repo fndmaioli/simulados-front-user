@@ -1,8 +1,4 @@
-// .container .button--ghost {
-//   position: absolute;
-//   bottom: 40px;
-//   margin: 0 auto;
-// }
+@import '~stylesheets/utilities/breakpoints';
 
 .modal .modal__content {
   padding: 0;
@@ -16,4 +12,16 @@
 .confirmButton {
   position: absolute;
   left: -50%;
+}
+
+@include for-phone-only {
+  .confirm-button {
+    position: fixed;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    max-width: 90vw;
+    margin: 16px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25882352941176473);
+  }
 }

@@ -7,7 +7,9 @@ import Container from '../Container'
 const Layout = ({ children }) => (
   <div>
     <Header />
-    <Container>{children}</Container>
+    <Container wide={window.location.pathname === '/simulado'}>
+      {children}
+    </Container>
   </div>
 )
 

@@ -3,8 +3,15 @@ import cn from 'classnames'
 
 import './container.scss'
 
-const Container = ({ children, size, className }) => (
-  <div className={cn('container', size && `container--${size}`, className)}>
+const Container = ({ children, size, wide = false, className }) => (
+  <div
+    className={cn(
+      'container',
+      size && `container--${size}`,
+      wide && 'container--wide',
+      className,
+    )}
+  >
     {children}
   </div>
 )
