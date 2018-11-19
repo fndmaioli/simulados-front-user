@@ -23,6 +23,7 @@ import Login from 'scenes/Login'
 import Edition from 'scenes/Edition'
 import ProtectedRoute from 'containers/ProtectedRoute'
 import ViewAnswers from 'scenes/ViewAnswers'
+import MountExam from 'scenes/MountExam'
 import './stylesheets/main.scss'
 
 ReactDOM.render(
@@ -37,6 +38,7 @@ ReactDOM.render(
               <Route exact path="/resposta" component={ViewAnswers} />
               <ProtectedRoute exact path="/" component={Dashboard} />
               <Route exact path="/edicao" component={Edition} />
+              <ProtectedRoute exact path="/montar" component={MountExam} />
               <ProtectedRoute exact path="/simulado" component={Simulados} />
             </Layout>
             <Route path="*" render={() => 404} />
