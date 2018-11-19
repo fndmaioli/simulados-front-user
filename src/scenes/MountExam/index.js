@@ -33,7 +33,8 @@ class MountExam extends React.Component {
             <AreaItem
               area={area}
               name={area.name}
-              onClick={area => this.toggleArea(area)} //adicionar aos selecionados
+              onClick={area => this.toggleArea(area)}
+              selected={area.selected}
             />
           ))}
         </ul>
@@ -46,11 +47,11 @@ class MountExam extends React.Component {
     const index = selectedAreas.findIndex(area => area.id == selectedArea.id)
 
     if (index !== -1) {
+      selectedArea.selected = false
       selectedAreas.splice(index, 1)
-      console.log(selectedAreas)
     } else {
+      selectedArea.selected = true
       selectedAreas.push(selectedArea)
-      console.log(selectedAreas)
     }
 
     this.setState({ selectedAreas })
@@ -77,38 +78,47 @@ const mapStateToProps = state => ({
       //TODO: REMOVER MOCK QUANDO TIVER A ROTA
       id: 1,
       name: 'Direito Civil',
+      selected: false,
     },
     {
       id: 2,
       name: 'Direito comercial ou empresarial',
+      selected: false,
     },
     {
       id: 3,
       name: 'Direito do consumidor',
+      selected: false,
     },
     {
       id: 4,
       name: 'Direito da tecnologia da informação',
+      selected: false,
     },
     {
       id: 5,
       name: 'Direito tributário',
+      selected: false,
     },
     {
       id: 6,
       name: 'Direito administrativo',
+      selected: false,
     },
     {
       id: 7,
       name: 'Direito previdenciário',
+      selected: false,
     },
     {
       id: 8,
       name: 'Direito penal ou criminal',
+      selected: false,
     },
     {
       id: 9,
       name: 'Mediação, conciliação e arbitragem',
+      selected: false,
     },
   ],
   exam: getExam(state),
