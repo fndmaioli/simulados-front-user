@@ -52,8 +52,8 @@ class Edition extends React.Component {
             })
             .map(edition => (
               <EditionItem
-                name={this.romanize(edition.aob_exam_serial)}
-                year={edition.aob_exam_year}
+                name={'Exame ' + this.romanize(edition.aob_exam_serial)}
+                year={'Ano ' + edition.aob_exam_year}
                 onClick={() => this.doExam(edition.id)}
               />
             ))}
