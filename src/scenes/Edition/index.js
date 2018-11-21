@@ -45,7 +45,7 @@ class Edition extends React.Component {
           {this.props.editions
             .filter(element => {
               const regex = new RegExp(this.state.inputValue, 'gi')
-              const name = `${this.romanize(element.aobfunction_exam_year)}/${
+              const name = `${element.aobfunction_exam_year}/${
                 element.aob_exam_serial
               }`
               return name.match(regex)
