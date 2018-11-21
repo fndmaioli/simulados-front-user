@@ -45,7 +45,7 @@ class Edition extends React.Component {
           {this.props.editions
             .filter(element => {
               const regex = new RegExp(this.state.inputValue, 'gi')
-              const name = `${element.aobfunction_exam_year}/${
+              const name = `${this.romanize(element.aobfunction_exam_year)}/${
                 element.aob_exam_serial
               }`
               return name.match(regex)
@@ -74,7 +74,7 @@ class Edition extends React.Component {
       console.log('Erro ao buscar exame!')
     }
   }
-  async romanize(num) {
+  romanize(num) {
     if (isNaN(num)) return NaN
     var digits = String(+num).split(''),
       key = [
