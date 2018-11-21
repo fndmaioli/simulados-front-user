@@ -20,7 +20,7 @@ const reducer = handleActions(
 
 export const getData = state => (state.user || {}).data || {}
 
-export const getStudent = state => getData(state).user || {}
+export const getStudent = state => getData(state).data.student || {}
 
 export const getUsername = state => getStudent(state).username || ''
 
