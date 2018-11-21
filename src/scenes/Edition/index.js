@@ -45,12 +45,14 @@ class Edition extends React.Component {
           {this.props.editions
             .filter(element => {
               const regex = new RegExp(this.state.inputValue, 'gi')
-              const name = `${element.aob_exam_year}/${element.aob_exam_serial}`
+              const name = `${element.aobfunction_exam_year}/${
+                element.aob_exam_serial
+              }`
               return name.match(regex)
             })
             .map(edition => (
               <EditionItem
-                name={edition.aob_exam_serial}
+                name={this.romanize(edition.aob_exam_serial)}
                 year={edition.aob_exam_year}
                 onClick={() => this.doExam(edition.id)}
               />
@@ -71,6 +73,46 @@ class Edition extends React.Component {
     } else {
       console.log('Erro ao buscar exame!')
     }
+  }
+  async romanize(num) {
+    if (isNaN(num)) return NaN
+    var digits = String(+num).split(''),
+      key = [
+        '',
+        'C',
+        'CC',
+        'CCC',
+        'CD',
+        'D',
+        'DC',
+        'DCC',
+        'DCCC',
+        'CM',
+        '',
+        'X',
+        'XX',
+        'XXX',
+        'XL',
+        'L',
+        'LX',
+        'LXX',
+        'LXXX',
+        'XC',
+        '',
+        'I',
+        'II',
+        'III',
+        'IV',
+        'V',
+        'VI',
+        'VII',
+        'VIII',
+        'IX',
+      ],
+      roman = '',
+      i = 3
+    while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman
+    return Array(+digits.join('') + 1).join('M') + roman
   }
 }
 
