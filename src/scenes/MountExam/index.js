@@ -1,22 +1,23 @@
 import React from 'react'
 
-import Input from 'components/Input'
 import AreaItem from 'components/AreaItem'
-
+import Button from 'components/Button'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getEditions } from 'store/edition'
 import { getStudent } from 'store/user'
 import { getExam } from 'store/exam'
 import { createParticipation } from 'store/exam/actions'
 import { push } from 'connected-react-router'
+
+import './mountExam.scss'
 
 class MountExam extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      selectedAreas: [],
+      selectedAreas: props.areas,
+      allAreasSelected: false,
     }
   }
 
@@ -24,37 +25,30 @@ class MountExam extends React.Component {
     //chamar rota de buscar edições
   }
 
-  render() {
-    return (
-      <div>
-        <h2>Selecione ás áreas que você deseja no seu exame</h2>
-        <ul className="space-between-s">
-          {this.props.areas.map(area => (
-            <AreaItem
-              area={area}
-              name={area.name}
-              onClick={area => this.toggleArea(area)}
-              selected={area.selected}
-            />
-          ))}
-        </ul>
-      </div>
-    )
+  selectAllAreas() {
+    const { allAreasSelected, selectedAreas } = this.state
+
+    const updatedAreas = selectedAreas.map(area => {
+      return {
+        ...area,
+        selected: !allAreasSelected,
+      }
+    })
+
+    this.setState({
+      selectedAreas: updatedAreas,
+      allAreasSelected: !allAreasSelected,
+    })
   }
 
   toggleArea(selectedArea) {
-    const selectedAreas = this.state.selectedAreas
-    const index = selectedAreas.findIndex(area => area.id == selectedArea.id)
+    const { selectedAreas } = this.state
+    selectedArea.selected = !selectedArea.selected
 
-    if (index !== -1) {
-      selectedArea.selected = false
-      selectedAreas.splice(index, 1)
-    } else {
-      selectedArea.selected = true
-      selectedAreas.push(selectedArea)
-    }
-
-    this.setState({ selectedAreas })
+    this.setState({
+      selectedAreas,
+      allAreasSelected: false,
+    })
   }
 
   async doExam(examId) {
@@ -69,6 +63,35 @@ class MountExam extends React.Component {
     } else {
       console.log('Erro ao buscar exame!')
     }
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="flex justify-between">
+          <h2>Selecione ás áreas que você deseja no seu exame</h2>
+          <Button
+            ghost
+            onClick={() => this.selectAllAreas()}
+            className="mountexam__button"
+          >
+            {this.state.allAreasSelected
+              ? 'Desmarcar todos'
+              : 'Selecionar todos'}
+          </Button>
+        </div>
+        <ul className="space-between-s">
+          {this.state.selectedAreas.map(area => (
+            <AreaItem
+              area={area}
+              name={area.name}
+              onClick={area => this.toggleArea(area)}
+              selected={area.selected}
+            />
+          ))}
+        </ul>
+      </div>
+    )
   }
 }
 
