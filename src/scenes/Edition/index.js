@@ -45,15 +45,15 @@ class Edition extends React.Component {
           {this.props.editions
             .filter(element => {
               const regex = new RegExp(this.state.inputValue, 'gi')
-              const name = `${this.romanize(element.aobfunction_exam_year)}/${
+              const name = `${element.aobfunction_exam_year}/${
                 element.aob_exam_serial
               }`
               return name.match(regex)
             })
             .map(edition => (
               <EditionItem
-                name={this.romanize(edition.aob_exam_serial)}
-                year={edition.aob_exam_year}
+                name={'Exame ' + this.romanize(edition.aob_exam_serial)}
+                year={'Ano ' + edition.aob_exam_year}
                 onClick={() => this.doExam(edition.id)}
               />
             ))}
