@@ -222,7 +222,7 @@ class Exam extends React.Component {
                     <Button>Confirma Resposta</Button>
                   )}
                   <Button onClick={() => this.props.push('/result')}>
-                    Ver Resultado
+                    Meu Desempenho
                   </Button>
                 </footer>
               </div>
