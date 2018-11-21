@@ -5,9 +5,9 @@ import './score.scss'
 class Score extends React.Component {
   getMessage(hits, total) {
     let score = total / 2
-    if (hits > score) return 'Acima da média! :)'
-    if (hits == score) return 'Na média! :|'
-    if (hits < score) return 'Abaixo da média :('
+    if (hits > score) return 'Aprovado!'
+    if (hits == score) return 'Na média!'
+    if (hits < score) return 'Reprovado!'
   }
 
   getClass(hits, total) {
