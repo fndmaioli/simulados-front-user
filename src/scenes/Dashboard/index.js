@@ -56,7 +56,7 @@ class Dashboard extends Component {
             label="Monte seu Exame"
             buttonLabel="Iniciar"
             description="Personalize seu exame escolhendo as áreas de sua preferência."
-            onClick={() => ''}
+            onClick={() => this.doCustomExam()}
           />
 
           {/* <MenuCard
