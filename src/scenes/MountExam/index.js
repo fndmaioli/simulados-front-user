@@ -25,7 +25,7 @@ class MountExam extends React.Component {
     //chamar rota de buscar edições
   }
 
-  selectAllAreas() {
+  selectAllAreas = () => {
     const { allAreasSelected, selectedAreas } = this.state
 
     const updatedAreas = selectedAreas.map(area => {
@@ -51,36 +51,33 @@ class MountExam extends React.Component {
     })
   }
 
-  async doExam(examId) {
+  doExam = async () => {
+    console.log('fazer exame')
     //TODO fazer o exame montado
-    const studentId = this.props.student.id
-    await this.props.createParticipation(studentId, examId)
+    // const studentId = this.props.student.id
+    // await this.props.createParticipation(studentId, examId)
 
-    const { exam } = this.props
+    // const { exam } = this.props
 
-    if (exam) {
-      this.props.push('/simulado')
-    } else {
-      console.log('Erro ao buscar exame!')
-    }
+    // if (exam) {
+    //   this.props.push('/simulado')
+    // } else {
+    //   console.log('Erro ao buscar exame!')
+    // }
   }
 
   render() {
     return (
-      <div>
-        <div className="flex justify-between">
+      <main className="space-between-m">
+        <header className="flex justify-between">
           <h2>Selecione ás áreas que você deseja no seu exame</h2>
-          <Button
-            ghost
-            onClick={() => this.selectAllAreas()}
-            className="mountexam__button"
-          >
+          <Button ghost onClick={this.selectAllAreas} className="space-stack-m">
             {this.state.allAreasSelected
               ? 'Desmarcar todos'
               : 'Selecionar todos'}
           </Button>
-        </div>
-        <ul className="space-between-s">
+        </header>
+        <body className="space-between-s">
           {this.state.selectedAreas.map(area => (
             <AreaItem
               area={area}
@@ -89,8 +86,13 @@ class MountExam extends React.Component {
               selected={area.selected}
             />
           ))}
-        </ul>
-      </div>
+        </body>
+        <footer className="flex justify-center">
+          <Button ghost className="mountexam__button" onClick={this.doExam}>
+            Iniciar exame
+          </Button>
+        </footer>
+      </main>
     )
   }
 }
