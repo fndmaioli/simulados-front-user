@@ -22,6 +22,15 @@ class Dashboard extends Component {
         </h5>
         <div className="space-between-m">
           <MenuCard
+            iconContainerColor="#FFD7D7"
+            iconColor="#FE8184"
+            icon="shuffle"
+            label="Meu Exames"
+            buttonLabel="Iniciar"
+            description="Prova com perguntas aleatórias de qualquer categoria."
+            onClick={() => this.getMyExams()}
+          />
+          <MenuCard
             iconContainerColor="#EAF7E8"
             iconColor="#41C236"
             icon="clipboard"
@@ -80,6 +89,11 @@ class Dashboard extends Component {
         </div>
       </div>
     )
+  }
+
+  getMyExams() {
+    this.props.push('/meusexames')
+    console.log('tets')
   }
 
   doExam() {
