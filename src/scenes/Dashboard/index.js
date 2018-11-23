@@ -22,15 +22,6 @@ class Dashboard extends Component {
         </h5>
         <div className="space-between-m">
           <MenuCard
-            iconContainerColor="#FFD7D7"
-            iconColor="#FE8184"
-            icon="shuffle"
-            label="Meu Exames"
-            buttonLabel="Iniciar"
-            description="Prova com perguntas aleatórias de qualquer categoria."
-            onClick={() => this.getMyExams()}
-          />
-          <MenuCard
             iconContainerColor="#EAF7E8"
             iconColor="#41C236"
             icon="clipboard"
@@ -55,7 +46,7 @@ class Dashboard extends Component {
             label="Meus Exames"
             buttonLabel="Iniciar"
             description="Meus exames realizados e exames não concluidos."
-            onClick={() => ''}
+            onClick={() => this.getMyExams()}
           />
 
           <MenuCard
