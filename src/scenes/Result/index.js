@@ -12,6 +12,7 @@ import Container from 'components/Container'
 import Score from 'components/Score'
 import CardQuestion from 'components/CardQuestion'
 import { throws } from 'assert'
+import getTime from 'utils/time'
 
 class Result extends React.Component {
   constructor(props) {
@@ -48,15 +49,6 @@ class Result extends React.Component {
     return Math.round((this.state.hits / this.state.total) * 100, 2)
   }
 
-  getTime(time) {
-    let hours = Math.floor(time / 3600)
-    time %= 3600
-    let minutes = Math.floor(time / 60)
-    let seconds = time % 60
-
-    return `${hours}h${minutes}m${seconds}s`
-  }
-
   toggleQuestions = index => {
     const exist = this.state.display.indexOf(index) !== -1
     console.log(index)
@@ -77,16 +69,12 @@ class Result extends React.Component {
         </div>
         <div className="data-result data-result--border-bottom data-result--statistics">
           <div>Tempo médio por questão</div>{' '}
-          <div>{this.getTime(this.state.time)}</div>
+          <div>{getTime(this.state.time)}</div>
         </div>
-        <div className="data-result data-result--border-bottom data-result--statistics">
+        <div className="data-result data-result--border-bottom data-result--statistics space-stack-xl">
           <div>Tempo total</div>{' '}
-          <div>{this.getTime(this.state.time / this.state.total)}</div>
+          <div>{getTime(this.state.time / this.state.total)}</div>
         </div>
-
-        <br />
-        <br />
-        <br />
 
         <h3>Questões</h3>
 
@@ -94,7 +82,7 @@ class Result extends React.Component {
           <CardQuestion
             key={`list-area-${index}`}
             area={area}
-            getTime={this.getTime}
+            getTime={getTime}
             toogle={this.state.display.indexOf(index) > -1}
             onClick={() => this.toggleQuestions(index)}
           />
