@@ -14,8 +14,10 @@ const reducer = handleActions(
       ...state,
       questions: {
         ...state.questions,
-        [action.payload.questions[action.payload.questions.length - 1].id]:
-          action.payload.questions,
+        [action.payload.examId]: action.payload.questions.map(q => ({
+          ...q,
+          examId: action.payload.examId,
+        })),
       },
       numberOfQuestions: action.payload.total,
     }),
@@ -30,9 +32,6 @@ const reducer = handleActions(
 export const getNumberOfQuestions = state => state.question.numberOfQuestions
 
 export const getQuestions = state =>
-  Object.values(state.question.questions).reduce(
-    (acc, p) => [...acc, ...p],
-    [],
-  ) || []
+  state.question.questions[state.exam.examId] || []
 
 export default reducer
