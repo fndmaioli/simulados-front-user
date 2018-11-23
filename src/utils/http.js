@@ -6,7 +6,7 @@ const buildQueryString = params =>
     : ''
 
 const handleResponse = res => {
-  if (res.status >= 400) throw new Error(res.status)
+  // if (res.status >= 400) throw new Error(res.status)
 
   return res.json()
 }

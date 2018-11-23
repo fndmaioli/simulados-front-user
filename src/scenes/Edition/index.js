@@ -10,6 +10,7 @@ import { fetchEditions } from 'store/edition/actions'
 import { getStudent } from 'store/user'
 import { getExam } from 'store/exam'
 import { createParticipation } from 'store/exam/actions'
+import romanize from 'utils/romanize'
 import { push } from 'connected-react-router'
 
 class Edition extends React.Component {
@@ -29,6 +30,19 @@ class Edition extends React.Component {
     this.setState({ inputValue: e.target.value }, () => {})
   }
 
+  async doExam(examId) {
+    const studentId = this.props.student.id
+    await this.props.createParticipation(studentId, examId)
+
+    const { exam } = this.props
+
+    if (exam) {
+      this.props.push('/simulado')
+    } else {
+      console.log('Erro ao buscar exame!')
+    }
+  }
+
   render() {
     return (
       <div>
@@ -45,32 +59,21 @@ class Edition extends React.Component {
           {this.props.editions
             .filter(element => {
               const regex = new RegExp(this.state.inputValue, 'gi')
-              const name = `${element.aob_exam_year}/${element.aob_exam_serial}`
+              const name = `${element.aobfunction_exam_year}/${
+                element.aob_exam_serial
+              }`
               return name.match(regex)
             })
             .map(edition => (
               <EditionItem
-                name={edition.aob_exam_serial}
-                year={edition.aob_exam_year}
+                name={'Exame ' + romanize(edition.aob_exam_serial)}
+                year={'Ano ' + edition.aob_exam_year}
                 onClick={() => this.doExam(edition.id)}
               />
             ))}
         </ul>
       </div>
     )
-  }
-
-  async doExam(examId) {
-    const studentId = this.props.student.id
-    await this.props.createParticipation(studentId, examId)
-
-    const { exam } = this.props
-
-    if (exam) {
-      this.props.push('/simulado')
-    } else {
-      console.log('Erro ao buscar exame!')
-    }
   }
 }
 
