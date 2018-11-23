@@ -119,7 +119,6 @@ class Exam extends React.Component {
     }
 
     return (
-<<<<<<< b77787f79020156afc77c42b9f865cdb2174fecd
       <div style={{ paddingBottom: 48 }}>
         <div>
           <Slider {...settings}>
@@ -199,38 +198,6 @@ class Exam extends React.Component {
           onSelect={question => this.jumpToQuestion(question)}
         />
       </div>
-=======
-      <Container>
-        <Slider {...settings}>
-          {this.props.questions.map(question => {
-            return (
-              <div key={question.id}>
-                <h1>Questão {question.id}</h1>
-                <p>{question.statement}</p>
-                <br />
-                <RadioGroup
-                  name={question.id}
-                  options={this.alternativesToRadioButton(
-                    question.alternatives,
-                  )}
-                  onChange={event =>
-                    this.onClickAlternative(event, question.id)
-                  }
-                />
-                <footer className="flex justify-center">
-                  {this.state.showConfirmButton && (
-                    <Button>Confirma Resposta</Button>
-                  )}
-                  <Button onClick={() => this.props.push('/result')}>
-                    Meu Desempenho
-                  </Button>
-                </footer>
-              </div>
-            )
-          })}
-        </Slider>
-      </Container>
->>>>>>> included redirect button to result
     )
   }
 }
