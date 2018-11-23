@@ -10,7 +10,9 @@ const questionsLoaded = createAction('QUESTIONS_LOADED')
 const fetchQuestion = examId => dispatch => {
   return http
     .get(`${API_URL}/questions/` + examId)
-    .then(questions => dispatch(questionsLoaded(questions)))
+    .then(res =>
+      dispatch(questionsLoaded({ examId, questions: res.questions })),
+    )
     .catch(() => dispatch(growl('Erro ao carregar questões', GROWL_ERROR)))
 }
 

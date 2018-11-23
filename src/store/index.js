@@ -5,6 +5,7 @@ import questReducer from './question'
 import userReducer from './user'
 import editionsReducer from './edition'
 import resultReducer from './result'
+import participationsReducer from './myExams'
 
 export default combineReducers({
   ui: uiReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   user: userReducer,
   editions: editionsReducer,
   result: resultReducer,
+  participations: participationsReducer,
 })
