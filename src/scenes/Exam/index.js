@@ -3,6 +3,7 @@ import Slider from 'react-slick'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 
 import {
   fetchQuestion,
@@ -216,6 +217,7 @@ export default connect(
         fetchQuestion,
         fetchMoreQuestion,
         answerQuestion,
+        push,
       },
       dispatch,
     ),

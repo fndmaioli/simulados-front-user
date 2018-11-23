@@ -1,0 +1,21 @@
+.card-question {
+  margin-bottom: 20px;
+  border-radius: 0;
+  box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.75);
+
+  overflow: hidden;
+  max-height: 100px;
+  transition: max-height 1s ease-in-out;
+
+  &_toggleQuestions {
+    display: none;
+  }
+
+  &--expanded {
+    max-height: 500px;
+
+    &_toggle-questions {
+      display: block;
+    }
+  }
+}

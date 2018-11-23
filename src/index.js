@@ -16,6 +16,7 @@ import { store, persistor, history } from 'store/configureStore'
 import App from './App'
 import Examples from 'scenes/Examples'
 
+import Result from 'scenes/Result'
 import Dashboard from 'scenes/Dashboard'
 import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
@@ -38,6 +39,7 @@ ReactDOM.render(
               <ProtectedRoute exact path="/" component={Dashboard} />
               <Route exact path="/edicao" component={Edition} />
               <ProtectedRoute exact path="/simulado" component={Simulados} />
+              <ProtectedRoute exact path="/resultado" component={Result} />
             </Layout>
             <Route path="*" render={() => 404} />
           </Switch>
