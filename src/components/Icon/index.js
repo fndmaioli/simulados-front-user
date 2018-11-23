@@ -5,8 +5,9 @@ import cn from 'classnames'
 
 import './icon.scss'
 
-const Icon = ({ name, height, width, color, className }) => (
+const Icon = ({ name, height, width, color, className, onClick }) => (
   <i
+    onClick={onClick}
     className={cn('icon', className)}
     dangerouslySetInnerHTML={{
       __html: feather.icons[name].toSvg({ height, width, color }),

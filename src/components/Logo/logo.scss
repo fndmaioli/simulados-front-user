@@ -6,4 +6,8 @@
   &__image {
     height: 43px;
   }
+
+  &--small &__image {
+    height: 27px;
+  }
 }
