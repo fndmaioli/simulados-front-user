@@ -14,7 +14,7 @@ const growl = (text, type = constants.GROWL_INFO) => dispatch => {
   const message = {
     type,
     message: text,
-    id: idSeq.next(),
+    id: (+new Date()).toString(8),
   }
 
   dispatch(growlAdded(message))

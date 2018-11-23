@@ -16,9 +16,9 @@ class JumpToQuestion extends React.Component {
 
   render() {
     const { search = '' } = this.state
-    const questions = this.props.questions.filter(q =>
-      `${q.id}`.includes(search.toLowerCase()),
-    )
+    const questions = this.props.questions
+      .filter(q => `${q.id}`.includes(search.toLowerCase()))
+      .slice(0, 10)
 
     return (
       <Modal
@@ -38,8 +38,10 @@ class JumpToQuestion extends React.Component {
         >
           {questions.map(q => (
             <li
+              key={q.id}
               className="jump-to-question__option"
               onClick={() => {
+                this.setState({ search: '' })
                 this.props.onClose()
                 this.props.onSelect(q)
               }}

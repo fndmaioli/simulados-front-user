@@ -36,6 +36,7 @@ const answerQuestion = (
       },
     })
     .then(answer => dispatch(confirmAnswer(answer)))
+    .catch(() => dispatch(growl('Erro ao responder questão', GROWL_ERROR)))
 }
 
 export {
