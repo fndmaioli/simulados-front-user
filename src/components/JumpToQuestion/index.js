@@ -39,7 +39,10 @@ class JumpToQuestion extends React.Component {
           {questions.map(q => (
             <li
               className="jump-to-question__option"
-              onClick={() => this.props.onSelect(q)}
+              onClick={() => {
+                this.props.onClose()
+                this.props.onSelect(q)
+              }}
             >
               <span style={{ color: 'rgba(25, 23, 17, 0.6)' }}>Questão</span>{' '}
               {q.id}

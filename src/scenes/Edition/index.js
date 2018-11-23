@@ -10,6 +10,7 @@ import { fetchEditions } from 'store/edition/actions'
 import { getStudent } from 'store/user'
 import { getExam } from 'store/exam'
 import { createParticipation } from 'store/exam/actions'
+import romanize from 'utils/romanize'
 import { push } from 'connected-react-router'
 
 class Edition extends React.Component {
@@ -27,6 +28,19 @@ class Edition extends React.Component {
 
   handleChange = e => {
     this.setState({ inputValue: e.target.value }, () => {})
+  }
+
+  async doExam(examId) {
+    const studentId = this.props.student.id
+    await this.props.createParticipation(studentId, examId)
+
+    const { exam } = this.props
+
+    if (exam) {
+      this.props.push('/simulado')
+    } else {
+      console.log('Erro ao buscar exame!')
+    }
   }
 
   render() {
@@ -52,7 +66,7 @@ class Edition extends React.Component {
             })
             .map(edition => (
               <EditionItem
-                name={'Exame ' + this.romanize(edition.aob_exam_serial)}
+                name={'Exame ' + romanize(edition.aob_exam_serial)}
                 year={'Ano ' + edition.aob_exam_year}
                 onClick={() => this.doExam(edition.id)}
               />
@@ -60,59 +74,6 @@ class Edition extends React.Component {
         </ul>
       </div>
     )
-  }
-
-  async doExam(examId) {
-    const studentId = this.props.student.id
-    await this.props.createParticipation(studentId, examId)
-
-    const { exam } = this.props
-
-    if (exam) {
-      this.props.push('/simulado')
-    } else {
-      console.log('Erro ao buscar exame!')
-    }
-  }
-  romanize(num) {
-    if (isNaN(num)) return NaN
-    var digits = String(+num).split(''),
-      key = [
-        '',
-        'C',
-        'CC',
-        'CCC',
-        'CD',
-        'D',
-        'DC',
-        'DCC',
-        'DCCC',
-        'CM',
-        '',
-        'X',
-        'XX',
-        'XXX',
-        'XL',
-        'L',
-        'LX',
-        'LXX',
-        'LXXX',
-        'XC',
-        '',
-        'I',
-        'II',
-        'III',
-        'IV',
-        'V',
-        'VI',
-        'VII',
-        'VIII',
-        'IX',
-      ],
-      roman = '',
-      i = 3
-    while (i--) roman = (key[+digits.pop() + i * 10] || '') + roman
-    return Array(+digits.join('') + 1).join('M') + roman
   }
 }
 
