@@ -28,6 +28,7 @@ class JumpToQuestion extends React.Component {
       >
         <input
           ref={ref => (this.inputRef = ref)}
+          value={search}
           onChange={e => this.setState({ search: e.target.value })}
           className="jump-to-question__search"
           placeholder="Número da questão"

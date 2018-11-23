@@ -2,7 +2,11 @@ import { handleActions } from 'redux-actions'
 
 import { userLoaded, userLogout } from './actions'
 
-let initialState = {}
+let initialState = {
+  data: {
+    data: {},
+  },
+}
 
 const reducer = handleActions(
   {

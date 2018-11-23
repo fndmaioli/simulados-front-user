@@ -93,6 +93,8 @@ class Exam extends React.Component {
       currentQuestion: this.props.questions[index],
       questionIndex: index,
     })
+
+    document.body.scrollIntoView({ behaviour: 'smooth' })
   }
 
   moveQuestionBy(val) {
