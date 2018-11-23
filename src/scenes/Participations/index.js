@@ -6,6 +6,15 @@ import { getStudent } from 'store/user'
 import { getParticipations } from 'store/myExams'
 import { fetchParticipations } from 'store/myExams/actions'
 import { push } from 'connected-react-router'
+import Card from 'components/Card'
+
+const Title = ({ title, children }) => (
+  <div className="example">
+    <h3>{title}</h3>
+    <hr />
+    <div className="example__content">{children}</div>
+  </div>
+)
 
 class Participations extends React.Component {
   constructor(props) {
@@ -15,21 +24,39 @@ class Participations extends React.Component {
   componentDidMount() {
     const studentId = this.props.student.id
     this.props.fetchParticipations(studentId)
-    console.log('test ' + studentId)
   }
 
   render() {
     return (
       <div>
-        <h1>Selecione uma edição do Exame Oficial da OAB</h1>
+        <h1>Selecione um Exame que você já fez.</h1>
 
-        <ul className="space-between-s">
+        <Title className="space-between-s">
           {this.props.participations.map(participation => (
-            <li>{participation.participation_date}</li>
+            <Card>{this.getDateFormat(participation.participation_date)}</Card>
           ))}
-        </ul>
+        </Title>
       </div>
     )
+  }
+
+  goToQuestions(participationId) {
+    const studentId = this.props.student.id
+    this.props.push('/simulado')
+  }
+
+  getDateFormat(date) {
+    if (date == undefined || date == null) {
+      return 'Data não informada'
+    }
+    const datestring =
+      date.getDate() +
+      '-' +
+      (date.getMonth() + 1) +
+      '-' +
+      date.getFullYear() +
+      ' '
+    return datestring
   }
 
   async doExam(examId) {
