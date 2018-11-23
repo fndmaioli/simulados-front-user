@@ -3,6 +3,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getStudent } from 'store/user'
+import { getExamLoaded } from 'store/exam/actions'
 import { getParticipations } from 'store/myExams'
 import { fetchParticipations } from 'store/myExams/actions'
 import { push } from 'connected-react-router'
@@ -33,42 +34,33 @@ class Participations extends React.Component {
 
         <Title className="space-between-s">
           {this.props.participations.map(participation => (
-            <Card>{this.getDateFormat(participation.participation_date)}</Card>
+            <Card
+              onClick={event =>
+                this.goToQuestions(
+                  participation.id,
+                  participation.practise_exam_id,
+                )
+              }
+            >
+              {new Date(participation.participation_date).toLocaleDateString()}
+            </Card>
           ))}
         </Title>
       </div>
     )
   }
 
-  goToQuestions(participationId) {
-    const studentId = this.props.student.id
+  async goToQuestions(participationId, examId) {
+    this.props.getExamLoaded({
+      data: {
+        participation: {
+          id: participationId,
+        },
+      },
+      examId: examId,
+    })
+
     this.props.push('/simulado')
-  }
-
-  getDateFormat(date) {
-    if (date == undefined || date == null) {
-      return 'Data não informada'
-    }
-    const datestring =
-      date.getDate() +
-      '-' +
-      (date.getMonth() + 1) +
-      '-' +
-      date.getFullYear() +
-      ' '
-    return datestring
-  }
-
-  async doExam(examId) {
-    const studentId = this.props.student.id
-
-    const { exam } = this.props
-
-    if (exam) {
-      this.props.push('/simulado')
-    } else {
-      console.log('Erro ao buscar exame!')
-    }
   }
 }
 
@@ -82,6 +74,7 @@ export default connect(
   dispatch =>
     bindActionCreators(
       {
+        getExamLoaded,
         fetchParticipations,
         push,
       },

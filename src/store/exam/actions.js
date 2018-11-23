@@ -3,6 +3,7 @@ import http from 'utils/http'
 import { API_URL } from '../../config'
 
 const examLoaded = createAction('EXAM_LOADED')
+const getExamLoaded = createAction('GET_EXAM_Loaded')
 
 const fetchExam = studentId => dispatch => {
   return http
@@ -29,4 +30,4 @@ const createParticipation = (studentId, examId) => dispatch => {
     .then(exam => dispatch(examLoaded({ data: exam, examId: examId })))
 }
 
-export { examLoaded, fetchExam, createParticipation }
+export { examLoaded, fetchExam, getExamLoaded, createParticipation }
