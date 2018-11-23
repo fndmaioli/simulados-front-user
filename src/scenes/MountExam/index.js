@@ -4,8 +4,8 @@ import AreaItem from 'components/AreaItem'
 import Button from 'components/Button'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getStudent } from 'store/user'
-import { getExam } from 'store/exam'
+import { fetchAreas } from 'store/area/actions'
+import { getAreas } from 'store/area'
 import { createParticipation } from 'store/exam/actions'
 import { push } from 'connected-react-router'
 
@@ -16,13 +16,16 @@ class MountExam extends React.Component {
     super(props)
 
     this.state = {
-      selectedAreas: props.areas,
+      selectedAreas: [],
       allAreasSelected: false,
     }
   }
 
-  componentDidMount() {
-    //chamar rota de buscar edições
+  async componentWillMount() {
+    await this.props.fetchAreas()
+    this.setState({
+      selectedAreas: this.props.areas,
+    })
   }
 
   selectAllAreas = () => {
@@ -100,56 +103,7 @@ class MountExam extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  areas: [
-    {
-      //TODO: REMOVER MOCK QUANDO TIVER A ROTA
-      id: 1,
-      name: 'Direito Civil',
-      selected: false,
-    },
-    {
-      id: 2,
-      name: 'Direito comercial ou empresarial',
-      selected: false,
-    },
-    {
-      id: 3,
-      name: 'Direito do consumidor',
-      selected: false,
-    },
-    {
-      id: 4,
-      name: 'Direito da tecnologia da informação',
-      selected: false,
-    },
-    {
-      id: 5,
-      name: 'Direito tributário',
-      selected: false,
-    },
-    {
-      id: 6,
-      name: 'Direito administrativo',
-      selected: false,
-    },
-    {
-      id: 7,
-      name: 'Direito previdenciário',
-      selected: false,
-    },
-    {
-      id: 8,
-      name: 'Direito penal ou criminal',
-      selected: false,
-    },
-    {
-      id: 9,
-      name: 'Mediação, conciliação e arbitragem',
-      selected: false,
-    },
-  ],
-  exam: getExam(state),
-  student: getStudent(state),
+  areas: getAreas(state),
 })
 
 export default connect(
@@ -157,7 +111,7 @@ export default connect(
   dispatch =>
     bindActionCreators(
       {
-        createParticipation,
+        fetchAreas,
         push,
       },
       dispatch,
