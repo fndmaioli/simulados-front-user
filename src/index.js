@@ -38,10 +38,7 @@ ReactDOM.render(
               <Route exact path="/resposta" component={ViewAnswers} />
               <ProtectedRoute exact path="/" component={Dashboard} />
               <Route exact path="/edicao" component={Edition} />
-<<<<<<< 39831c8f92c9994246f78d22a7636e5fdfa1510f
               <ProtectedRoute exact path="/simulado" component={Simulados} />
-=======
->>>>>>> remove bind's / change map to forEach / refact conditions
               <ProtectedRoute exact path="/resultado" component={Result} />
             </Layout>
             <Route path="*" render={() => 404} />
