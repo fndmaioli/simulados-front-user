@@ -15,18 +15,12 @@ const fetchExam = studentId => dispatch => {
 
 const createParticipation = (studentId, examId) => dispatch => {
   return http
-    .post(
-      'http://localhost:3000/participation/student/' +
-        studentId +
-        '/exam/' +
-        examId,
-      {
-        data: {
-          student_id: studentId,
-          exam_id: examId,
-        },
+    .post(`${API_URL}/participation/student/` + studentId + '/exam/' + examId, {
+      data: {
+        student_id: studentId,
+        exam_id: examId,
       },
-    )
+    })
     .then(exam => dispatch(examLoaded({ data: exam, examId: examId })))
 }
 
