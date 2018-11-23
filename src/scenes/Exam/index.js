@@ -58,7 +58,9 @@ class Exam extends React.Component {
   }
 
   fetchMoreQuestions(currentSlide) {
-    this.setState({ currentQuestion: currentSlide })
+    console.log(currentSlide)
+    console.log(this.props.questions)
+    this.setState({ questionIndex: currentSlide })
 
     if (
       this.props.questions.length == currentSlide + 1 &&
@@ -113,7 +115,11 @@ class Exam extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
-      afterChange: event => this.fetchMoreQuestions(event),
+      swipeToSlide: true,
+      onSwipe: direction =>
+        direction === 'left'
+          ? this.moveQuestionBy(+1)
+          : this.moveQuestionBy(-1),
       ref: slider => (this.slider = slider),
       adaptiveHeight: true,
     }

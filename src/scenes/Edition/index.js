@@ -45,7 +45,7 @@ class Edition extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <h1>Selecione uma edição do Exame Oficial da OAB</h1>
         <Input
           className="space-stack-m"
@@ -55,7 +55,7 @@ class Edition extends React.Component {
           onChange={this.handleChange}
           block
         />
-        <ul className="space-between-s">
+        <ul className="flex flex-wrap" style={{ margin: '0 -8px' }}>
           {this.props.editions
             .filter(element => {
               const regex = new RegExp(this.state.inputValue, 'gi')
