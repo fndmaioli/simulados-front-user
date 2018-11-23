@@ -1,3 +1,9 @@
 .mountexam__button {
   padding: 8px 30px;
 }
+
+@media (max-width: 720px) {
+  .mountexam__title {
+    font-size: 16px;
+  }
+}

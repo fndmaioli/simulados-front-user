@@ -70,7 +70,9 @@ class MountExam extends React.Component {
     return (
       <main className="space-between-m">
         <header className="flex justify-between">
-          <h2>Selecione ás áreas que você deseja no seu exame</h2>
+          <h2 className="mountexam__title">
+            Selecione ás áreas que você deseja no seu exame
+          </h2>
           <Button ghost onClick={this.selectAllAreas} className="space-stack-m">
             {this.state.allAreasSelected
               ? 'Desmarcar todos'
