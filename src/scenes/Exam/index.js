@@ -126,7 +126,9 @@ class Exam extends React.Component {
               return (
                 <Container size="md" key={question.id}>
                   <header className="flex items-center justify-between space-stack-l">
-                    <h1 style={{ margin: 0 }}>Questão {question.id}</h1>
+                    <h1 style={{ margin: 0 }}>
+                      Questão {this.state.questionIndex + 1}
+                    </h1>
                     <Button
                       ghost
                       icon="corner-down-right"
