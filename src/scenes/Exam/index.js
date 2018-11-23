@@ -208,7 +208,7 @@ class Exam extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, { questions = [] }) => ({
   examId: getExamId(state),
   questions: getQuestions(state),
   numberOfQuestions: getNumberOfQuestions(state),

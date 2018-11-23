@@ -22,6 +22,7 @@ import Layout from 'components/Layout'
 import Simulados from 'scenes/Exam'
 import Login from 'scenes/Login'
 import Edition from 'scenes/Edition'
+import Participations from 'scenes/Participations'
 import ProtectedRoute from 'containers/ProtectedRoute'
 import ViewAnswers from 'scenes/ViewAnswers'
 import './stylesheets/main.scss'
@@ -40,6 +41,11 @@ ReactDOM.render(
               <Route exact path="/edicao" component={Edition} />
               <ProtectedRoute exact path="/simulado" component={Simulados} />
               <ProtectedRoute exact path="/resultado" component={Result} />
+              <ProtectedRoute
+                exact
+                path="/meusexames"
+                component={Participations}
+              />
             </Layout>
             <Route path="*" render={() => 404} />
           </Switch>
