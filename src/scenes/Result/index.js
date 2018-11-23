@@ -11,7 +11,7 @@ import './result.scss'
 import Container from 'components/Container'
 import Score from 'components/Score'
 import CardQuestion from 'components/CardQuestion'
-import { throws } from 'assert';
+import { throws } from 'assert'
 
 class Result extends React.Component {
   constructor(props) {
@@ -20,14 +20,12 @@ class Result extends React.Component {
       total: 0,
       time: 0,
       hits: 0,
-      display: []
+      display: [],
     }
   }
 
   componentDidMount() {
-    this.props
-      .fetchResult(this.props.participationId)
-      .then(this.extractData)
+    this.props.fetchResult(this.props.participationId).then(this.extractData)
   }
 
   extractData = () => {
@@ -59,12 +57,14 @@ class Result extends React.Component {
     return `${hours}h${minutes}m${seconds}s`
   }
 
-  toggleQuestions = (index) => {
-    const exist = this.state.display.indexOf(index) !== -1;
-
-    const display = exist ? this.state.display.filter(i => i !== index) : [...this.state.display, index];
-
-    this.setState({ display });
+  toggleQuestions = index => {
+    const exist = this.state.display.indexOf(index) !== -1
+    console.log(index)
+    const display = exist
+      ? this.state.display.filter(i => i !== index)
+      : [...this.state.display, index]
+    console.log(display)
+    this.setState({ display })
   }
 
   render() {
@@ -95,16 +95,16 @@ class Result extends React.Component {
             key={`list-area-${index}`}
             area={area}
             getTime={this.getTime}
-            toogleArea={this.state.display.indexOf(index) > 0}
-            onClick={this.toggleQuestions(index)}
+            toogle={this.state.display.indexOf(index) > -1}
+            onClick={() => this.toggleQuestions(index)}
           />
         ))}
       </Container>
     ) : (
-        <Container className="error">
-          Ops! Ocorreu um arro ao buscar o resultado.
+      <Container className="error">
+        Ops! Ocorreu um arro ao buscar o resultado.
       </Container>
-      )
+    )
   }
 }
 
