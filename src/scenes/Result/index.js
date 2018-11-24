@@ -71,7 +71,7 @@ class Result extends React.Component {
           <div>Tempo médio por questão</div>{' '}
           <div>{getTime(this.state.time)}</div>
         </div>
-        <div className="data-result data-result--border-bottom data-result--statistics space-stack-xl">
+        <div className="data-result data-result--border-bottom data-result--statistics space-stack-l">
           <div>Tempo total</div>{' '}
           <div>{getTime(this.state.time / this.state.total)}</div>
         </div>
