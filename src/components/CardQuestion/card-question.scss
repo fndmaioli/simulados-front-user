@@ -4,15 +4,31 @@
   max-height: 100px;
   transition: max-height 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 
-  &_toggleQuestions {
-    display: none;
+  &--expanded {
+    max-height: 500px;
   }
 
-  &--expanded {
-    max-height: 516px;
+  .flexQuestion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    &_toggle-questions {
-      display: block;
+    &--question {
+      font-weight: bold;
+      margin-right: 0.4rem;
     }
+
+    &--area {
+      font-size: 0.8rem;
+    }
+
+    &--time {
+      margin: 0 0.3rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .hide {
+    display: none;
   }
 }

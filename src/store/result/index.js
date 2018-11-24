@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 
-import { resultLoaded } from './actions'
+import { resultLoaded, questionLoaded } from './actions'
 import { userLogout } from '../user/actions'
 
 const initialState = {
@@ -13,9 +13,14 @@ const reducer = handleActions(
       ...state,
       result: action.payload,
     }),
+    [questionLoaded]: (state, action) => ({
+      ...state,
+      questionDetail: action.payload,
+    }),
     [userLogout]: state => ({
       ...state,
       result: {},
+      questionDetail: {},
     }),
   },
   initialState,

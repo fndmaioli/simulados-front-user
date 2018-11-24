@@ -5,6 +5,7 @@ import { GROWL_ERROR } from 'store/ui/constants'
 import { API_URL } from '../../config'
 
 const resultLoaded = createAction('RESULT_LOADED')
+const questionLoaded = createAction('QUESTION-DETAIL_LOADED')
 
 const fetchResult = participationId => dispatch => {
   return http
@@ -12,4 +13,16 @@ const fetchResult = participationId => dispatch => {
     .then(result => dispatch(resultLoaded(result)))
     .catch(() => dispatch(growl('Erro ao carregar o resultado', GROWL_ERROR)))
 }
-export { resultLoaded, fetchResult }
+
+const fetchQuestionDetail = (participationId, questionId) => dispatch => {
+  return http
+    .get(
+      `http://localhost:3000/result/question/${participationId}/${questionId}`,
+    )
+    .then(question => dispatch(questionLoaded(question)))
+    .catch(() =>
+      dispatch(growl('Erro ao carregar os detalhes da questão', GROWL_ERROR)),
+    )
+}
+
+export { resultLoaded, fetchResult, questionLoaded, fetchQuestionDetail }
