@@ -1,11 +1,16 @@
 .data-result {
-  display: grid;
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &--border-bottom {
-    border-bottom: 1px solid #e8e8e8;
-    padding: 5px 0;
-    margin: 5px 0;
+    padding: 8px 0;
+    // margin: 5px 0;
+
+    & + & {
+      border-top: 1px solid #e8e8e8;
+    }
   }
 
   &--statistics {
@@ -17,6 +22,7 @@
   }
 
   &--areas {
+    margin-bottom: 32px;
     grid-template-columns: 75% 15% 10%;
 
     & div:nth-child(1),

@@ -58,8 +58,6 @@ class Exam extends React.Component {
   }
 
   fetchMoreQuestions(currentSlide) {
-    console.log(currentSlide)
-    console.log(this.props.questions)
     this.setState({ questionIndex: currentSlide })
 
     if (
@@ -86,7 +84,11 @@ class Exam extends React.Component {
   }
 
   showQuestionByIndex(index) {
-    if (index < 0 && index >= this.props.questions.length) return
+    if (index < 0) return
+
+    if (index >= this.props.questions.length) {
+      this.props.push('/resultado')
+    }
 
     this.slider.slickGoTo(index)
     this.setState({

@@ -29,13 +29,13 @@ const CardQuestion = ({ area, getTime, toogle, onClick }) => (
           className="data-result data-result--border-bottom data-result--questions"
         >
           <div>Questão {q.question_id}</div>
-          <div>
+          <div className="flex items-center">
             <Icon
               name={q.correct ? 'check' : 'x'}
               color={q.correct ? '#629c44' : '#e61610'}
-            />
+            />{' '}
+            {getTime(q.time_to_answer)}
           </div>
-          <div>{getTime(q.time_to_answer)}</div>
         </div>
       ))}
     </div>
