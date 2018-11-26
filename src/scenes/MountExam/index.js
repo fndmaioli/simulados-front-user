@@ -5,7 +5,12 @@ import Button from 'components/Button'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchAreas } from 'store/area/actions'
+import { fetchMountExam } from 'store/exam/actions'
+import { growl } from 'store/ui/actions'
+import { GROWL_ERROR } from 'store/ui/constants'
 import { getData } from 'store/area'
+import { getStudent } from 'store/user'
+import { getExamId, getExam } from 'store/exam'
 import { createParticipation } from 'store/exam/actions'
 import { push } from 'connected-react-router'
 
@@ -54,19 +59,28 @@ class MountExam extends React.Component {
     })
   }
 
-  doExam = async () => {
-    console.log('fazer exame')
-    //TODO fazer o exame montado
-    // const studentId = this.props.student.id
-    // await this.props.createParticipation(studentId, examId)
+  doMountedExam = async () => {
+    const { selectedAreas } = this.state
+    const idAreas = []
 
-    // const { exam } = this.props
+    selectedAreas.forEach(area => {
+      if (area.selected) idAreas.push(area.id)
+    })
 
-    // if (exam) {
-    //   this.props.push('/simulado')
-    // } else {
-    //   console.log('Erro ao buscar exame!')
-    // }
+    if (idAreas.length > 0) {
+      const { examId, student, exam } = this.props
+      const studentId = student.id
+      await this.props.fetchMountExam(idAreas, studentId)
+      await this.props.createParticipation(studentId, examId)
+
+      if (exam) {
+        this.props.push('/simulado')
+      } else {
+        this.props.growl('Erro ao criar exame.', GROWL_ERROR)
+      }
+    } else {
+      this.props.growl('Nenhuma área selecionada.', GROWL_ERROR)
+    }
   }
 
   render() {
@@ -85,6 +99,7 @@ class MountExam extends React.Component {
         <body className="space-between-s">
           {this.state.selectedAreas.map(area => (
             <AreaItem
+              id={area.id}
               area={area}
               name={area.name}
               onClick={area => this.toggleArea(area)}
@@ -93,7 +108,11 @@ class MountExam extends React.Component {
           ))}
         </body>
         <footer className="flex justify-center">
-          <Button ghost className="mountexam__button" onClick={this.doExam}>
+          <Button
+            ghost
+            className="mountexam__button"
+            onClick={this.doMountedExam}
+          >
             Iniciar exame
           </Button>
         </footer>
@@ -104,6 +123,9 @@ class MountExam extends React.Component {
 
 const mapStateToProps = state => ({
   data: getData(state),
+  student: getStudent(state),
+  examId: getExamId(state),
+  exam: getExam(state),
 })
 
 export default connect(
@@ -112,7 +134,10 @@ export default connect(
     bindActionCreators(
       {
         fetchAreas,
+        fetchMountExam,
+        createParticipation,
         push,
+        growl,
       },
       dispatch,
     ),
