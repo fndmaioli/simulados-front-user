@@ -10,7 +10,7 @@ import { growl } from 'store/ui/actions'
 import { GROWL_ERROR } from 'store/ui/constants'
 import { getData } from 'store/area'
 import { getStudent } from 'store/user'
-import { getExamId, getExam } from 'store/exam'
+import { getExam } from 'store/exam'
 import { createParticipation } from 'store/exam/actions'
 import { push } from 'connected-react-router'
 
@@ -29,7 +29,7 @@ class MountExam extends React.Component {
   async componentWillMount() {
     await this.props.fetchAreas()
     this.setState({
-      selectedAreas: this.props.data.areas,
+      selectedAreas: this.props.data.areas || [],
     })
   }
 
@@ -68,12 +68,15 @@ class MountExam extends React.Component {
     })
 
     if (idAreas.length > 0) {
-      const { examId, student, exam } = this.props
+      const { student } = this.props
       const studentId = student.id
       await this.props.fetchMountExam(idAreas, studentId)
-      await this.props.createParticipation(studentId, examId)
+      await this.props.createParticipation(
+        studentId,
+        this.props.exam.data.exam.id,
+      )
 
-      if (exam) {
+      if (this.props.exam) {
         this.props.push('/simulado')
       } else {
         this.props.growl('Erro ao criar exame.', GROWL_ERROR)
@@ -84,6 +87,8 @@ class MountExam extends React.Component {
   }
 
   render() {
+    const { allAreasSelected, selectedAreas } = this.state
+
     return (
       <main className="space-between-m">
         <header className="flex justify-between">
@@ -91,13 +96,11 @@ class MountExam extends React.Component {
             Selecione ás áreas que você deseja no seu exame
           </h2>
           <Button ghost onClick={this.selectAllAreas} className="space-stack-m">
-            {this.state.allAreasSelected
-              ? 'Desmarcar todos'
-              : 'Selecionar todos'}
+            {allAreasSelected ? 'Desmarcar todos' : 'Selecionar todos'}
           </Button>
         </header>
         <body className="space-between-s">
-          {this.state.selectedAreas.map(area => (
+          {selectedAreas.map(area => (
             <AreaItem
               id={area.id}
               area={area}
@@ -124,7 +127,6 @@ class MountExam extends React.Component {
 const mapStateToProps = state => ({
   data: getData(state),
   student: getStudent(state),
-  examId: getExamId(state),
   exam: getExam(state),
 })
 

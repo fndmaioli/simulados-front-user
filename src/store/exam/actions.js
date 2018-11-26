@@ -18,7 +18,7 @@ const fetchMountExam = (idAreas, studentId) => dispatch => {
     .post(`${API_URL}/exam/mount`, {
       data: {
         student_id: studentId,
-        areas: idAreas,
+        areas: JSON.stringify(idAreas),
       },
     })
     .then(exam => dispatch(examLoaded({ data: exam })))
