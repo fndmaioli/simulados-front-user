@@ -3,6 +3,7 @@ import http from 'utils/http'
 import { API_URL } from '../../config'
 
 const examLoaded = createAction('EXAM_LOADED')
+const getExamLoaded = createAction('GET_EXAM_Loaded')
 
 const fetchExam = studentId => dispatch => {
   return http
@@ -14,19 +15,13 @@ const fetchExam = studentId => dispatch => {
 
 const createParticipation = (studentId, examId) => dispatch => {
   return http
-    .post(
-      'http://localhost:3000/participation/student/' +
-        studentId +
-        '/exam/' +
-        examId,
-      {
-        data: {
-          student_id: studentId,
-          exam_id: examId,
-        },
+    .post(`${API_URL}/participation/student/` + studentId + '/exam/' + examId, {
+      data: {
+        student_id: studentId,
+        exam_id: examId,
       },
-    )
+    })
     .then(exam => dispatch(examLoaded({ data: exam, examId: examId })))
 }
 
-export { examLoaded, fetchExam, createParticipation }
+export { examLoaded, fetchExam, getExamLoaded, createParticipation }

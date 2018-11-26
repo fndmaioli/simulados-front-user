@@ -16,9 +16,9 @@ class JumpToQuestion extends React.Component {
 
   render() {
     const { search = '' } = this.state
-    const questions = this.props.questions.filter(q =>
-      `${q.id}`.includes(search.toLowerCase()),
-    )
+    const questions = this.props.questions
+      .filter(q => `${q.id}`.includes(search.toLowerCase()))
+      .slice(0, 10)
 
     return (
       <Modal
@@ -28,6 +28,7 @@ class JumpToQuestion extends React.Component {
       >
         <input
           ref={ref => (this.inputRef = ref)}
+          value={search}
           onChange={e => this.setState({ search: e.target.value })}
           className="jump-to-question__search"
           placeholder="Número da questão"
@@ -38,8 +39,13 @@ class JumpToQuestion extends React.Component {
         >
           {questions.map(q => (
             <li
+              key={q.id}
               className="jump-to-question__option"
-              onClick={() => this.props.onSelect(q)}
+              onClick={() => {
+                this.setState({ search: '' })
+                this.props.onClose()
+                this.props.onSelect(q)
+              }}
             >
               <span style={{ color: 'rgba(25, 23, 17, 0.6)' }}>Questão</span>{' '}
               {q.id}

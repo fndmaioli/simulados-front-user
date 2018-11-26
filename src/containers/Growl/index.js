@@ -8,8 +8,9 @@ import { GROWL_ERROR, GROWL_SUCCESS } from 'store/ui/constants'
 
 import './growl.scss'
 
-const GrowlMessage = ({ message, type, hidden }) => (
+const GrowlMessage = ({ id, message, type, hidden }) => (
   <li
+    key={id}
     className={cn(
       'growl',
       hidden && 'growl--hidden',

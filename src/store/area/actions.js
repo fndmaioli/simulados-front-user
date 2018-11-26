@@ -6,7 +6,7 @@ import { API_URL } from '../../config'
 
 const areasLoaded = createAction('AREAS_LOADED')
 
-const fetchAreas = (email, password) => dispatch => {
+const fetchAreas = () => dispatch => {
   return http
     .get(`${API_URL}/areas`)
     .then(areas => dispatch(areasLoaded(areas)))

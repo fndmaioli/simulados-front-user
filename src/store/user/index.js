@@ -2,7 +2,11 @@ import { handleActions } from 'redux-actions'
 
 import { userLoaded, userLogout } from './actions'
 
-let initialState = {}
+let initialState = {
+  data: {
+    data: {},
+  },
+}
 
 const reducer = handleActions(
   {
@@ -20,7 +24,7 @@ const reducer = handleActions(
 
 export const getData = state => (state.user || {}).data || {}
 
-export const getStudent = state => getData(state).data.student || {}
+export const getStudent = state => (getData(state).data || {}).student || {}
 
 export const getUsername = state => getStudent(state).username || ''
 

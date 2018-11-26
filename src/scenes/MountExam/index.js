@@ -5,7 +5,7 @@ import Button from 'components/Button'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchAreas } from 'store/area/actions'
-import { getAreas } from 'store/area'
+import { getData } from 'store/area'
 import { createParticipation } from 'store/exam/actions'
 import { push } from 'connected-react-router'
 
@@ -24,7 +24,7 @@ class MountExam extends React.Component {
   async componentWillMount() {
     await this.props.fetchAreas()
     this.setState({
-      selectedAreas: this.props.areas,
+      selectedAreas: this.props.data.areas,
     })
   }
 
@@ -103,7 +103,7 @@ class MountExam extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  areas: getAreas(state),
+  data: getData(state),
 })
 
 export default connect(

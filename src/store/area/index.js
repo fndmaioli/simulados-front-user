@@ -13,6 +13,6 @@ const reducer = handleActions(
   initialState,
 )
 
-export const getAreas = state => state.area.data.areas || []
+export const getData = state => state.area.data || []
 
 export default reducer

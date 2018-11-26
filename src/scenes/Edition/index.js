@@ -10,6 +10,7 @@ import { fetchEditions } from 'store/edition/actions'
 import { getStudent } from 'store/user'
 import { getExam } from 'store/exam'
 import { createParticipation } from 'store/exam/actions'
+import romanize from 'utils/romanize'
 import { push } from 'connected-react-router'
 
 class Edition extends React.Component {
@@ -29,37 +30,6 @@ class Edition extends React.Component {
     this.setState({ inputValue: e.target.value }, () => {})
   }
 
-  render() {
-    return (
-      <div>
-        <h1>Selecione uma edição do Exame Oficial da OAB</h1>
-        <Input
-          className="space-stack-m"
-          placeholder="Procure uma edição..."
-          icon="search"
-          value={this.state.inputValue}
-          onChange={this.handleChange}
-          block
-        />
-        <ul className="space-between-s">
-          {this.props.editions
-            .filter(element => {
-              const regex = new RegExp(this.state.inputValue, 'gi')
-              const name = `${element.aob_exam_year}/${element.aob_exam_serial}`
-              return name.match(regex)
-            })
-            .map(edition => (
-              <EditionItem
-                name={edition.aob_exam_serial}
-                year={edition.aob_exam_year}
-                onClick={() => this.doExam(edition.id)}
-              />
-            ))}
-        </ul>
-      </div>
-    )
-  }
-
   async doExam(examId) {
     const studentId = this.props.student.id
     await this.props.createParticipation(studentId, examId)
@@ -71,6 +41,40 @@ class Edition extends React.Component {
     } else {
       console.log('Erro ao buscar exame!')
     }
+  }
+
+  render() {
+    return (
+      <div style={{ maxWidth: 800, margin: '0 auto' }}>
+        <h1>Selecione uma edição do Exame Oficial da OAB</h1>
+        <Input
+          className="space-stack-m"
+          placeholder="Procure uma edição..."
+          icon="search"
+          value={this.state.inputValue}
+          onChange={this.handleChange}
+          block
+        />
+        <ul className="flex flex-wrap" style={{ margin: '0 -8px' }}>
+          {this.props.editions
+            .filter(element => {
+              const regex = new RegExp(this.state.inputValue, 'gi')
+              const name = `${element.aobfunction_exam_year}/${
+                element.aob_exam_serial
+              }`
+              return name.match(regex)
+            })
+            .map(edition => (
+              <EditionItem
+                key={edition.id}
+                name={'Exame ' + romanize(edition.aob_exam_serial)}
+                year={'Ano ' + edition.aob_exam_year}
+                onClick={() => this.doExam(edition.id)}
+              />
+            ))}
+        </ul>
+      </div>
+    )
   }
 }
 

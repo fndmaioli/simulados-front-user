@@ -46,7 +46,7 @@ class Dashboard extends Component {
             label="Meus Exames"
             buttonLabel="Iniciar"
             description="Meus exames realizados e exames não concluidos."
-            onClick={() => ''}
+            onClick={() => this.getMyExams()}
           />
 
           <MenuCard
@@ -80,6 +80,11 @@ class Dashboard extends Component {
         </div>
       </div>
     )
+  }
+
+  getMyExams() {
+    this.props.push('/meusexames')
+    console.log('tets')
   }
 
   doExam() {

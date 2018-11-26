@@ -3,6 +3,7 @@ import Slider from 'react-slick'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 
 import {
   fetchQuestion,
@@ -57,7 +58,7 @@ class Exam extends React.Component {
   }
 
   fetchMoreQuestions(currentSlide) {
-    this.setState({ currentQuestion: currentSlide })
+    this.setState({ questionIndex: currentSlide })
 
     if (
       this.props.questions.length == currentSlide + 1 &&
@@ -83,13 +84,19 @@ class Exam extends React.Component {
   }
 
   showQuestionByIndex(index) {
-    if (index < 0 && index >= this.props.questions.length) return
+    if (index < 0) return
+
+    if (index >= this.props.questions.length) {
+      this.props.push('/resultado')
+    }
 
     this.slider.slickGoTo(index)
     this.setState({
       currentQuestion: this.props.questions[index],
       questionIndex: index,
     })
+
+    document.body.scrollIntoView({ behaviour: 'smooth' })
   }
 
   moveQuestionBy(val) {
@@ -112,7 +119,11 @@ class Exam extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
-      afterChange: event => this.fetchMoreQuestions(event),
+      swipeToSlide: true,
+      onSwipe: direction =>
+        direction === 'left'
+          ? this.moveQuestionBy(+1)
+          : this.moveQuestionBy(-1),
       ref: slider => (this.slider = slider),
       adaptiveHeight: true,
     }
@@ -125,7 +136,9 @@ class Exam extends React.Component {
               return (
                 <Container size="md" key={question.id}>
                   <header className="flex items-center justify-between space-stack-l">
-                    <h1 style={{ margin: 0 }}>Questão {question.id}</h1>
+                    <h1 style={{ margin: 0 }}>
+                      Questão {this.state.questionIndex + 1}
+                    </h1>
                     <Button
                       ghost
                       icon="corner-down-right"
@@ -201,7 +214,7 @@ class Exam extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, { questions = [] }) => ({
   examId: getExamId(state),
   questions: getQuestions(state),
   numberOfQuestions: getNumberOfQuestions(state),
@@ -216,6 +229,7 @@ export default connect(
         fetchQuestion,
         fetchMoreQuestion,
         answerQuestion,
+        push,
       },
       dispatch,
     ),
