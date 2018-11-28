@@ -15,17 +15,20 @@ const reducer = handleActions(
     }),
     [questionLoaded]: (state, action) => ({
       ...state,
-      result: [
-        ...state.result.result.filter(q => {
-          if (q.id === action.payload.questionDetail[0].id) {
-            return {
-              ...q,
-              detail: action.payload.questionDetail[0],
+      result: {
+        ...state.result,
+        result: [
+          ...state.result.result.map(q => {
+            if (q.id === action.payload.questionDetail[0].id) {
+              return {
+                ...q,
+                detail: action.payload.questionDetail[0],
+              }
             }
-          }
-          return q
-        }),
-      ],
+            return q
+          }),
+        ],
+      },
     }),
     [userLogout]: state => ({
       ...state,

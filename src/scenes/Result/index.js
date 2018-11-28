@@ -30,6 +30,7 @@ class Result extends React.Component {
   }
 
   extractData = () => {
+    console.log(this.props.data)
     if (this.props.data.result) {
       let total = 0
       let time = 0
@@ -57,8 +58,6 @@ class Result extends React.Component {
         questionId,
       )
     }
-
-    console.log(this.props.data.result)
 
     const exist = this.state.display.indexOf(index) !== -1
 

@@ -16,9 +16,7 @@ const fetchResult = participationId => dispatch => {
 
 const fetchQuestionDetail = (participationId, questionId) => dispatch => {
   return http
-    .get(
-      `http://localhost:3000/result/question/${participationId}/${questionId}`,
-    )
+    .get(`${API_URL}/result/question/${participationId}/${questionId}`)
     .then(question => dispatch(questionLoaded(question)))
     .catch(() =>
       dispatch(growl('Erro ao carregar os detalhes da questão', GROWL_ERROR)),
