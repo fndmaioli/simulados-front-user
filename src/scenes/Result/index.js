@@ -22,7 +22,6 @@ class Result extends React.Component {
       time: 0,
       hits: 0,
       display: [],
-      details: [],
     }
   }
 
@@ -52,19 +51,21 @@ class Result extends React.Component {
   }
 
   toggleQuestions = async (index, questionId) => {
-    if (!this.state.data.result[index].detail) {
+    if (!this.props.data.result[index].detail) {
       await this.props.fetchQuestionDetail(
         this.props.participationId,
         questionId,
       )
     }
 
+    console.log(this.props.data.result)
+
     const exist = this.state.display.indexOf(index) !== -1
-    console.log(index)
+
     const display = exist
       ? this.state.display.filter(i => i !== index)
       : [...this.state.display, index]
-    console.log(display)
+
     this.setState({ display })
   }
 
@@ -77,12 +78,12 @@ class Result extends React.Component {
           <div>Porcentagem de acertos</div> <div>{this.getPercent()}%</div>
         </div>
         <div className="data-result data-result--border-bottom data-result--statistics">
-          <div>Tempo médio por questão</div>{' '}
-          <div>{getTime(this.state.time)}</div>
-        </div>
-        <div className="data-result data-result--border-bottom data-result--statistics space-stack-l">
-          <div>Tempo total</div>{' '}
+          <div>Tempo médio por questão</div>
           <div>{getTime(this.state.time / this.state.total)}</div>
+        </div>
+        <div className="data-result data-result--border-bottom data-result--statistics space-stack-xl">
+          <div>Tempo total</div>
+          <div>{getTime(this.state.time)}</div>
         </div>
 
         <h3>Questões</h3>

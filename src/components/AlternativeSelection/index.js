@@ -54,3 +54,5 @@ const AlternativeSelection = ({ alternatives, name, onChange, selected }) => (
 )
 
 export default AlternativeSelection
+
+export { Alternative }

@@ -33,19 +33,12 @@ const CardQuestion = ({ question, getTime, toogle, onClick }) => (
       </div>
     </div>
     <div className="card-question_toggle-questions">
-      <QuestionDetail className={!toogle && 'hide'} question={questionDetail} />
+      <QuestionDetail
+        className={!toogle && 'hide'}
+        question={question.detail ? question.detail : {}}
+      />
     </div>
   </Card>
 )
-
-const questionDetail = {
-  id: 1,
-  statement:
-    'A advogada Laila representou judicialmente Rita em processo no qual esta postulava a condenação do Município de Manaus ao cumprimento de obrigação de pagar quantia certa. Fora acordado entre Laila e Rita o pagamento de valor determinado à advogada a título de honorários por meio de negócio jurídico escrito e válido. Após o transcurso do processo a Fazenda Pública foi condenada nos termos do pedido autoral. Antes da expedição do precatório Laila juntou aos autos o contrato de honorários no intuito de obter os valores pactuados. Considerando a situação narrada é correto afirmar que',
-  studyMaterials: 'dsdjlaksjasdklsjdlkasdjlsjdksladjlsadjla',
-  comment: 'djakdadljlsdjsakldsjdslakfhkjdsfjdskfhfksdjf',
-  alternative:
-    'Laila deverá executar os honorários em face de Rita em processo autônomo sendo vedado o pagamento nos mesmos autos por se tratar de honorários contratuais e não sucumbenciais.',
-}
 
 export default CardQuestion

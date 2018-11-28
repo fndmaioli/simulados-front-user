@@ -15,7 +15,17 @@ const reducer = handleActions(
     }),
     [questionLoaded]: (state, action) => ({
       ...state,
-      questionDetail: action.payload,
+      result: [
+        ...state.result.result.filter(q => {
+          if (q.id === action.payload.questionDetail[0].id) {
+            return {
+              ...q,
+              detail: action.payload.questionDetail[0],
+            }
+          }
+          return q
+        }),
+      ],
     }),
     [userLogout]: state => ({
       ...state,
