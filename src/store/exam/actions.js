@@ -13,6 +13,17 @@ const fetchExam = studentId => dispatch => {
     .then(exam => dispatch(examLoaded({ data: exam })))
 }
 
+const fetchMountExam = (idAreas, studentId) => dispatch => {
+  return http
+    .post(`${API_URL}/exam/mount`, {
+      data: {
+        student_id: studentId,
+        areas: JSON.stringify(idAreas),
+      },
+    })
+    .then(exam => dispatch(examLoaded({ data: exam })))
+}
+
 const createParticipation = (studentId, examId) => dispatch => {
   return http
     .post(`${API_URL}/participation/student/` + studentId + '/exam/' + examId, {
@@ -24,4 +35,10 @@ const createParticipation = (studentId, examId) => dispatch => {
     .then(exam => dispatch(examLoaded({ data: exam, examId: examId })))
 }
 
-export { examLoaded, fetchExam, getExamLoaded, createParticipation }
+export {
+  examLoaded,
+  fetchExam,
+  getExamLoaded,
+  createParticipation,
+  fetchMountExam,
+}

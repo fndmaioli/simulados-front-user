@@ -56,7 +56,7 @@ class Dashboard extends Component {
             label="Monte seu Exame"
             buttonLabel="Iniciar"
             description="Personalize seu exame escolhendo as áreas de sua preferência."
-            onClick={() => ''}
+            onClick={() => this.doCustomExam()}
           />
 
           {/* <MenuCard
@@ -72,9 +72,9 @@ class Dashboard extends Component {
             iconContainerColor="#F2F2F2"
             iconColor="#787878"
             icon="settings"
-            label="Customizado"
+            label="Monte sua prova"
             buttonLabel="Iniciar"
-            description="Prova com categorias escolhidas por você."
+            description="Prova com áreas escolhidas por você."
             onClick={() => this.doCustomExam()}
           /> */}
         </div>
@@ -100,7 +100,7 @@ class Dashboard extends Component {
   }
 
   doCustomExam() {
-    console.log('Buscar exame perguntas customizadas...')
+    this.props.push('/montar')
   }
 }
 
