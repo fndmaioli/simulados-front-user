@@ -3,7 +3,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { fetchResult } from 'store/result/actions'
+import { fetchResult, fetchQuestionDetail } from 'store/result/actions'
 import { getResult } from 'store/result'
 import { getParticipationId } from 'store/exam'
 
@@ -30,16 +30,18 @@ class Result extends React.Component {
   }
 
   extractData = () => {
+    console.log(this.props.data)
     if (this.props.data.result) {
       let total = 0
       let time = 0
       let hits = 0
 
-      this.props.data.result.forEach(r => {
-        time += r.total_time
-        hits += r.questions.filter(q => q.correct).length
-        total += r.questions.length
+      this.props.data.result.forEach(q => {
+        time += q.time_to_answer
+        hits += q.correct ? 1 : 0
       })
+
+      total = this.props.data.result.length
 
       this.setState({ total, time, hits })
     }
@@ -49,13 +51,20 @@ class Result extends React.Component {
     return Math.round((this.state.hits / this.state.total) * 100, 2)
   }
 
-  toggleQuestions = index => {
+  toggleQuestions = async (index, questionId) => {
+    if (!this.props.data.result[index].detail) {
+      await this.props.fetchQuestionDetail(
+        this.props.participationId,
+        questionId,
+      )
+    }
+
     const exist = this.state.display.indexOf(index) !== -1
-    console.log(index)
+
     const display = exist
       ? this.state.display.filter(i => i !== index)
       : [...this.state.display, index]
-    console.log(display)
+
     this.setState({ display })
   }
 
@@ -68,23 +77,23 @@ class Result extends React.Component {
           <div>Porcentagem de acertos</div> <div>{this.getPercent()}%</div>
         </div>
         <div className="data-result data-result--border-bottom data-result--statistics">
-          <div>Tempo médio por questão</div>{' '}
-          <div>{getTime(this.state.time)}</div>
-        </div>
-        <div className="data-result data-result--border-bottom data-result--statistics space-stack-l">
-          <div>Tempo total</div>{' '}
+          <div>Tempo médio por questão</div>
           <div>{getTime(this.state.time / this.state.total)}</div>
+        </div>
+        <div className="data-result data-result--border-bottom data-result--statistics space-stack-xl">
+          <div>Tempo total</div>
+          <div>{getTime(this.state.time)}</div>
         </div>
 
         <h3>Questões</h3>
 
-        {this.props.data.result.map((area, index) => (
+        {this.props.data.result.map((question, index) => (
           <CardQuestion
             key={`list-area-${index}`}
-            area={area}
+            question={question}
             getTime={getTime}
             toogle={this.state.display.indexOf(index) > -1}
-            onClick={() => this.toggleQuestions(index)}
+            onClick={() => this.toggleQuestions(index, question.id)}
           />
         ))}
       </Container>
@@ -107,6 +116,7 @@ export default connect(
     bindActionCreators(
       {
         fetchResult,
+        fetchQuestionDetail,
       },
       dispatch,
     ),
