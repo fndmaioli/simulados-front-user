@@ -15,8 +15,16 @@ const Header = ({ username = '', location }) =>
       <div className="header__content">
         <Logo />
         <section className="user-section space-between-inline-m">
-          <Icon name="user" height={30} width={30} />
-          <strong>{username}</strong>
+          <Icon name="log-out" height={30} width={30} />
+          <strong
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              window.localStorage.clear()
+              window.location.replace('/login')
+            }}
+          >
+            Sair
+          </strong>
         </section>
       </div>
     </header>
