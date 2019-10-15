@@ -18,9 +18,16 @@ const MenuCard = ({
   buttonLabel,
   description,
   iconContainerColor,
+  backColor,
+  disabled,
 }) => (
-  <Card className="flex menucard" onClick={onClick}>
-    <div className="flex menucard__innercontainer">
+  <Card
+    className="flex menucard"
+    onClick={onClick}
+    backColor={backColor}
+    disabled={disabled}
+  >
+    <div classNaame="flex menucard__innercontainer">
       <div
         className="menucard__iconcontainer"
         style={{ background: iconContainerColor }}
@@ -47,12 +54,14 @@ const MenuCard = ({
 MenuCard.propTypes = {
   iconColor: propTypes.string,
   iconContainerColor: propTypes.string,
+  backColor: propTypes.string,
   icon: propTypes.string,
   buttonLabel: propTypes.string,
   label: propTypes.string,
   onClick: propTypes.func,
   description: propTypes.string,
   smallWindow: propTypes.bool,
+  disabled: propTypes.bool,
 }
 
 export default MenuCard

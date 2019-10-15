@@ -31,6 +31,8 @@ class Dashboard extends Component {
             onClick={() => this.doExam()}
           />
           <MenuCard
+            disabled
+            backColor="#EBEBEB"
             iconContainerColor="#FFD7D7"
             iconColor="#FE8184"
             icon="shuffle"
@@ -40,6 +42,8 @@ class Dashboard extends Component {
             onClick={() => this.doRandomExam()}
           />
           <MenuCard
+            disabled
+            backColor="#EBEBEB"
             iconContainerColor="#AEBAf9"
             iconColor="#5E69F5"
             icon="folder-minus"
@@ -50,6 +54,8 @@ class Dashboard extends Component {
           />
 
           <MenuCard
+            disabled
+            backColor="#EBEBEB"
             iconContainerColor="#F2F2F2"
             iconColor="#787878"
             icon="edit"
@@ -83,8 +89,8 @@ class Dashboard extends Component {
   }
 
   getMyExams() {
-    this.props.push('/meusexames')
-    console.log('tets')
+    //this.props.push('/meusexames')
+    console.log('Não implementado')
   }
 
   doExam() {
@@ -92,15 +98,16 @@ class Dashboard extends Component {
   }
 
   doRandomExam() {
-    console.log('Buscar exame com perguntas aleatorias...')
+    console.log('Não implementado')
   }
 
   doSpecificExam() {
-    console.log('Buscar exame com perguntas especificas...')
+    console.log('Não implementado ')
   }
 
   doCustomExam() {
-    this.props.push('/montar')
+    //this.props.push('/montar')
+    console.log('Não implementado')
   }
 }
 

@@ -16,10 +16,16 @@ const Card = ({
   onClick,
   onTouchEnd,
   padding,
+  backColor,
+  disabled,
 }) => (
   <T
     className={cn('card', className)}
-    style={{ padding: paddings[padding] }}
+    style={{
+      padding: paddings[padding],
+      backgroundColor: backColor,
+      ...(disabled ? { cursor: 'default' } : {}),
+    }}
     onTouchEnd={onTouchEnd}
     onClick={onClick}
   >
