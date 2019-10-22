@@ -1,10 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import propTypes from 'prop-types'
-
 import Card from '../Card'
 import Icon from '../Icon'
-import Button from '../Button'
-
 import './menucard.scss'
 
 /**

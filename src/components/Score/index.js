@@ -36,14 +36,14 @@ class Score extends React.Component {
   getMessage(hits, total) {
     let score = total / 2
     if (hits > score) return 'Aprovado!'
-    if (hits == score) return 'Na média!'
+    if (hits === score) return 'Na média!'
     if (hits < score) return 'Reprovado!'
   }
 
   getClass(hits, total) {
     let score = total / 2
     if (hits > score) return 'score--green'
-    if (hits == score) return 'score--yellow'
+    if (hits === score) return 'score--yellow'
     if (hits < score) return 'score--red'
   }
 

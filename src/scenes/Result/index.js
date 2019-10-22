@@ -11,7 +11,6 @@ import './result.scss'
 import Container from 'components/Container'
 import Score from 'components/Score'
 import CardQuestion from 'components/CardQuestion'
-import { throws } from 'assert'
 import getTime from 'utils/time'
 
 class Result extends React.Component {

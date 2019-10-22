@@ -14,8 +14,6 @@ import { getQuestions, getNumberOfQuestions } from 'store/question'
 import { getExamId, getParticipationId } from 'store/exam'
 
 import Button from 'components/Button'
-import Modal from 'components/Modal'
-import RadioGroup from 'components/RadioGroup'
 import AlternativeSelection from 'components/AlternativeSelection'
 import Container from 'components/Container'
 import JumpToQuestion from 'components/JumpToQuestion'
@@ -61,7 +59,7 @@ class Exam extends React.Component {
     this.setState({ questionIndex: currentSlide })
 
     if (
-      this.props.questions.length == currentSlide + 1 &&
+      this.props.questions.length === currentSlide + 1 &&
       this.props.questions.length < this.props.numberOfQuestions
     ) {
       this.props.fetchMoreQuestion(

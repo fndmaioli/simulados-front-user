@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Card from '../Card'
 import Icon from '../Icon'
-import Score from '../Score'
 import './card-question.scss'
 import cn from 'classnames'
 import QuestionDetail from 'components/QuestionDetail'

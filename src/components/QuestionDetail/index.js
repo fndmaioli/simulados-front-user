@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Alternative } from 'components/AlternativeSelection'
 import './question-detail.scss'
 import cn from 'classnames'

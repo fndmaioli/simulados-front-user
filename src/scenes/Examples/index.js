@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { growl } from 'store/ui/actions'
-import { GROWL_INFO, GROWL_ERROR, GROWL_SUCCESS } from 'store/ui/constants'
+import { GROWL_ERROR, GROWL_SUCCESS } from 'store/ui/constants'
 
 import Button from 'components/Button'
 import Input from 'components/Input'
